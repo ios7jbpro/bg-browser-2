@@ -1,0 +1,17 @@
+/storage/emulated/0/.sketchware/mysc/671/gen/com/bgbrowser/two/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/appcompat/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/core/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/appcompat/resources/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/drawerlayout/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/coordinatorlayout/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/com/google/android/material/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/swiperefreshlayout/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/browser/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/constraintlayout/widget/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/transition/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/cardview/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/recyclerview/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/com/bumptech/glide/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/com/pierfrancescosoffritti/androidyoutubeplayer/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/de/hdodenhof/circleimageview/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/androidx/webkit/R.java \
