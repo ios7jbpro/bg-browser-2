@@ -34,6 +34,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.view.View;
 import androidx.webkit.*;
+import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -68,6 +69,7 @@ public class EditimageActivity extends AppCompatActivity {
 	private Intent fp = new Intent(Intent.ACTION_GET_CONTENT);
 	private Intent h = new Intent();
 	private SharedPreferences settings;
+	private SharedPreferences savess;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -107,6 +109,7 @@ public class EditimageActivity extends AppCompatActivity {
 		fp.setType("image/*");
 		fp.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
+		savess = getSharedPreferences("savess", Activity.MODE_PRIVATE);
 		
 		button_rotate.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -172,8 +175,8 @@ public class EditimageActivity extends AppCompatActivity {
 		crp.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		crp.setAdjustViewBounds(true);
 		linear4.addView(crp, 0);
-		if (FileUtil.isExistFile(FileUtil.getExternalStorageDir().concat("/Download/myimage.png"))) {
-			path = FileUtil.getExternalStorageDir().concat("/Download/myimage.png");
+		if (FileUtil.isExistFile(savess.getString("savess", ""))) {
+			path = savess.getString("savess", "");
 			Bitmap image = FileUtil.decodeSampleBitmapFromPath(path, 1024, 1024);
 			crp.setImageBitmap(image);
 		}

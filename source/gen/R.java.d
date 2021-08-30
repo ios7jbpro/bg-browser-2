@@ -15,3 +15,4 @@
 /storage/emulated/0/.sketchware/mysc/671/gen/com/pierfrancescosoffritti/androidyoutubeplayer/R.java \
 /storage/emulated/0/.sketchware/mysc/671/gen/de/hdodenhof/circleimageview/R.java \
 /storage/emulated/0/.sketchware/mysc/671/gen/androidx/webkit/R.java \
+/storage/emulated/0/.sketchware/mysc/671/gen/com/monstertechno/adblocker/R.java \

@@ -2083,7 +2083,7 @@ int id chain 0x7f0c0082
 int id chains 0x7f0c008e
 int id checkbox 0x7f0c0155
 int id checkbox2 0x7f0c0137
-int id checked 0x7f0c0314
+int id checked 0x7f0c0317
 int id chip 0x7f0c030a
 int id chip1 0x7f0c0311
 int id chip2 0x7f0c0312
@@ -2108,6 +2108,7 @@ int id clear_text 0x7f0c010e
 int id clip_horizontal 0x7f0c0114
 int id clip_vertical 0x7f0c0115
 int id clockwise 0x7f0c0060
+int id close 0x7f0c0316
 int id closest 0x7f0c0061
 int id collapseActionView 0x7f0c012c
 int id confirm_button 0x7f0c0290
@@ -2133,6 +2134,7 @@ int id decor_content_parent 0x7f0c015a
 int id default_activity_button 0x7f0c013f
 int id deltaRelative 0x7f0c0077
 int id dependency_ordering 0x7f0c008f
+int id desc 0x7f0c0314
 int id design_bottom_sheet 0x7f0c021f
 int id design_menu_item_action_area 0x7f0c0224
 int id design_menu_item_action_area_stub 0x7f0c0223
@@ -2385,7 +2387,7 @@ int id listMode 0x7f0c011b
 int id list_item 0x7f0c0140
 int id listview1 0x7f0c023b
 int id live_video_indicator 0x7f0c0176
-int id masked 0x7f0c0318
+int id masked 0x7f0c031b
 int id match_constraint 0x7f0c0086
 int id match_parent 0x7f0c0087
 int id material_clock_face 0x7f0c000e
@@ -2445,8 +2447,8 @@ int id north 0x7f0c00bc
 int id notification_background 0x7f0c02a5
 int id notification_main_column 0x7f0c02a1
 int id notification_main_column_container 0x7f0c02a0
-int id off 0x7f0c0317
-int id on 0x7f0c0316
+int id off 0x7f0c031a
+int id on 0x7f0c0319
 int id outline 0x7f0c0113
 int id outward 0x7f0c00e3
 int id overshoot 0x7f0c00a7
@@ -2707,10 +2709,11 @@ int id transition_position 0x7f0c0009
 int id transition_scene_layoutid_cache 0x7f0c000a
 int id transition_transform 0x7f0c000b
 int id triangle 0x7f0c00b5
-int id unchecked 0x7f0c0315
+int id unchecked 0x7f0c0318
 int id uniform 0x7f0c0123
 int id unlabeled 0x7f0c00e8
 int id up 0x7f0c005d
+int id update 0x7f0c0315
 int id useLogo 0x7f0c0122
 int id vertical_only 0x7f0c009b
 int id video_title 0x7f0c0170
@@ -2909,9 +2912,10 @@ int layout text_view_with_line_height_from_style 0x7f03008c
 int layout text_view_with_theme_line_height 0x7f03008d
 int layout text_view_without_line_height 0x7f03008e
 int layout textfile 0x7f03008f
-int layout welcome1 0x7f030090
-int layout welcome2 0x7f030091
-int layout ytfullscreen 0x7f030092
+int layout updatedialog 0x7f030090
+int layout welcome1 0x7f030091
+int layout welcome2 0x7f030092
+int layout ytfullscreen 0x7f030093
 int plurals mtrl_badge_content_description 0x7f0e0000
 int raw ayp_youtube_player 0x7f080000
 int string abc_action_bar_home_description 0x7f0b0052

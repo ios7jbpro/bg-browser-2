@@ -191,7 +191,7 @@
 # view AndroidManifest.xml #generated:61
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:213
+# view AndroidManifest.xml #generated:220
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
@@ -226,7 +226,7 @@
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:220
+# view AndroidManifest.xml #generated:227
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:184
@@ -264,6 +264,9 @@
 
 # view AndroidManifest.xml #generated:137
 -keep class com.bgbrowser.two.TextfileActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:213
+-keep class com.bgbrowser.two.UpdatedialogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:40
 -keep class com.bgbrowser.two.Welcome1Activity { <init>(...); }

@@ -9875,7 +9875,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int chains=0x7f0c008e;
         public static int checkbox=0x7f0c0155;
         public static int checkbox2=0x7f0c0137;
-        public static int checked=0x7f0c0314;
+        public static int checked=0x7f0c0317;
         public static int chip=0x7f0c030a;
         public static int chip1=0x7f0c0311;
         public static int chip2=0x7f0c0312;
@@ -9900,6 +9900,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int clip_horizontal=0x7f0c0114;
         public static int clip_vertical=0x7f0c0115;
         public static int clockwise=0x7f0c0060;
+        public static int close=0x7f0c0316;
         public static int closest=0x7f0c0061;
         public static int collapseActionView=0x7f0c012c;
         public static int confirm_button=0x7f0c0290;
@@ -9925,6 +9926,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int default_activity_button=0x7f0c013f;
         public static int deltaRelative=0x7f0c0077;
         public static int dependency_ordering=0x7f0c008f;
+        public static int desc=0x7f0c0314;
         public static int design_bottom_sheet=0x7f0c021f;
         public static int design_menu_item_action_area=0x7f0c0224;
         public static int design_menu_item_action_area_stub=0x7f0c0223;
@@ -10177,7 +10179,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int list_item=0x7f0c0140;
         public static int listview1=0x7f0c023b;
         public static int live_video_indicator=0x7f0c0176;
-        public static int masked=0x7f0c0318;
+        public static int masked=0x7f0c031b;
         public static int match_constraint=0x7f0c0086;
         public static int match_parent=0x7f0c0087;
         public static int material_clock_face=0x7f0c000e;
@@ -10237,8 +10239,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int notification_background=0x7f0c02a5;
         public static int notification_main_column=0x7f0c02a1;
         public static int notification_main_column_container=0x7f0c02a0;
-        public static int off=0x7f0c0317;
-        public static int on=0x7f0c0316;
+        public static int off=0x7f0c031a;
+        public static int on=0x7f0c0319;
         public static int outline=0x7f0c0113;
         public static int outward=0x7f0c00e3;
         public static int overshoot=0x7f0c00a7;
@@ -10499,10 +10501,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int transition_scene_layoutid_cache=0x7f0c000a;
         public static int transition_transform=0x7f0c000b;
         public static int triangle=0x7f0c00b5;
-        public static int unchecked=0x7f0c0315;
+        public static int unchecked=0x7f0c0318;
         public static int uniform=0x7f0c0123;
         public static int unlabeled=0x7f0c00e8;
         public static int up=0x7f0c005d;
+        public static int update=0x7f0c0315;
         public static int useLogo=0x7f0c0122;
         public static int vertical_only=0x7f0c009b;
         public static int video_title=0x7f0c0170;
@@ -10707,9 +10710,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int text_view_with_theme_line_height=0x7f03008d;
         public static int text_view_without_line_height=0x7f03008e;
         public static int textfile=0x7f03008f;
-        public static int welcome1=0x7f030090;
-        public static int welcome2=0x7f030091;
-        public static int ytfullscreen=0x7f030092;
+        public static int updatedialog=0x7f030090;
+        public static int welcome1=0x7f030091;
+        public static int welcome2=0x7f030092;
+        public static int ytfullscreen=0x7f030093;
     }
     public static final class plurals {
         public static int mtrl_badge_content_description=0x7f0e0000;

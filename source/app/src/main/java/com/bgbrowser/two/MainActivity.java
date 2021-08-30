@@ -56,6 +56,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.bumptech.glide.Glide;
 import androidx.webkit.*;
+import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -76,8 +77,14 @@ public class MainActivity extends AppCompatActivity {
 	private boolean FoundItems = false;
 	private HashMap<String, Object> spinner = new HashMap<>();
 	private HashMap<String, Object> UpdatifyMap = new HashMap<>();
+	private String name = "";
+	private String package_name = "";
+	private String your_version = "";
+	private String new_version = "";
+	private HashMap<String, Object> mapversion = new HashMap<>();
 	
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
+	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
 	
 	private LinearLayout linear17;
 	private LinearLayout intenturlpage;
@@ -196,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
 	private SharedPreferences shortcut;
 	private Intent editask = new Intent();
 	private Intent settdialog = new Intent();
+	private Calendar filname = Calendar.getInstance();
+	private SharedPreferences savess;
+	private Intent dlgupdate = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -324,6 +334,7 @@ public class MainActivity extends AppCompatActivity {
 		webhistory = getSharedPreferences("webhistory", Activity.MODE_PRIVATE);
 		historycounter = getSharedPreferences("historycounter", Activity.MODE_PRIVATE);
 		shortcut = getSharedPreferences("shortcut", Activity.MODE_PRIVATE);
+		savess = getSharedPreferences("savess", Activity.MODE_PRIVATE);
 		
 		imageview26.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -1481,7 +1492,12 @@ public class MainActivity extends AppCompatActivity {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
-				_UpdatifyComponent(_response);
+				listmap = new Gson().fromJson(_response, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
+				if (Double.parseDouble(your_version) < Double.parseDouble(listmap.get((int)0).get("update-version").toString())) {
+					dlgupdate.setAction(Intent.ACTION_VIEW);
+					dlgupdate.setClass(getApplicationContext(), UpdatedialogActivity.class);
+					startActivity(dlgupdate);
+				}
 			}
 			
 			@Override
@@ -1494,7 +1510,13 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		updatcheck.startRequestNetwork(RequestNetworkController.GET, "https://nerbly.com/updatify/apiv1/files/BgBrowser2_593304175.json", "", _updatcheck_request_listener);
+		package_name = "com.bgbrowser.two";
+		try {
+			android.content.pm.PackageInfo pinfo = getPackageManager().getPackageInfo( package_name, android.content.pm.PackageManager.GET_ACTIVITIES);
+			your_version = pinfo.versionName; }
+		catch (Exception e){ showMessage(e.toString()); }
+		updatcheck.startRequestNetwork(RequestNetworkController.GET, "https://root.apurixz.com/file/user_upload/bg-browser-2-main/database.json", "", _updatcheck_request_listener);
+		_checkupdt();
 		android.content.pm.ShortcutManager shortcutManager = getSystemService(android.content.pm.ShortcutManager.class);
 		android.content.pm.ShortcutInfo newtabShortcut = new android.content.pm.ShortcutInfo.Builder(MainActivity.this, "id1")
 				.setShortLabel("Open tab")
@@ -3530,6 +3552,8 @@ public class MainActivity extends AppCompatActivity {
 			} });
 		
 		line_savepicture.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				filname = Calendar.getInstance();
+				name = FileUtil.getExternalStorageDir().concat("/BgBrowser2/Saved/".concat(String.valueOf((long)(filname.getTimeInMillis())).concat(".png")));
 				if (swiperefreshlayout1.isEnabled()) {
 					_saveView(swiperefreshlayout1);
 				}
@@ -3551,6 +3575,7 @@ public class MainActivity extends AppCompatActivity {
 						}
 					}
 				}
+				savess.edit().putString("savess", name).commit();
 				editask.setAction(Intent.ACTION_VIEW);
 				editask.setClass(getApplicationContext(), EditpicActivity.class);
 				startActivity(editask);
@@ -4232,7 +4257,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 		_view.draw(canvas);
 		
-		java.io.File pictureFile = new java.io.File(Environment.getExternalStorageDirectory() + "/Download/myimage.png");
+		java.io.File pictureFile = new java.io.File(name);
 		if (pictureFile == null) {
 			showMessage("Error creating media file, check storage permissions: ");
 			return; }
@@ -4295,6 +4320,11 @@ public class MainActivity extends AppCompatActivity {
 			w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 			w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
 		}
+	}
+	
+	
+	public void _checkupdt () {
+		
 	}
 	
 	

@@ -34,6 +34,7 @@ import java.util.TimerTask;
 import android.view.View;
 import android.graphics.Typeface;
 import androidx.webkit.*;
+import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;

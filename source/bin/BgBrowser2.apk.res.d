@@ -1250,6 +1250,7 @@
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/spinnerdialog.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/settings.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/textfile.xml \
+/storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/updatedialog.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/main.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/dialog_rootmode.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/history.xml \
@@ -1265,6 +1266,7 @@
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/otherfile.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/debug.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/layout/welcome1.xml \
+/storage/emulated/0/.sketchware/data/671/files/assets/ivylove \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/assets/fonts \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/assets/fonts/googlesansbold.ttf \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/assets/fonts/googlesansregular.ttf \
