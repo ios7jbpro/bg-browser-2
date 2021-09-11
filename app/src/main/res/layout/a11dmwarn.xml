@@ -1,0 +1,54 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="8dp"
+		android:gravity="center_horizontal|center_vertical"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linear2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:background="#FFFFFF"
+			android:gravity="center_horizontal|center_vertical"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/textview1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="Android 11 Detected"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:textColor="#000000"/>
+			<TextView
+				android:id="@+id/textview2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_horizontal"
+				android:text="App should be\nrestarted in order\nto apply this option in Android 11."
+				android:textSize="12sp"
+				android:textColor="#000000"/>
+			<TextView
+				android:id="@+id/textview3"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:background="#2196F3"
+				android:gravity="center_horizontal|center_vertical"
+				android:text="Understood"
+				android:textSize="14sp"
+				android:textStyle="bold"
+				android:textColor="#FFFFFF"/>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
