@@ -38,6 +38,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 import androidx.webkit.*;
 import com.monstertechno.adblocker.*;
+import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;

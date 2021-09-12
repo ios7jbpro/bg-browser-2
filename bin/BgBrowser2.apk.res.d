@@ -1082,12 +1082,14 @@
 /data/user/0/com.sketchware.tn/files/libs/libs/appcompat-1.0.0/res/values-nl/values-nl.xml \
 /data/user/0/com.sketchware.tn/files/libs/libs/appcompat-1.0.0/res/values-en-rXC/values-en-rXC.xml \
 /data/user/0/com.sketchware.tn/files/libs/libs/appcompat-1.0.0/res/values-de/values-de.xml \
+/storage/emulated/0/.sketchware/libs/local_libs/RippleSwitch_V_1.0/res/values/values.xml \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/crop_rotate.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/folder.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_tab_unselected_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_phone_android_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_open_in_new_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/jeykulpfp.png \
+/storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_fast_forward_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/drknespfp.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/loading12.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_description_black.png \
@@ -1138,6 +1140,7 @@
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/launchingooglewhite.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_filter_none_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/default_image.png \
+/storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_fast_forward_white.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_launch_white.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/ic_chevron_right_black.png \
 /storage/emulated/0/.sketchware/mysc/671/app/src/main/res/drawable-xhdpi/webudsearch.png \

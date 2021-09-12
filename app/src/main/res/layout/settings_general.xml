@@ -89,15 +89,30 @@
 						android:padding="8dp"
 						android:gravity="center_vertical"
 						android:orientation="horizontal">
-						<Switch
-							android:id="@+id/switch1"
-							android:layout_width="match_parent"
+						<TextView
+							android:id="@+id/textview132"
+							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
-							android:gravity="left|center_vertical"
 							android:text="Dark Mode"
 							android:textSize="14sp"
 							android:textColor="#000000"/>
+						<LinearLayout
+							android:id="@+id/linear107"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:gravity="right|center_vertical"
+							android:orientation="horizontal">
+							<com.jtv7.rippleswitchlib.RippleSwitch
+								android:id="@+id/switch3"
+								android:layout_width="49dp"
+								android:layout_height="match_parent"
+								android:padding="4dp"
+								android:gravity="center_horizontal|center_vertical"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:layout_gravity="right|center_vertical"/>
+						</LinearLayout>
 					</LinearLayout>
 					<LinearLayout
 						android:id="@+id/linear106"
@@ -105,15 +120,30 @@
 						android:layout_height="wrap_content"
 						android:padding="8dp"
 						android:orientation="horizontal">
-						<Switch
-							android:id="@+id/switch2"
-							android:layout_width="match_parent"
+						<TextView
+							android:id="@+id/textview133"
+							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
-							android:gravity="left|center_vertical"
 							android:text="Follow System"
 							android:textSize="14sp"
 							android:textColor="#000000"/>
+						<LinearLayout
+							android:id="@+id/linear108"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:gravity="right|center_vertical"
+							android:orientation="horizontal">
+							<com.jtv7.rippleswitchlib.RippleSwitch
+								android:id="@+id/switch4"
+								android:layout_width="49dp"
+								android:layout_height="match_parent"
+								android:padding="4dp"
+								android:gravity="center_horizontal|center_vertical"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:layout_gravity="right|center_vertical"/>
+						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
 			</androidx.cardview.widget.CardView>
@@ -124,7 +154,7 @@
 				android:layout_marginTop="4dp"
 				android:orientation="horizontal">
 				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview8"
+					android:id="@+id/cardview16"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="15dp"
@@ -132,42 +162,42 @@
 					android:layout_marginRight="8dp"
 					android:layout_marginBottom="15dp"
 					android:padding="8dp"
-					android:background="#E57373"
+					android:background="#FFAB91"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
 					app:cardCornerRadius="11dp">
 					<LinearLayout
-						android:id="@+id/linear89"
+						android:id="@+id/linear102"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
 						android:orientation="vertical">
 						<TextView
-							android:id="@+id/textview107"
+							android:id="@+id/textview129"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="4dp"
-							android:text="Debug Mode"
+							android:text="Profile Picture"
 							android:textSize="12sp"
 							android:textStyle="bold"
-							android:textColor="#F44336"/>
+							android:textColor="#FF5722"/>
 						<TextView
-							android:id="@+id/textview108"
+							android:id="@+id/textview130"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="4dp"
-							android:text="Enable advanced stuff\n(UNSTABLE)"
+							android:text="Show a profile\npicture"
 							android:textSize="12sp"
-							android:textColor="#F44336"/>
+							android:textColor="#FF5722"/>
 						<TextView
-							android:id="@+id/textview109"
+							android:id="@+id/textview131"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
 							android:text="ENABLED"
 							android:textSize="16sp"
 							android:textStyle="bold"
-							android:textColor="#F44336"/>
+							android:textColor="#FF5722"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 				<androidx.cardview.widget.CardView
@@ -315,56 +345,6 @@
 							android:textSize="16sp"
 							android:textStyle="bold"
 							android:textColor="#3F51B5"/>
-					</LinearLayout>
-				</androidx.cardview.widget.CardView>
-			</LinearLayout>
-			<LinearLayout
-				android:id="@+id/linear90"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview16"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_margin="15dp"
-					android:padding="8dp"
-					android:background="#FFAB91"
-					android:layout_weight="1"
-					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
-					<LinearLayout
-						android:id="@+id/linear102"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:padding="8dp"
-						android:orientation="vertical">
-						<TextView
-							android:id="@+id/textview129"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="Profile Picture"
-							android:textSize="12sp"
-							android:textStyle="bold"
-							android:textColor="#FF5722"/>
-						<TextView
-							android:id="@+id/textview130"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="Show a profile\npicture"
-							android:textSize="12sp"
-							android:textColor="#FF5722"/>
-						<TextView
-							android:id="@+id/textview131"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#FF5722"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 			</LinearLayout>
@@ -631,6 +611,55 @@
 									android:textColor="#00BCD4"/>
 							</LinearLayout>
 						</HorizontalScrollView>
+					</LinearLayout>
+				</androidx.cardview.widget.CardView>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear109"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cardview18"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="15dp"
+					android:padding="8dp"
+					android:background="#90CAF9"
+					app:cardElevation="3dp"
+					app:cardCornerRadius="11dp">
+					<LinearLayout
+						android:id="@+id/linear110"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:orientation="vertical">
+						<TextView
+							android:id="@+id/textview134"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="4dp"
+							android:text="Disable No Connection"
+							android:textSize="12sp"
+							android:textStyle="bold"
+							android:textColor="#2196F3"/>
+						<TextView
+							android:id="@+id/textview135"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="4dp"
+							android:text="Disable the &quot;No Connection/Internet&quot; page and keep showing the website even when offline(recommended for Run HTML)"
+							android:textSize="12sp"
+							android:textColor="#2196F3"/>
+						<TextView
+							android:id="@+id/textview136"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="ENABLED"
+							android:textSize="16sp"
+							android:textStyle="bold"
+							android:textColor="#2196F3"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 			</LinearLayout>

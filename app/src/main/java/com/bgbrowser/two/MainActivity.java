@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
+import androidx.cardview.widget.CardView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.webkit.WebView;
@@ -57,6 +58,7 @@ import com.google.gson.reflect.TypeToken;
 import com.bumptech.glide.Glide;
 import androidx.webkit.*;
 import com.monstertechno.adblocker.*;
+import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -70,6 +72,7 @@ import android.view.inputmethod.EditorInfo;
 
 public class MainActivity extends AppCompatActivity {
 	public final int REQ_CD_FP = 101;
+	public final int REQ_CD_RUNHTML = 102;
 	private Timer _timer = new Timer();
 	
 	private double width = 0;
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 	private String your_version = "";
 	private String new_version = "";
 	private HashMap<String, Object> mapversion = new HashMap<>();
+	private String path = "";
 	
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
@@ -107,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
 	private SwipeRefreshLayout swiperefreshlayout4;
 	private LinearLayout linear7;
 	private LinearLayout linear5;
-	private ImageView profile_picture;
+	private CardView pfp_rounder;
 	private LinearLayout linear2;
 	private ImageView imageview31;
+	private ImageView profile_picture;
 	private ImageView imageview32;
 	private EditText edittext1;
 	private TextView textview1;
@@ -206,6 +211,9 @@ public class MainActivity extends AppCompatActivity {
 	private Calendar filname = Calendar.getInstance();
 	private SharedPreferences savess;
 	private Intent dlgupdate = new Intent();
+	private SharedPreferences pfp;
+	private Intent runhtml = new Intent(Intent.ACTION_GET_CONTENT);
+	private TimerTask lhtml;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -251,9 +259,10 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout4 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout4);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
 		linear5 = (LinearLayout) findViewById(R.id.linear5);
-		profile_picture = (ImageView) findViewById(R.id.profile_picture);
+		pfp_rounder = (CardView) findViewById(R.id.pfp_rounder);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		imageview31 = (ImageView) findViewById(R.id.imageview31);
+		profile_picture = (ImageView) findViewById(R.id.profile_picture);
 		imageview32 = (ImageView) findViewById(R.id.imageview32);
 		edittext1 = (EditText) findViewById(R.id.edittext1);
 		textview1 = (TextView) findViewById(R.id.textview1);
@@ -335,6 +344,9 @@ public class MainActivity extends AppCompatActivity {
 		historycounter = getSharedPreferences("historycounter", Activity.MODE_PRIVATE);
 		shortcut = getSharedPreferences("shortcut", Activity.MODE_PRIVATE);
 		savess = getSharedPreferences("savess", Activity.MODE_PRIVATE);
+		pfp = getSharedPreferences("loc", Activity.MODE_PRIVATE);
+		runhtml.setType("text/html");
+		runhtml.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 		
 		imageview26.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -708,7 +720,6 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview1 attempting to load ".concat(webview1.getUrl())))))).commit();
 				if (swiperefreshlayout1.isEnabled()) {
 					progressbar1.setVisibility(View.VISIBLE);
 					if (settings.getString("ytplayer", "").equals("1")) {
@@ -726,7 +737,12 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 				history.edit().putString(String.valueOf(Double.parseDouble(webhistory.getString("webhistory", "")) + 1), webview1.getUrl()).commit();
-				webcheck.startRequestNetwork(RequestNetworkController.GET, webview1.getUrl(), "A", _webcheck_request_listener);
+				if (settings.getString("killnoconnection", "").equals("1")) {
+					
+				}
+				else {
+					webcheck.startRequestNetwork(RequestNetworkController.GET, webview1.getUrl(), "A", _webcheck_request_listener);
+				}
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
@@ -771,11 +787,8 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview2 attempting to load ".concat(webview2.getUrl())))))).commit();
 				if (swiperefreshlayout2.isEnabled()) {
 					progressbar1.setVisibility(View.VISIBLE);
-					
-					
 					webview2.setVisibility(View.VISIBLE);
 					edittext1.setText(webview2.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
@@ -793,7 +806,12 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 				history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 2:".concat(webview2.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
-				webcheck.startRequestNetwork(RequestNetworkController.GET, webview2.getUrl(), "A", _webcheck_request_listener);
+				if (settings.getString("killnoconnection", "").equals("1")) {
+					
+				}
+				else {
+					webcheck.startRequestNetwork(RequestNetworkController.GET, webview2.getUrl(), "A", _webcheck_request_listener);
+				}
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
@@ -836,11 +854,8 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview3 attempting to load ".concat(webview3.getUrl())))))).commit();
 				if (swiperefreshlayout3.isEnabled()) {
 					progressbar1.setVisibility(View.VISIBLE);
-					
-					
 					edittext1.setText(webview3.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview3.getUrl().contains("m.youtube.com/watch")) {
@@ -857,7 +872,12 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 				history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 3:".concat(webview3.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
-				webcheck.startRequestNetwork(RequestNetworkController.GET, webview3.getUrl(), "A", _webcheck_request_listener);
+				if (settings.getString("killnoconnection", "").equals("1")) {
+					
+				}
+				else {
+					webcheck.startRequestNetwork(RequestNetworkController.GET, webview3.getUrl(), "A", _webcheck_request_listener);
+				}
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
@@ -900,11 +920,8 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview4 attempting to load ".concat(webview1.getUrl())))))).commit();
 				if (swiperefreshlayout4.isEnabled()) {
 					progressbar1.setVisibility(View.VISIBLE);
-					
-					
 					edittext1.setText(webview4.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview4.getUrl().contains("m.youtube.com/watch")) {
@@ -921,7 +938,12 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 				history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 4:".concat(webview4.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
-				webcheck.startRequestNetwork(RequestNetworkController.GET, webview4.getUrl(), "A", _webcheck_request_listener);
+				if (settings.getString("killnoconnection", "").equals("1")) {
+					
+				}
+				else {
+					webcheck.startRequestNetwork(RequestNetworkController.GET, webview4.getUrl(), "A", _webcheck_request_listener);
+				}
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
@@ -1806,6 +1828,8 @@ public class MainActivity extends AppCompatActivity {
 				 }
 		});
 		webview1.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		pfp_rounder.setCardBackgroundColor(Color.TRANSPARENT);
+		pfp_rounder.setPreventCornerOverlap(true);
 		webview1.getSettings().setJavaScriptEnabled(true);
 		 
 		webview1.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
@@ -1834,8 +1858,8 @@ public class MainActivity extends AppCompatActivity {
 		webview4.getSettings().setDisplayZoomControls(false);
 		webview5.getSettings().setBuiltInZoomControls(true);
 		webview5.getSettings().setDisplayZoomControls(false);
-		profile_picture.setImageBitmap(FileUtil.decodeSampleBitmapFromPath("/sdcard/BGB/pfp.png", 1024, 1024));
-		pfp_tablet.setImageBitmap(FileUtil.decodeSampleBitmapFromPath("/sdcard/BGB/pfp.png", 1024, 1024));
+		profile_picture.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(pfp.getString("loc", ""), 1024, 1024));
+		pfp_tablet.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(pfp.getString("loc", ""), 1024, 1024));
 		swiperefreshlayout2.setEnabled(false);
 		progressbar1.setVisibility(View.GONE);
 		swiperefreshlayout2.setVisibility(View.GONE);
@@ -2092,6 +2116,68 @@ public class MainActivity extends AppCompatActivity {
 			mUploadMessage = null;
 			
 			if (true){
+			}
+			else {
+				
+			}
+			break;
+			
+			case REQ_CD_RUNHTML:
+			if (_resultCode == Activity.RESULT_OK) {
+				ArrayList<String> _filePath = new ArrayList<>();
+				if (_data != null) {
+					if (_data.getClipData() != null) {
+						for (int _index = 0; _index < _data.getClipData().getItemCount(); _index++) {
+							ClipData.Item _item = _data.getClipData().getItemAt(_index);
+							_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _item.getUri()));
+						}
+					}
+					else {
+						_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _data.getData()));
+					}
+				}
+				if (_filePath.get((int)(0)).endsWith(".html")) {
+					path = _filePath.get((int)(0));
+					if (swiperefreshlayout1.isEnabled()) {
+						webview1.loadUrl("file:///" + path);
+					}
+					else {
+						if (swiperefreshlayout2.isEnabled()) {
+							webview2.loadUrl("file:///" + path);
+						}
+						else {
+							if (swiperefreshlayout3.isEnabled()) {
+								webview3.loadUrl("file:///" + path);
+							}
+							else {
+								if (swiperefreshlayout4.isEnabled()) {
+									webview4.loadUrl("file:///" + path);
+								}
+								else {
+									SketchwareUtil.showMessage(getApplicationContext(), "illegalException:No View Enabled");
+								}
+							}
+						}
+					}
+					imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+					imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+					lhtml = new TimerTask() {
+						@Override
+						public void run() {
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+									imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+								}
+							});
+						}
+					};
+					_timer.schedule(lhtml, (int)(1000));
+				}
+				else {
+					SketchwareUtil.showMessage(getApplicationContext(), "Not a HTML file.");
+				}
 			}
 			else {
 				
@@ -3478,6 +3564,8 @@ public class MainActivity extends AppCompatActivity {
 		
 		TextView text5 = popupView.findViewById(R.id.text5);
 		
+		TextView text6 = popupView.findViewById(R.id.text6);
+		
 		ImageView image_settings = popupView.findViewById(R.id.image_settings);
 		
 		ImageView image_editsaved = popupView.findViewById(R.id.image_editsaved);
@@ -3493,6 +3581,8 @@ public class MainActivity extends AppCompatActivity {
 		ImageView image_reload = popupView.findViewById(R.id.image_reload);
 		
 		ImageView image_forward = popupView.findViewById(R.id.image_forward);
+		
+		ImageView image_html = popupView.findViewById(R.id.image_html);
 		
 		
 		LinearLayout line_popup = popupView.findViewById(R.id.line_popup);
@@ -3513,6 +3603,8 @@ public class MainActivity extends AppCompatActivity {
 		
 		LinearLayout line_forward = popupView.findViewById(R.id.line_forward);
 		
+		LinearLayout line_html = popupView.findViewById(R.id.line_html);
+		
 		LinearLayout holder_top = popupView.findViewById(R.id.holder_top);
 		
 		LinearLayout line_div1 = popupView.findViewById(R.id.line_div1);
@@ -3522,6 +3614,8 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout line_div3 = popupView.findViewById(R.id.line_div3);
 		
 		LinearLayout line_div4 = popupView.findViewById(R.id.line_div4);
+		
+		LinearLayout line_div5 = popupView.findViewById(R.id.line_div5);
 		line_Download.setOnClickListener(new OnClickListener() { public void onClick(View view) {
 				bzh.setClass(getApplicationContext(), DownloadActivity.class);
 				startActivity(bzh);
@@ -3658,6 +3752,28 @@ public class MainActivity extends AppCompatActivity {
 				popup.dismiss();
 			} });
 		
+		line_html.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				startActivityForResult(runhtml, REQ_CD_RUNHTML);
+				settings.edit().putString("killnoconnection", "1").commit();
+				SketchwareUtil.showMessage(getApplicationContext(), "Disable No Connection has been turned on so app can load the HTML file.");
+				imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+				imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+				lhtml = new TimerTask() {
+					@Override
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+								imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+							}
+						});
+					}
+				};
+				_timer.schedule(lhtml, (int)(1000));
+				popup.dismiss();
+			} });
+		
 		if (settings.getString("darkmode", "").equals("1")) {
 			android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
 			round.setColor (Color.parseColor("#2E2F32"));
@@ -3673,11 +3789,13 @@ public class MainActivity extends AppCompatActivity {
 			text3.setTextColor(0xFFFFFFFF);
 			text4.setTextColor(0xFFFFFFFF);
 			text5.setTextColor(0xFFFFFFFF);
+			text6.setTextColor(0xFFFFFFFF);
 			
 			line_div1.setBackgroundColor(0xFF202124);
 			line_div2.setBackgroundColor(0xFF202124);
 			line_div3.setBackgroundColor(0xFF202124);
 			line_div4.setBackgroundColor(0xFF202124);
+			line_div5.setBackgroundColor(0xFF202124);
 			
 			image_settings.setImageResource(R.drawable.outline_settings_white_48);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
@@ -3693,9 +3811,11 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_find, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_pdf, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_savepicture, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_html, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_white);
+			image_html.setImageResource(R.drawable.ic_fast_forward_white);
 		}
 		else {
 			android.graphics.drawable.GradientDrawable round2 = new android.graphics.drawable.GradientDrawable ();
@@ -3712,11 +3832,13 @@ public class MainActivity extends AppCompatActivity {
 			text3.setTextColor(0xFF000000);
 			text4.setTextColor(0xFF000000);
 			text5.setTextColor(0xFF000000);
+			text6.setTextColor(0xFF000000);
 			
 			line_div1.setBackgroundColor(0xFFF1F3F4);
 			line_div2.setBackgroundColor(0xFFF1F3F4);
 			line_div3.setBackgroundColor(0xFFF1F3F4);
 			line_div4.setBackgroundColor(0xFFF1F3F4);
+			line_div5.setBackgroundColor(0xFFF1F3F4);
 			
 			image_settings.setImageResource(R.drawable.settings);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
@@ -3732,9 +3854,11 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_find, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_pdf, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_savepicture, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_html, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_black);
+			image_html.setImageResource(R.drawable.ic_fast_forward_black);
 		}
 		if (swiperefreshlayout1.isEnabled()) {
 			if (webview1.canGoForward()) {
