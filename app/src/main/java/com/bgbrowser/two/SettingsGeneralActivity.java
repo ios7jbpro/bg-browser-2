@@ -28,6 +28,7 @@ import android.widget.ScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
+import android.widget.Switch;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.Button;
@@ -43,9 +44,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.content.ClipData;
 import android.view.View;
+import android.widget.CompoundButton;
 import androidx.webkit.*;
+import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
-import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -86,10 +88,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private LinearLayout linear106;
 	private TextView textview132;
 	private LinearLayout linear107;
-	private RippleSwitch switch3;
+	private Switch switch3;
 	private TextView textview133;
 	private LinearLayout linear108;
-	private RippleSwitch switch4;
+	private Switch switch4;
 	private CardView cardview16;
 	private CardView cardview7;
 	private LinearLayout linear102;
@@ -203,10 +205,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		linear106 = (LinearLayout) findViewById(R.id.linear106);
 		textview132 = (TextView) findViewById(R.id.textview132);
 		linear107 = (LinearLayout) findViewById(R.id.linear107);
-		switch3 = (RippleSwitch) findViewById(R.id.switch3);
+		switch3 = (Switch) findViewById(R.id.switch3);
 		textview133 = (TextView) findViewById(R.id.textview133);
 		linear108 = (LinearLayout) findViewById(R.id.linear108);
-		switch4 = (RippleSwitch) findViewById(R.id.switch4);
+		switch4 = (Switch) findViewById(R.id.switch4);
 		cardview16 = (CardView) findViewById(R.id.cardview16);
 		cardview7 = (CardView) findViewById(R.id.cardview7);
 		linear102 = (LinearLayout) findViewById(R.id.linear102);
@@ -277,10 +279,11 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		});
 		
-		switch3.setOnClickListener(new View.OnClickListener() {
+		switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
-			public void onClick(View _view) {
-				if (switch3.isChecked()) {
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2)  {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
 					settings.edit().putString("darkmode", "1").commit();
 					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
 						a11w.setAction(Intent.ACTION_VIEW);
@@ -299,10 +302,11 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		});
 		
-		switch4.setOnClickListener(new View.OnClickListener() {
+		switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
-			public void onClick(View _view) {
-				if (switch4.isChecked()) {
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2)  {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
 					settings.edit().putString("flagfollowsystem", "1").commit();
 					linear105.setVisibility(View.GONE);
 					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
@@ -610,10 +614,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		cardview13.setPreventCornerOverlap(true);
 		cardview17.setCardBackgroundColor(0xFF82B1FF);
 		cardview17.setPreventCornerOverlap(true);
-		switch3.setUncheckedColor(Color.parseColor("#2196F3"));
-		switch3.setCheckedColor(Color.parseColor("#BDBDBD"));
-		switch4.setUncheckedColor(Color.parseColor("#2196F3"));
-		switch4.setCheckedColor(Color.parseColor("#BDBDBD"));
 		if (settings.getString("homeurl", "").equals("")) {
 			edittext1.setText("https://");
 			settings.edit().putString("homeurl", "").commit();

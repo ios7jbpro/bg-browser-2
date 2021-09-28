@@ -44,8 +44,8 @@ import java.text.SimpleDateFormat;
 import android.view.View;
 import android.graphics.Typeface;
 import androidx.webkit.*;
+import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
-import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -229,6 +229,17 @@ public class SettingsActivity extends AppCompatActivity {
 		button1.setVisibility(View.GONE);
 		linear60.setVisibility(View.GONE);
 		_setViewSize(linear81, 15, SketchwareUtil.getDisplayHeightPixels(getApplicationContext()));
+		if (settings.getString("flagfollowsystem", "").equals("1")) {
+			switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+				    case Configuration.UI_MODE_NIGHT_YES:
+				settings.edit().putString("darkmode", "1").commit();
+				
+				        break;
+				    case Configuration.UI_MODE_NIGHT_NO:
+				settings.edit().putString("darkmode", "0").commit();
+				break; 
+			}
+		}
 	}
 	
 	@Override

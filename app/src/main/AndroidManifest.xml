@@ -225,6 +225,13 @@
 			android:theme="@style/AppTheme.FullScreen"
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
+			android:name=".ExtracthtmlActivity"
+			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+			android:hardwareAccelerated="true"
+			android:supportsPictureInPicture="true"
+			android:theme="@style/AppTheme.FullScreen"
+			android:windowSoftInputMode="stateHidden"/>
+		<activity
 			android:name=".DebugActivity"
 			android:screenOrientation="portrait"/>
 		<uses-library

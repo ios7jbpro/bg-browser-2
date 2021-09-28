@@ -103,7 +103,7 @@
 							android:layout_height="wrap_content"
 							android:gravity="right|center_vertical"
 							android:orientation="horizontal">
-							<com.jtv7.rippleswitchlib.RippleSwitch
+							<Switch
 								android:id="@+id/switch3"
 								android:layout_width="49dp"
 								android:layout_height="match_parent"
@@ -134,7 +134,7 @@
 							android:layout_height="wrap_content"
 							android:gravity="right|center_vertical"
 							android:orientation="horizontal">
-							<com.jtv7.rippleswitchlib.RippleSwitch
+							<Switch
 								android:id="@+id/switch4"
 								android:layout_width="49dp"
 								android:layout_height="match_parent"

@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
-import androidx.cardview.widget.CardView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.webkit.WebView;
@@ -57,8 +56,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.bumptech.glide.Glide;
 import androidx.webkit.*;
+import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
-import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -111,10 +110,9 @@ public class MainActivity extends AppCompatActivity {
 	private SwipeRefreshLayout swiperefreshlayout4;
 	private LinearLayout linear7;
 	private LinearLayout linear5;
-	private CardView pfp_rounder;
+	private ImageView profile_picture;
 	private LinearLayout linear2;
 	private ImageView imageview31;
-	private ImageView profile_picture;
 	private ImageView imageview32;
 	private EditText edittext1;
 	private TextView textview1;
@@ -214,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
 	private SharedPreferences pfp;
 	private Intent runhtml = new Intent(Intent.ACTION_GET_CONTENT);
 	private TimerTask lhtml;
+	private SharedPreferences extracthtml;
+	private Intent exhtml = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -259,10 +259,9 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout4 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout4);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
 		linear5 = (LinearLayout) findViewById(R.id.linear5);
-		pfp_rounder = (CardView) findViewById(R.id.pfp_rounder);
+		profile_picture = (ImageView) findViewById(R.id.profile_picture);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		imageview31 = (ImageView) findViewById(R.id.imageview31);
-		profile_picture = (ImageView) findViewById(R.id.profile_picture);
 		imageview32 = (ImageView) findViewById(R.id.imageview32);
 		edittext1 = (EditText) findViewById(R.id.edittext1);
 		textview1 = (TextView) findViewById(R.id.textview1);
@@ -347,6 +346,7 @@ public class MainActivity extends AppCompatActivity {
 		pfp = getSharedPreferences("loc", Activity.MODE_PRIVATE);
 		runhtml.setType("text/html");
 		runhtml.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+		extracthtml = getSharedPreferences("extracthtml", Activity.MODE_PRIVATE);
 		
 		imageview26.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -768,8 +768,14 @@ public class MainActivity extends AppCompatActivity {
 						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
 					}
 					else {
-						imageview32.setImageResource(R.drawable.ic_error_white);
-						imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						if (_url.indexOf("file://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
 					}
 				}
 				super.onPageFinished(_param1, _param2);
@@ -835,8 +841,14 @@ public class MainActivity extends AppCompatActivity {
 						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
 					}
 					else {
-						imageview32.setImageResource(R.drawable.ic_error_white);
-						imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						if (_url.indexOf("https://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
 					}
 				}
 				super.onPageFinished(_param1, _param2);
@@ -901,8 +913,14 @@ public class MainActivity extends AppCompatActivity {
 						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
 					}
 					else {
-						imageview32.setImageResource(R.drawable.ic_error_white);
-						imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						if (_url.indexOf("https://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
 					}
 				}
 				super.onPageFinished(_param1, _param2);
@@ -966,8 +984,14 @@ public class MainActivity extends AppCompatActivity {
 						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
 					}
 					else {
-						imageview32.setImageResource(R.drawable.ic_error_white);
-						imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						if (_url.indexOf("https://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
 					}
 				}
 				lastpage.edit().putString("lastpagetab4", webview4.getUrl()).commit();
@@ -1788,6 +1812,18 @@ public class MainActivity extends AppCompatActivity {
 		_font();
 		_download_path("/Download/");
 		_language();
+		if (settings.getString("desktopmode", "").equals("1")) {
+			_desktop_mode(webview1);
+			_desktop_mode(webview2);
+			_desktop_mode(webview3);
+			_desktop_mode(webview4);
+		}
+		else {
+			_mobile_mode(webview1);
+			_mobile_mode(webview2);
+			_mobile_mode(webview3);
+			_mobile_mode(webview4);
+		}
 		intenturlpage.setVisibility(View.GONE);
 		intenturlpage.setEnabled(false);
 		swiperefreshlayout6.setEnabled(false);
@@ -1828,8 +1864,6 @@ public class MainActivity extends AppCompatActivity {
 				 }
 		});
 		webview1.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-		pfp_rounder.setCardBackgroundColor(Color.TRANSPARENT);
-		pfp_rounder.setPreventCornerOverlap(true);
 		webview1.getSettings().setJavaScriptEnabled(true);
 		 
 		webview1.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
@@ -2043,44 +2077,6 @@ public class MainActivity extends AppCompatActivity {
 		_Ripple("GREY", imageview31);
 		_Ripple("GREY", imageview33);
 		imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-		if (shortcut.getString("shortcut", "").equals("opentab")) {
-			SketchwareUtil.showMessage(getApplicationContext(), "Opened new tab");
-			if (tabcount.getString("tabcount", "").equals("1")) {
-				tab1.setVisibility(View.VISIBLE);
-				tab2.setVisibility(View.VISIBLE);
-				tab3.setVisibility(View.GONE);
-				tab4.setVisibility(View.GONE);
-				tabadd.setVisibility(View.VISIBLE);
-				tabclose.setVisibility(View.VISIBLE);
-				tabcount.edit().putString("tabcount", "2").commit();
-			}
-			else {
-				if (tabcount.getString("tabcount", "").equals("2")) {
-					tab1.setVisibility(View.VISIBLE);
-					tab2.setVisibility(View.VISIBLE);
-					tab3.setVisibility(View.VISIBLE);
-					tab4.setVisibility(View.GONE);
-					tabadd.setVisibility(View.VISIBLE);
-					tabclose.setVisibility(View.VISIBLE);
-					tabcount.edit().putString("tabcount", "3").commit();
-				}
-				else {
-					if (tabcount.getString("tabcount", "").equals("3")) {
-						tab1.setVisibility(View.VISIBLE);
-						tab2.setVisibility(View.VISIBLE);
-						tab3.setVisibility(View.VISIBLE);
-						tab4.setVisibility(View.VISIBLE);
-						tabadd.setVisibility(View.GONE);
-						tabclose.setVisibility(View.VISIBLE);
-						tabcount.edit().putString("tabcount", "4").commit();
-					}
-					else {
-						
-					}
-				}
-			}
-		}
-		shortcut.edit().putString("shortcut", " ").commit();
 	}
 	
 	@Override
@@ -3554,68 +3550,52 @@ public class MainActivity extends AppCompatActivity {
 		//popup is the name of your custom view
 		
 		final PopupWindow popup = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+		//Text
 		TextView text1 = popupView.findViewById(R.id.text1);
-		
 		TextView text2 = popupView.findViewById(R.id.text2);
-		
 		TextView text3 = popupView.findViewById(R.id.text3);
-		
 		TextView text4 = popupView.findViewById(R.id.text4);
-		
 		TextView text5 = popupView.findViewById(R.id.text5);
-		
 		TextView text6 = popupView.findViewById(R.id.text6);
+		TextView text7 = popupView.findViewById(R.id.text7);
+		TextView text8 = popupView.findViewById(R.id.text8);
 		
+		//Image
 		ImageView image_settings = popupView.findViewById(R.id.image_settings);
-		
 		ImageView image_editsaved = popupView.findViewById(R.id.image_editsaved);
-		
 		ImageView image_savepdf = popupView.findViewById(R.id.image_savepdf);
-		
 		ImageView image_find = popupView.findViewById(R.id.image_find);
-		
 		ImageView image_download = popupView.findViewById(R.id.image_download);
-		
 		ImageView image_savepicture = popupView.findViewById(R.id.image_savepicture);
-		
 		ImageView image_reload = popupView.findViewById(R.id.image_reload);
-		
 		ImageView image_forward = popupView.findViewById(R.id.image_forward);
-		
 		ImageView image_html = popupView.findViewById(R.id.image_html);
+		ImageView image_extracthtml = popupView.findViewById(R.id.image_extracthtml);
+		ImageView image_desktopmode = popupView.findViewById(R.id.image_desktopmode);
 		
-		
+		//Lines
 		LinearLayout line_popup = popupView.findViewById(R.id.line_popup);
-		
 		LinearLayout line_Download = popupView.findViewById(R.id.line_Download);
-		
 		LinearLayout line_find = popupView.findViewById(R.id.line_find);
-		
 		LinearLayout line_editsaved = popupView.findViewById(R.id.line_editsaved);
-		
 		LinearLayout line_pdf = popupView.findViewById(R.id.line_pdf);
-		
 		LinearLayout line_settings = popupView.findViewById(R.id.line_settings);
-		
 		LinearLayout line_savepicture = popupView.findViewById(R.id.line_savepicture);
-		
 		LinearLayout line_reload = popupView.findViewById(R.id.line_reload);
-		
 		LinearLayout line_forward = popupView.findViewById(R.id.line_forward);
-		
 		LinearLayout line_html = popupView.findViewById(R.id.line_html);
+		LinearLayout line_extracthtml = popupView.findViewById(R.id.line_extracthtml);
+		LinearLayout line_desktopmode = popupView.findViewById(R.id.line_desktopmode);
 		
+		//Dividers
 		LinearLayout holder_top = popupView.findViewById(R.id.holder_top);
-		
 		LinearLayout line_div1 = popupView.findViewById(R.id.line_div1);
-		
 		LinearLayout line_div2 = popupView.findViewById(R.id.line_div2);
-		
 		LinearLayout line_div3 = popupView.findViewById(R.id.line_div3);
-		
 		LinearLayout line_div4 = popupView.findViewById(R.id.line_div4);
-		
 		LinearLayout line_div5 = popupView.findViewById(R.id.line_div5);
+		LinearLayout line_div6 = popupView.findViewById(R.id.line_div6);
+		LinearLayout line_div7 = popupView.findViewById(R.id.line_div7);
 		line_Download.setOnClickListener(new OnClickListener() { public void onClick(View view) {
 				bzh.setClass(getApplicationContext(), DownloadActivity.class);
 				startActivity(bzh);
@@ -3774,6 +3754,43 @@ public class MainActivity extends AppCompatActivity {
 				popup.dismiss();
 			} });
 		
+		line_extracthtml.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				_extractcode();
+				popup.dismiss();
+			} });
+		
+		line_desktopmode.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (settings.getString("desktopmode", "").equals("1")) {
+					image_desktopmode.setImageResource(R.drawable.ic_desktop_mac_black);
+					if (settings.getString("darkmode", "").equals("1")) {
+						image_desktopmode.setImageResource(R.drawable.ic_desktop_mac_white);
+					}
+					text8.setText("Desktop Mode");
+					settings.edit().putString("desktopmode", "0").commit();
+					_mobile_mode(webview1);
+					_mobile_mode(webview2);
+					_mobile_mode(webview3);
+					_mobile_mode(webview4);
+				}
+				else {
+					image_desktopmode.setImageResource(R.drawable.ic_phone_android_black);
+					if (settings.getString("darkmode", "").equals("1")) {
+						image_desktopmode.setImageResource(R.drawable.ic_phone_android_white);
+					}
+					text8.setText("Mobile Mode");
+					settings.edit().putString("desktopmode", "1").commit();
+					_desktop_mode(webview1);
+					_desktop_mode(webview2);
+					_desktop_mode(webview3);
+					_desktop_mode(webview4);
+				}
+				webview1.loadUrl(webview1.getUrl());
+				webview2.loadUrl(webview2.getUrl());
+				webview3.loadUrl(webview3.getUrl());
+				webview4.loadUrl(webview4.getUrl());
+				popup.dismiss();
+			} });
+		
 		if (settings.getString("darkmode", "").equals("1")) {
 			android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
 			round.setColor (Color.parseColor("#2E2F32"));
@@ -3790,12 +3807,16 @@ public class MainActivity extends AppCompatActivity {
 			text4.setTextColor(0xFFFFFFFF);
 			text5.setTextColor(0xFFFFFFFF);
 			text6.setTextColor(0xFFFFFFFF);
+			text7.setTextColor(0xFFFFFFFF);
+			text8.setTextColor(0xFFFFFFFF);
 			
 			line_div1.setBackgroundColor(0xFF202124);
 			line_div2.setBackgroundColor(0xFF202124);
 			line_div3.setBackgroundColor(0xFF202124);
 			line_div4.setBackgroundColor(0xFF202124);
 			line_div5.setBackgroundColor(0xFF202124);
+			line_div6.setBackgroundColor(0xFF202124);
+			line_div7.setBackgroundColor(0xFF202124);
 			
 			image_settings.setImageResource(R.drawable.outline_settings_white_48);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
@@ -3813,9 +3834,20 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_savepicture, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_html, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_extracthtml, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_desktopmode, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_white);
 			image_html.setImageResource(R.drawable.ic_fast_forward_white);
+			image_extracthtml.setImageResource(R.drawable.ic_create_white);
+			if (settings.getString("desktopmode", "").equals("1")) {
+				image_desktopmode.setImageResource(R.drawable.ic_phone_android_white);
+				text8.setText("Mobile Mode");
+			}
+			else {
+				image_desktopmode.setImageResource(R.drawable.ic_desktop_mac_white);
+				text8.setText("Desktop Mode");
+			}
 		}
 		else {
 			android.graphics.drawable.GradientDrawable round2 = new android.graphics.drawable.GradientDrawable ();
@@ -3833,12 +3865,16 @@ public class MainActivity extends AppCompatActivity {
 			text4.setTextColor(0xFF000000);
 			text5.setTextColor(0xFF000000);
 			text6.setTextColor(0xFF000000);
+			text7.setTextColor(0xFF000000);
+			text8.setTextColor(0xFF000000);
 			
 			line_div1.setBackgroundColor(0xFFF1F3F4);
 			line_div2.setBackgroundColor(0xFFF1F3F4);
 			line_div3.setBackgroundColor(0xFFF1F3F4);
 			line_div4.setBackgroundColor(0xFFF1F3F4);
 			line_div5.setBackgroundColor(0xFFF1F3F4);
+			line_div6.setBackgroundColor(0xFFF1F3F4);
+			line_div7.setBackgroundColor(0xFFF1F3F4);
 			
 			image_settings.setImageResource(R.drawable.settings);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
@@ -3856,9 +3892,20 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_savepicture, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_html, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_extracthtml, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_desktopmode, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_black);
 			image_html.setImageResource(R.drawable.ic_fast_forward_black);
+			image_extracthtml.setImageResource(R.drawable.ic_create_black);
+			if (settings.getString("desktopmode", "").equals("1")) {
+				image_desktopmode.setImageResource(R.drawable.ic_phone_android_black);
+				text8.setText("Mobile Mode");
+			}
+			else {
+				image_desktopmode.setImageResource(R.drawable.ic_desktop_mac_black);
+				text8.setText("Desktop Mode");
+			}
 		}
 		if (swiperefreshlayout1.isEnabled()) {
 			if (webview1.canGoForward()) {
@@ -4449,6 +4496,53 @@ public class MainActivity extends AppCompatActivity {
 	
 	public void _checkupdt () {
 		
+	}
+	
+	
+	public void _extractcode () {
+		if (swiperefreshlayout1.isEnabled()) {
+			extracthtml.edit().putString("link", webview1.getUrl()).commit();
+			exhtml.setAction(Intent.ACTION_VIEW);
+			exhtml.setClass(getApplicationContext(), ExtracthtmlActivity.class);
+			startActivity(exhtml);
+		}
+		else {
+			if (swiperefreshlayout2.isEnabled()) {
+				extracthtml.edit().putString("link", webview2.getUrl()).commit();
+				exhtml.setAction(Intent.ACTION_VIEW);
+				exhtml.setClass(getApplicationContext(), ExtracthtmlActivity.class);
+				startActivity(exhtml);
+			}
+			else {
+				if (swiperefreshlayout3.isEnabled()) {
+					extracthtml.edit().putString("link", webview3.getUrl()).commit();
+					exhtml.setAction(Intent.ACTION_VIEW);
+					exhtml.setClass(getApplicationContext(), ExtracthtmlActivity.class);
+					startActivity(exhtml);
+				}
+				else {
+					if (swiperefreshlayout4.isEnabled()) {
+						extracthtml.edit().putString("link", webview4.getUrl()).commit();
+						exhtml.setAction(Intent.ACTION_VIEW);
+						exhtml.setClass(getApplicationContext(), ExtracthtmlActivity.class);
+						startActivity(exhtml);
+					}
+					else {
+						SketchwareUtil.showMessage(getApplicationContext(), "illegalException:");
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void _mobile_mode (final WebView _view) {
+		_view.getSettings().setLoadWithOverviewMode(true); _view.getSettings().setUseWideViewPort(true); final WebSettings webSettings = _view.getSettings(); final String newUserAgent; newUserAgent = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Mobile Safari/537.36"; webSettings.setUserAgentString(newUserAgent); 
+	}
+	
+	
+	public void _desktop_mode (final WebView _webview) {
+		_webview.getSettings().setLoadWithOverviewMode(true); _webview.getSettings().setUseWideViewPort(true); final WebSettings webSettings = _webview.getSettings(); final String newUserAgent; newUserAgent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/63.0"; webSettings.setUserAgentString(newUserAgent); 
 	}
 	
 	

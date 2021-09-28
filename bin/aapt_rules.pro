@@ -135,7 +135,6 @@
 # view res/layout/forcelaunch.xml #generated:49
 # view res/layout/forcelaunch.xml #generated:75
 # view res/layout/homesettdialog.xml #generated:15
-# view res/layout/main.xml #generated:72
 # view res/layout/savepdf.xml #generated:36
 # view res/layout/seccheck.xml #generated:30
 # view res/layout/seccheck.xml #generated:56
@@ -175,12 +174,12 @@
 # view res/layout/mtrl_calendar_months.xml #generated:18
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# view res/layout/main.xml #generated:241
-# view res/layout/main.xml #generated:251
-# view res/layout/main.xml #generated:261
-# view res/layout/main.xml #generated:300
-# view res/layout/main.xml #generated:310
-# view res/layout/main.xml #generated:484
+# view res/layout/main.xml #generated:234
+# view res/layout/main.xml #generated:244
+# view res/layout/main.xml #generated:254
+# view res/layout/main.xml #generated:293
+# view res/layout/main.xml #generated:303
+# view res/layout/main.xml #generated:477
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
 # view AndroidManifest.xml #generated:220
@@ -192,7 +191,7 @@
 # view AndroidManifest.xml #generated:61
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:227
+# view AndroidManifest.xml #generated:234
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
@@ -214,6 +213,9 @@
 # view AndroidManifest.xml #generated:34
 -keep class com.bgbrowser.two.ExperimentalActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:227
+-keep class com.bgbrowser.two.ExtracthtmlActivity { <init>(...); }
+
 # view AndroidManifest.xml #generated:156
 -keep class com.bgbrowser.two.ForcelaunchActivity { <init>(...); }
 
@@ -227,7 +229,7 @@
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:234
+# view AndroidManifest.xml #generated:241
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:184
@@ -351,10 +353,6 @@
 # view res/layout/material_chip_input_combo.xml #generated:18
 -keep class com.google.android.material.timepicker.ChipTextInputComboView { <init>(...); }
 
-# view res/layout/settings_general.xml #generated:106
-# view res/layout/settings_general.xml #generated:137
--keep class com.jtv7.rippleswitchlib.RippleSwitch { <init>(...); }
-
 # view res/layout/dialog_ytplayer.xml #generated:316
 # view res/layout/pipactivity.xml #generated:44
 # view res/layout/ytfullscreen.xml #generated:8
@@ -362,6 +360,9 @@
 
 # view res/layout/ayp_default_player_ui.xml #generated:110
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar { <init>(...); }
+
+# view res/layout/extracthtml.xml #generated:15
+-keep class com.tuyenmonkey.mkloader.MKLoader { <init>(...); }
 
 # view res/layout/credits.xml #generated:1020
 # view res/layout/credits.xml #generated:209

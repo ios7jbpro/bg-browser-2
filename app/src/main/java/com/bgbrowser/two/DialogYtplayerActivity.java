@@ -45,8 +45,8 @@ import java.util.TimerTask;
 import android.view.View;
 import android.graphics.Typeface;
 import androidx.webkit.*;
+import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
-import com.jtv7.rippleswitchlib.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -166,15 +166,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		h = new AlertDialog.Builder(this);
 		
-		linear6.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (settings.getString("ytplrtapoutside", "").equals("")) {
-					finish();
-				}
-			}
-		});
-		
 		cardview4.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -282,6 +273,7 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	public void onStart() {
 		super.onStart();
 		_setViewSize(linear6, SketchwareUtil.getDisplayWidthPixels(getApplicationContext()) - 130, SketchwareUtil.getDisplayHeightPixels(getApplicationContext()) - 180);
+		_removeScrollBar(hscroll1);
 		getLifecycle().addObserver(youtube1);
 		if (linktext.getText().toString().contains("https://youtu.be/")) {
 			linktext.setText(linktext.getText().toString().replace("https://youtu.be/", ""));
@@ -472,6 +464,11 @@ setTheme(android.R.style.Theme_Dialog);
 		if (true) {
 			
 		}
+	}
+	
+	
+	public void _removeScrollBar (final View _view) {
+		_view.setVerticalScrollBarEnabled(false); _view.setHorizontalScrollBarEnabled(false);
 	}
 	
 	
