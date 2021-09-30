@@ -44,7 +44,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.content.ClipData;
 import android.view.View;
-import android.widget.CompoundButton;
 import androidx.webkit.*;
 import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
@@ -279,11 +278,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		});
 		
-		switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		switch3.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onCheckedChanged(CompoundButton _param1, boolean _param2)  {
-				final boolean _isChecked = _param2;
-				if (_isChecked) {
+			public void onClick(View _view) {
+				if (switch3.isChecked()) {
 					settings.edit().putString("darkmode", "1").commit();
 					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
 						a11w.setAction(Intent.ACTION_VIEW);
@@ -302,11 +300,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		});
 		
-		switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		switch4.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onCheckedChanged(CompoundButton _param1, boolean _param2)  {
-				final boolean _isChecked = _param2;
-				if (_isChecked) {
+			public void onClick(View _view) {
+				if (switch4.isChecked()) {
 					settings.edit().putString("flagfollowsystem", "1").commit();
 					linear105.setVisibility(View.GONE);
 					if (Double.parseDouble(Build.VERSION.SDK) > 29) {

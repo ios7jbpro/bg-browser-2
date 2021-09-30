@@ -174,12 +174,12 @@
 # view res/layout/mtrl_calendar_months.xml #generated:18
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# view res/layout/main.xml #generated:234
-# view res/layout/main.xml #generated:244
-# view res/layout/main.xml #generated:254
-# view res/layout/main.xml #generated:293
-# view res/layout/main.xml #generated:303
-# view res/layout/main.xml #generated:477
+# view res/layout/main.xml #generated:295
+# view res/layout/main.xml #generated:305
+# view res/layout/main.xml #generated:315
+# view res/layout/main.xml #generated:354
+# view res/layout/main.xml #generated:364
+# view res/layout/main.xml #generated:538
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
 # view AndroidManifest.xml #generated:220

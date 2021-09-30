@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 	private String new_version = "";
 	private HashMap<String, Object> mapversion = new HashMap<>();
 	private String path = "";
+	private boolean isKeyboardVisible = false;
+	private boolean hasFocus = false;
+	private String share = "";
 	
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 	private ImageView imageview25;
 	private ImageView imageview27;
 	private LinearLayout linear14;
+	private LinearLayout suggesturl;
 	private ProgressBar progressbar1;
 	private LinearLayout linear21;
 	private SwipeRefreshLayout swiperefreshlayout1;
@@ -117,8 +121,14 @@ public class MainActivity extends AppCompatActivity {
 	private EditText edittext1;
 	private TextView textview1;
 	private ImageView imageview11;
-	private ImageView imageview20;
 	private ImageView imageview8;
+	private LinearLayout linear26;
+	private LinearLayout shader;
+	private LinearLayout linear25;
+	private ImageView imageview34;
+	private ImageView imageview20;
+	private TextView textview13;
+	private TextView textview14;
 	private LinearLayout linear22;
 	private LinearLayout linear23;
 	private ImageView imageview30;
@@ -250,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
 		imageview25 = (ImageView) findViewById(R.id.imageview25);
 		imageview27 = (ImageView) findViewById(R.id.imageview27);
 		linear14 = (LinearLayout) findViewById(R.id.linear14);
+		suggesturl = (LinearLayout) findViewById(R.id.suggesturl);
 		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
 		linear21 = (LinearLayout) findViewById(R.id.linear21);
 		swiperefreshlayout1 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout1);
@@ -266,8 +277,14 @@ public class MainActivity extends AppCompatActivity {
 		edittext1 = (EditText) findViewById(R.id.edittext1);
 		textview1 = (TextView) findViewById(R.id.textview1);
 		imageview11 = (ImageView) findViewById(R.id.imageview11);
-		imageview20 = (ImageView) findViewById(R.id.imageview20);
 		imageview8 = (ImageView) findViewById(R.id.imageview8);
+		linear26 = (LinearLayout) findViewById(R.id.linear26);
+		shader = (LinearLayout) findViewById(R.id.shader);
+		linear25 = (LinearLayout) findViewById(R.id.linear25);
+		imageview34 = (ImageView) findViewById(R.id.imageview34);
+		imageview20 = (ImageView) findViewById(R.id.imageview20);
+		textview13 = (TextView) findViewById(R.id.textview13);
+		textview14 = (TextView) findViewById(R.id.textview14);
 		linear22 = (LinearLayout) findViewById(R.id.linear22);
 		linear23 = (LinearLayout) findViewById(R.id.linear23);
 		imageview30 = (ImageView) findViewById(R.id.imageview30);
@@ -438,6 +455,14 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		
+		suggesturl.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				profile_picture.requestFocus();
+				SketchwareUtil.hideKeyboard(getApplicationContext());
+			}
+		});
+		
 		swiperefreshlayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override 
 			public void onRefresh() {
@@ -567,7 +592,6 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View _view) {
 				url.edit().putString("url", edittext1.getText().toString()).commit();
 				imageview11.setVisibility(View.VISIBLE);
-				imageview20.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -575,7 +599,6 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
 				final String _charSeq = _param1.toString();
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("edittext1:text changed:".concat(edittext1.getText().toString())))))).commit();
 				imageview8.setVisibility(View.VISIBLE);
 				imageview11.setVisibility(View.VISIBLE);
 			}
@@ -596,6 +619,30 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View _view) {
 				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("edittext1:Cleared Text"))))).commit();
 				edittext1.setText("");
+			}
+		});
+		
+		imageview8.setOnLongClickListener(new View.OnLongClickListener() {
+			 @Override
+				public boolean onLongClick(View _view) {
+				linear14.setVisibility(View.GONE);
+				linear21.setVisibility(View.VISIBLE);
+				return true;
+				}
+			 });
+		
+		imageview8.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				_loadurl();
+			}
+		});
+		
+		imageview34.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", textview14.getText().toString()));
+				SketchwareUtil.showMessage(getApplicationContext(), "Copied to clipboard");
 			}
 		});
 		
@@ -623,22 +670,6 @@ public class MainActivity extends AppCompatActivity {
 						}
 					}
 				}
-			}
-		});
-		
-		imageview8.setOnLongClickListener(new View.OnLongClickListener() {
-			 @Override
-				public boolean onLongClick(View _view) {
-				linear14.setVisibility(View.GONE);
-				linear21.setVisibility(View.VISIBLE);
-				return true;
-				}
-			 });
-		
-		imageview8.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_loadurl();
 			}
 		});
 		
@@ -752,6 +783,7 @@ public class MainActivity extends AppCompatActivity {
 				url.edit().putString("urltab1", edittext1.getText().toString()).commit();
 				if (swiperefreshlayout1.isEnabled()) {
 					edittext1.setText(webview1.getTitle());
+					textview13.setText(webview1.getTitle());
 				}
 				lastpage.edit().putString("lastpagetab1", webview1.getUrl()).commit();
 				if (swiperefreshlayout1.isEnabled()) {
@@ -835,6 +867,7 @@ public class MainActivity extends AppCompatActivity {
 						imageview28.setVisibility(View.GONE);
 					}
 					edittext1.setText(webview2.getTitle());
+					textview13.setText(webview2.getTitle());
 					swiperefreshlayout2.setRefreshing(false);
 					if (_url.indexOf("https://") == 0) {
 						imageview32.setImageResource(R.drawable.ic_check_white);
@@ -907,6 +940,7 @@ public class MainActivity extends AppCompatActivity {
 						imageview28.setVisibility(View.GONE);
 					}
 					edittext1.setText(webview3.getTitle());
+					textview13.setText(webview3.getTitle());
 					swiperefreshlayout3.setRefreshing(false);
 					if (_url.indexOf("https://") == 0) {
 						imageview32.setImageResource(R.drawable.ic_check_white);
@@ -978,6 +1012,7 @@ public class MainActivity extends AppCompatActivity {
 						imageview28.setVisibility(View.GONE);
 					}
 					edittext1.setText(webview4.getTitle());
+					textview13.setText(webview4.getTitle());
 					swiperefreshlayout4.setRefreshing(false);
 					if (_url.indexOf("https://") == 0) {
 						imageview32.setImageResource(R.drawable.ic_check_white);
@@ -1831,6 +1866,7 @@ public class MainActivity extends AppCompatActivity {
 		linear21.setVisibility(View.GONE);
 		textview11.setVisibility(View.GONE);
 		textview12.setVisibility(View.GONE);
+		suggesturl.setVisibility(View.GONE);
 		webview1.setFindListener(new WebView.FindListener() {
 			 @Override
 			 public void onFindResultReceived(int actionMatchOrdinal, int numberOfMatches, boolean isDoneCounting) {
@@ -1937,7 +1973,6 @@ public class MainActivity extends AppCompatActivity {
 		else {
 			linear19.setVisibility(View.GONE);
 		}
-		imageview20.setVisibility(View.GONE);
 		_tabcheck();
 		_reloader();
 		if (intenturl.getString("app", "").equals("1")) {
@@ -2071,12 +2106,37 @@ public class MainActivity extends AppCompatActivity {
 		_Ripple("GREY", tab4);
 		_Ripple("GREY", tabclose);
 		_Ripple("GREY", tabadd);
+		_Ripple("GREY", imageview20);
 		_Ripple("GREY", imageview21);
 		_Ripple("GREY", imageview22);
 		_Ripple("GREY", imageview23);
 		_Ripple("GREY", imageview31);
 		_Ripple("GREY", imageview33);
+		_Ripple("GREY", imageview34);
 		imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
+		KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener(){
+			 @Override
+			    public void onToggleSoftKeyboard(boolean isVisible){
+				        isKeyboardVisible = isVisible;
+				if (isKeyboardVisible) {
+					if(edittext1.hasFocus()){
+						   suggesturl.setVisibility(View.VISIBLE);
+						textview13.setText(edittext1.getText().toString());
+						edittext1.setText("");
+						_getUrlOf();
+					}else{
+						suggesturl.setVisibility(View.GONE);
+						edittext1.setText(textview13.getText().toString());
+						_focusOnEnabledView();
+					}
+				}
+				else {
+					suggesturl.setVisibility(View.GONE);
+					edittext1.setText(textview13.getText().toString());
+				}
+				
+			} 
+		});
 	}
 	
 	@Override
@@ -2817,6 +2877,7 @@ public class MainActivity extends AppCompatActivity {
 		textview10.setTextColor(0xFFFFFFFF);
 		textview11.setTextColor(0xFFFFFFFF);
 		textview12.setTextColor(0xFFFFFFFF);
+		textview13.setTextColor(0xFFFFFFFF);
 		imageview8.setImageResource(R.drawable.ic_arrow_forward_white);
 		edittext1.setBackgroundColor(0xFF000000);
 		linear14.setBackgroundColor(0xFF000000);
@@ -2832,10 +2893,12 @@ public class MainActivity extends AppCompatActivity {
 		imageview26.setImageResource(R.drawable.outline_home_white_48);
 		imageview28.setImageResource(R.drawable.ic_chevron_left_white);
 		imageview33.setImageResource(R.drawable.ic_dehaze_white);
+		imageview34.setImageResource(R.drawable.ic_filter_none_white);
 		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
 		tabclose.setImageResource(R.drawable.ic_close_white);
 		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
 		imageview31.setImageResource(R.drawable.ic_more_vert_white);
+		suggesturl.setBackgroundColor(0xFF000000);
 		if (String.valueOf((long)(width)).equals("1440")) {
 			android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
 			gd.setColor(Color.parseColor("#000000"));
@@ -2899,6 +2962,7 @@ public class MainActivity extends AppCompatActivity {
 		textview10.setTextColor(0xFF000000);
 		textview11.setTextColor(0xFF000000);
 		textview12.setTextColor(0xFF000000);
+		textview13.setTextColor(0xFF000000);
 		imageview8.setImageResource(R.drawable.ic_arrow_forward_black);
 		edittext1.setBackgroundColor(0xFFFFFFFF);
 		linear14.setBackgroundColor(0xFFFFFFFF);
@@ -2914,10 +2978,12 @@ public class MainActivity extends AppCompatActivity {
 		imageview26.setImageResource(R.drawable.home);
 		imageview28.setImageResource(R.drawable.ic_chevron_left_black);
 		imageview33.setImageResource(R.drawable.ic_dehaze_black);
+		imageview34.setImageResource(R.drawable.ic_filter_none_black);
 		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
 		tabclose.setImageResource(R.drawable.ic_clear_black);
 		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
 		imageview31.setImageResource(R.drawable.ic_more_vert_black);
+		suggesturl.setBackgroundColor(0xFFFFFFFF);
 		if (String.valueOf((long)(width)).equals("1440")) {
 			android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
 			gd.setColor(Color.parseColor("#FFFFFF"));
@@ -3559,6 +3625,7 @@ public class MainActivity extends AppCompatActivity {
 		TextView text6 = popupView.findViewById(R.id.text6);
 		TextView text7 = popupView.findViewById(R.id.text7);
 		TextView text8 = popupView.findViewById(R.id.text8);
+		TextView text9 = popupView.findViewById(R.id.text9);
 		
 		//Image
 		ImageView image_settings = popupView.findViewById(R.id.image_settings);
@@ -3572,6 +3639,7 @@ public class MainActivity extends AppCompatActivity {
 		ImageView image_html = popupView.findViewById(R.id.image_html);
 		ImageView image_extracthtml = popupView.findViewById(R.id.image_extracthtml);
 		ImageView image_desktopmode = popupView.findViewById(R.id.image_desktopmode);
+		ImageView image_share = popupView.findViewById(R.id.image_share);
 		
 		//Lines
 		LinearLayout line_popup = popupView.findViewById(R.id.line_popup);
@@ -3586,6 +3654,7 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout line_html = popupView.findViewById(R.id.line_html);
 		LinearLayout line_extracthtml = popupView.findViewById(R.id.line_extracthtml);
 		LinearLayout line_desktopmode = popupView.findViewById(R.id.line_desktopmode);
+		LinearLayout line_share = popupView.findViewById(R.id.line_share);
 		
 		//Dividers
 		LinearLayout holder_top = popupView.findViewById(R.id.holder_top);
@@ -3596,6 +3665,7 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout line_div5 = popupView.findViewById(R.id.line_div5);
 		LinearLayout line_div6 = popupView.findViewById(R.id.line_div6);
 		LinearLayout line_div7 = popupView.findViewById(R.id.line_div7);
+		LinearLayout line_div8 = popupView.findViewById(R.id.line_div8);
 		line_Download.setOnClickListener(new OnClickListener() { public void onClick(View view) {
 				bzh.setClass(getApplicationContext(), DownloadActivity.class);
 				startActivity(bzh);
@@ -3791,6 +3861,11 @@ public class MainActivity extends AppCompatActivity {
 				popup.dismiss();
 			} });
 		
+		line_share.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				_sharelink();
+				popup.dismiss();
+			} });
+		
 		if (settings.getString("darkmode", "").equals("1")) {
 			android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
 			round.setColor (Color.parseColor("#2E2F32"));
@@ -3817,6 +3892,7 @@ public class MainActivity extends AppCompatActivity {
 			line_div5.setBackgroundColor(0xFF202124);
 			line_div6.setBackgroundColor(0xFF202124);
 			line_div7.setBackgroundColor(0xFF202124);
+			line_div8.setBackgroundColor(0xFF202124);
 			
 			image_settings.setImageResource(R.drawable.outline_settings_white_48);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
@@ -3836,10 +3912,12 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_extracthtml, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_desktopmode, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_share, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_white);
 			image_html.setImageResource(R.drawable.ic_fast_forward_white);
 			image_extracthtml.setImageResource(R.drawable.ic_create_white);
+			image_share.setImageResource(R.drawable.ic_send_white);
 			if (settings.getString("desktopmode", "").equals("1")) {
 				image_desktopmode.setImageResource(R.drawable.ic_phone_android_white);
 				text8.setText("Mobile Mode");
@@ -3875,6 +3953,7 @@ public class MainActivity extends AppCompatActivity {
 			line_div5.setBackgroundColor(0xFFF1F3F4);
 			line_div6.setBackgroundColor(0xFFF1F3F4);
 			line_div7.setBackgroundColor(0xFFF1F3F4);
+			line_div8.setBackgroundColor(0xFFF1F3F4);
 			
 			image_settings.setImageResource(R.drawable.settings);
 			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
@@ -3894,10 +3973,12 @@ public class MainActivity extends AppCompatActivity {
 			_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_extracthtml, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_desktopmode, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+			_rippleRoundStroke(line_share, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 			_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
 			image_editsaved.setImageResource(R.drawable.ic_create_black);
 			image_html.setImageResource(R.drawable.ic_fast_forward_black);
 			image_extracthtml.setImageResource(R.drawable.ic_create_black);
+			image_share.setImageResource(R.drawable.ic_send_black);
 			if (settings.getString("desktopmode", "").equals("1")) {
 				image_desktopmode.setImageResource(R.drawable.ic_phone_android_black);
 				text8.setText("Mobile Mode");
@@ -4543,6 +4624,82 @@ public class MainActivity extends AppCompatActivity {
 	
 	public void _desktop_mode (final WebView _webview) {
 		_webview.getSettings().setLoadWithOverviewMode(true); _webview.getSettings().setUseWideViewPort(true); final WebSettings webSettings = _webview.getSettings(); final String newUserAgent; newUserAgent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/63.0"; webSettings.setUserAgentString(newUserAgent); 
+	}
+	
+	
+	public void _getUrlOf () {
+		if (swiperefreshlayout1.isEnabled()) {
+			textview14.setText(webview1.getUrl());
+		}
+		else {
+			if (swiperefreshlayout2.isEnabled()) {
+				textview14.setText(webview2.getUrl());
+			}
+			else {
+				if (swiperefreshlayout3.isEnabled()) {
+					textview14.setText(webview3.getUrl());
+				}
+				else {
+					if (swiperefreshlayout4.isEnabled()) {
+						textview14.setText(webview4.getUrl());
+					}
+					else {
+						
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void _focusOnEnabledView () {
+		if (swiperefreshlayout1.isEnabled()) {
+			webview1.requestFocus();
+		}
+		else {
+			if (swiperefreshlayout2.isEnabled()) {
+				webview2.requestFocus();
+			}
+			else {
+				if (swiperefreshlayout3.isEnabled()) {
+					webview3.requestFocus();
+				}
+				else {
+					if (swiperefreshlayout4.isEnabled()) {
+						webview4.requestFocus();
+					}
+					else {
+						
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void _sharelink () {
+		if (swiperefreshlayout1.isEnabled()) {
+			share = webview1.getUrl();
+		}
+		else {
+			if (swiperefreshlayout2.isEnabled()) {
+				share = webview2.getUrl();
+			}
+			else {
+				if (swiperefreshlayout3.isEnabled()) {
+					share = webview3.getUrl();
+				}
+				else {
+					if (swiperefreshlayout4.isEnabled()) {
+						share = webview4.getUrl();
+					}
+					else {
+						
+					}
+				}
+			}
+		}
+		Intent i = new Intent(android.content.Intent.ACTION_SEND);i.setType("text/plain"); i.putExtra(android.content.Intent.EXTRA_TEXT, share); startActivity(Intent.createChooser(i,"Share using"));
 	}
 	
 	
