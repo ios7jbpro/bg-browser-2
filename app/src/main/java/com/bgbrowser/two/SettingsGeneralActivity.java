@@ -92,35 +92,29 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private LinearLayout linear108;
 	private Switch switch4;
 	private CardView cardview16;
-	private CardView cardview7;
+	private CardView cardview12;
 	private LinearLayout linear102;
 	private TextView textview129;
 	private TextView textview130;
-	private TextView textview131;
-	private LinearLayout linear87;
-	private TextView textview102;
-	private TextView textview103;
-	private TextView textview104;
-	private CardView cardview12;
-	private CardView cardview13;
 	private LinearLayout linear96;
 	private TextView textview117;
 	private TextView textview118;
-	private TextView textview119;
+	private CardView cardview13;
+	private CardView cardview7;
 	private LinearLayout linear97;
 	private TextView textview120;
 	private TextView textview121;
-	private TextView textview122;
+	private LinearLayout linear87;
+	private TextView textview102;
+	private TextView textview103;
 	private CardView cardview6;
 	private CardView cardview10;
 	private LinearLayout linear86;
 	private TextView textview99;
 	private TextView textview100;
-	private TextView textview101;
 	private LinearLayout linear92;
 	private TextView textview113;
 	private TextView textview114;
-	private TextView textview115;
 	private CardView cardview11;
 	private LinearLayout linear94;
 	private TextView textview116;
@@ -141,12 +135,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private LinearLayout linear110;
 	private TextView textview134;
 	private TextView textview135;
-	private TextView textview136;
 	private CardView cardview14;
 	private LinearLayout linear99;
 	private TextView textview124;
 	private TextView textview125;
-	private TextView textview126;
 	
 	private SharedPreferences settings;
 	private SharedPreferences logs;
@@ -209,35 +201,29 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		linear108 = (LinearLayout) findViewById(R.id.linear108);
 		switch4 = (Switch) findViewById(R.id.switch4);
 		cardview16 = (CardView) findViewById(R.id.cardview16);
-		cardview7 = (CardView) findViewById(R.id.cardview7);
+		cardview12 = (CardView) findViewById(R.id.cardview12);
 		linear102 = (LinearLayout) findViewById(R.id.linear102);
 		textview129 = (TextView) findViewById(R.id.textview129);
 		textview130 = (TextView) findViewById(R.id.textview130);
-		textview131 = (TextView) findViewById(R.id.textview131);
-		linear87 = (LinearLayout) findViewById(R.id.linear87);
-		textview102 = (TextView) findViewById(R.id.textview102);
-		textview103 = (TextView) findViewById(R.id.textview103);
-		textview104 = (TextView) findViewById(R.id.textview104);
-		cardview12 = (CardView) findViewById(R.id.cardview12);
-		cardview13 = (CardView) findViewById(R.id.cardview13);
 		linear96 = (LinearLayout) findViewById(R.id.linear96);
 		textview117 = (TextView) findViewById(R.id.textview117);
 		textview118 = (TextView) findViewById(R.id.textview118);
-		textview119 = (TextView) findViewById(R.id.textview119);
+		cardview13 = (CardView) findViewById(R.id.cardview13);
+		cardview7 = (CardView) findViewById(R.id.cardview7);
 		linear97 = (LinearLayout) findViewById(R.id.linear97);
 		textview120 = (TextView) findViewById(R.id.textview120);
 		textview121 = (TextView) findViewById(R.id.textview121);
-		textview122 = (TextView) findViewById(R.id.textview122);
+		linear87 = (LinearLayout) findViewById(R.id.linear87);
+		textview102 = (TextView) findViewById(R.id.textview102);
+		textview103 = (TextView) findViewById(R.id.textview103);
 		cardview6 = (CardView) findViewById(R.id.cardview6);
 		cardview10 = (CardView) findViewById(R.id.cardview10);
 		linear86 = (LinearLayout) findViewById(R.id.linear86);
 		textview99 = (TextView) findViewById(R.id.textview99);
 		textview100 = (TextView) findViewById(R.id.textview100);
-		textview101 = (TextView) findViewById(R.id.textview101);
 		linear92 = (LinearLayout) findViewById(R.id.linear92);
 		textview113 = (TextView) findViewById(R.id.textview113);
 		textview114 = (TextView) findViewById(R.id.textview114);
-		textview115 = (TextView) findViewById(R.id.textview115);
 		cardview11 = (CardView) findViewById(R.id.cardview11);
 		linear94 = (LinearLayout) findViewById(R.id.linear94);
 		textview116 = (TextView) findViewById(R.id.textview116);
@@ -258,12 +244,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		linear110 = (LinearLayout) findViewById(R.id.linear110);
 		textview134 = (TextView) findViewById(R.id.textview134);
 		textview135 = (TextView) findViewById(R.id.textview135);
-		textview136 = (TextView) findViewById(R.id.textview136);
 		cardview14 = (CardView) findViewById(R.id.cardview14);
 		linear99 = (LinearLayout) findViewById(R.id.linear99);
 		textview124 = (TextView) findViewById(R.id.textview124);
 		textview125 = (TextView) findViewById(R.id.textview125);
-		textview126 = (TextView) findViewById(R.id.textview126);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		logs = getSharedPreferences("logs", Activity.MODE_PRIVATE);
 		warn = new AlertDialog.Builder(this);
@@ -331,55 +315,26 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("pfp", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview16.setCardBackgroundColor(0xFF424242);
+						textview129.setTextColor(0xFFFFFFFF);
+						textview130.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview16.setCardBackgroundColor(0xFFEEEEEE);
+						cardview16.setCardBackgroundColor(0xFFFFFFFF);
+						textview129.setTextColor(0xFF000000);
+						textview130.setTextColor(0xFF000000);
 					}
-					textview129.setTextColor(0xFF000000);
-					textview130.setTextColor(0xFF000000);
-					textview131.setTextColor(0xFF000000);
-					textview131.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("pfp", "1").commit();
 					cardview16.setCardBackgroundColor(0xFFFFAB91);
 					textview129.setTextColor(0xFFFF5722);
 					textview130.setTextColor(0xFFFF5722);
-					textview131.setTextColor(0xFFFF5722);
-					textview131.setText("ENABLED");
 					startActivityForResult(pfpchooser, REQ_CD_PFPCHOOSER);
 				}
 				if (Double.parseDouble(Build.VERSION.SDK) > 29) {
 					a11w.setAction(Intent.ACTION_VIEW);
 					a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
 					startActivity(a11w);
-				}
-			}
-		});
-		
-		cardview7.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (settings.getString("splash", "").equals("1")) {
-					settings.edit().putString("splash", "0").commit();
-					if (settings.getString("darkmode", "").equals("1")) {
-						cardview7.setCardBackgroundColor(0xFF424242);
-					}
-					else {
-						cardview7.setCardBackgroundColor(0xFFEEEEEE);
-					}
-					textview102.setTextColor(0xFF000000);
-					textview103.setTextColor(0xFF000000);
-					textview104.setTextColor(0xFF000000);
-					textview104.setText("DISABLED");
-				}
-				else {
-					settings.edit().putString("splash", "1").commit();
-					cardview7.setCardBackgroundColor(0xFFA5D6A7);
-					textview102.setTextColor(0xFF4CAF50);
-					textview103.setTextColor(0xFF4CAF50);
-					textview104.setTextColor(0xFF4CAF50);
-					textview104.setText("ENABLED");
 				}
 			}
 		});
@@ -391,22 +346,20 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("tabletmode", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview12.setCardBackgroundColor(0xFF424242);
+						textview117.setTextColor(0xFFFFFFFF);
+						textview118.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview12.setCardBackgroundColor(0xFFEEEEEE);
+						cardview12.setCardBackgroundColor(0xFFFFFFFF);
+						textview117.setTextColor(0xFF000000);
+						textview118.setTextColor(0xFF000000);
 					}
-					textview117.setTextColor(0xFF000000);
-					textview118.setTextColor(0xFF000000);
-					textview119.setTextColor(0xFF000000);
-					textview119.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("tabletmode", "1").commit();
 					cardview12.setCardBackgroundColor(0xFF80CBC4);
 					textview117.setTextColor(0xFF009688);
 					textview118.setTextColor(0xFF009688);
-					textview119.setTextColor(0xFF009688);
-					textview119.setText("ENABLED");
 				}
 			}
 		});
@@ -418,22 +371,45 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("miuispinner", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview13.setCardBackgroundColor(0xFF424242);
+						textview120.setTextColor(0xFFFFFFFF);
+						textview121.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview13.setCardBackgroundColor(0xFFEEEEEE);
+						cardview13.setCardBackgroundColor(0xFFFFFFFF);
+						textview120.setTextColor(0xFF000000);
+						textview121.setTextColor(0xFF000000);
 					}
-					textview120.setTextColor(0xFF000000);
-					textview121.setTextColor(0xFF000000);
-					textview122.setTextColor(0xFF000000);
-					textview122.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("miuispinner", "1").commit();
 					cardview13.setCardBackgroundColor(0xFF9FA8DA);
 					textview120.setTextColor(0xFF3F51B5);
 					textview121.setTextColor(0xFF3F51B5);
-					textview122.setTextColor(0xFF3F51B5);
-					textview122.setText("ENABLED");
+				}
+			}
+		});
+		
+		cardview7.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (settings.getString("splash", "").equals("1")) {
+					settings.edit().putString("splash", "0").commit();
+					if (settings.getString("darkmode", "").equals("1")) {
+						cardview7.setCardBackgroundColor(0xFF424242);
+						textview102.setTextColor(0xFFFFFFFF);
+						textview103.setTextColor(0xFFFFFFFF);
+					}
+					else {
+						cardview7.setCardBackgroundColor(0xFFFFFFFF);
+						textview102.setTextColor(0xFF000000);
+						textview103.setTextColor(0xFF000000);
+					}
+				}
+				else {
+					settings.edit().putString("splash", "1").commit();
+					cardview7.setCardBackgroundColor(0xFFA5D6A7);
+					textview102.setTextColor(0xFF4CAF50);
+					textview103.setTextColor(0xFF4CAF50);
 				}
 			}
 		});
@@ -445,22 +421,20 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("cookies", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview6.setCardBackgroundColor(0xFF424242);
+						textview99.setTextColor(0xFFFFFFFF);
+						textview100.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview6.setCardBackgroundColor(0xFFEEEEEE);
+						cardview6.setCardBackgroundColor(0xFFFFFFFF);
+						textview99.setTextColor(0xFF000000);
+						textview100.setTextColor(0xFF000000);
 					}
-					textview99.setTextColor(0xFF000000);
-					textview100.setTextColor(0xFF000000);
-					textview101.setTextColor(0xFF000000);
-					textview101.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("cookies", "1").commit();
 					cardview6.setCardBackgroundColor(0xFFA5D6A7);
 					textview99.setTextColor(0xFF4CAF50);
 					textview100.setTextColor(0xFF4CAF50);
-					textview101.setTextColor(0xFF4CAF50);
-					textview101.setText("ENABLED");
 				}
 			}
 		});
@@ -472,22 +446,20 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("darkwebview", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview10.setCardBackgroundColor(0xFF424242);
+						textview113.setTextColor(0xFFFFFFFF);
+						textview114.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview10.setCardBackgroundColor(0xFFEEEEEE);
+						cardview10.setCardBackgroundColor(0xFFFFFFFF);
+						textview113.setTextColor(0xFF000000);
+						textview114.setTextColor(0xFF000000);
 					}
-					textview113.setTextColor(0xFF000000);
-					textview114.setTextColor(0xFF000000);
-					textview115.setTextColor(0xFF000000);
-					textview115.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("darkwebview", "1").commit();
 					cardview10.setCardBackgroundColor(0xFFCE93D8);
 					textview113.setTextColor(0xFF9C27B0);
 					textview114.setTextColor(0xFF9C27B0);
-					textview115.setTextColor(0xFF9C27B0);
-					textview115.setText("ENABLED");
 				}
 			}
 		});
@@ -547,22 +519,20 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("killnoconnection", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview18.setCardBackgroundColor(0xFF424242);
+						textview134.setTextColor(0xFFFFFFFF);
+						textview135.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview18.setCardBackgroundColor(0xFFEEEEEE);
+						cardview18.setCardBackgroundColor(0xFFFFFFFF);
+						textview134.setTextColor(0xFF000000);
+						textview135.setTextColor(0xFF000000);
 					}
-					textview134.setTextColor(0xFF000000);
-					textview135.setTextColor(0xFF000000);
-					textview136.setTextColor(0xFF000000);
-					textview136.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("killnoconnection", "1").commit();
 					cardview18.setCardBackgroundColor(0xFF90CAF9);
 					textview134.setTextColor(0xFF2196F3);
 					textview135.setTextColor(0xFF2196F3);
-					textview136.setTextColor(0xFF2196F3);
-					textview136.setText("ENABLED");
 				}
 			}
 		});
@@ -574,22 +544,20 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					settings.edit().putString("ytplayer", "0").commit();
 					if (settings.getString("darkmode", "").equals("1")) {
 						cardview14.setCardBackgroundColor(0xFF424242);
+						textview124.setTextColor(0xFFFFFFFF);
+						textview125.setTextColor(0xFFFFFFFF);
 					}
 					else {
-						cardview14.setCardBackgroundColor(0xFFEEEEEE);
+						cardview14.setCardBackgroundColor(0xFFFFFFFF);
+						textview124.setTextColor(0xFF000000);
+						textview125.setTextColor(0xFF000000);
 					}
-					textview124.setTextColor(0xFF000000);
-					textview125.setTextColor(0xFF000000);
-					textview126.setTextColor(0xFF000000);
-					textview126.setText("DISABLED");
 				}
 				else {
 					settings.edit().putString("ytplayer", "1").commit();
 					cardview14.setCardBackgroundColor(0xFFFFCC80);
 					textview124.setTextColor(0xFFFF9800);
 					textview125.setTextColor(0xFFFF9800);
-					textview126.setTextColor(0xFFFF9800);
-					textview126.setText("ENABLED");
 				}
 			}
 		});
@@ -646,14 +614,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview10.setCardBackgroundColor(0xFF424242);
+				textview113.setTextColor(0xFFFFFFFF);
+				textview114.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview10.setCardBackgroundColor(0xFFEEEEEE);
+				cardview10.setCardBackgroundColor(0xFFFFFFFF);
+				textview113.setTextColor(0xFF000000);
+				textview114.setTextColor(0xFF000000);
 			}
-			textview113.setTextColor(0xFF000000);
-			textview114.setTextColor(0xFF000000);
-			textview115.setTextColor(0xFF000000);
-			textview115.setText("DISABLED");
 		}
 		if (settings.getString("cookies", "").equals("1")) {
 			cardview6.setCardBackgroundColor(0xFFA5D6A7);
@@ -661,14 +629,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview6.setCardBackgroundColor(0xFF424242);
+				textview99.setTextColor(0xFFFFFFFF);
+				textview100.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview6.setCardBackgroundColor(0xFFEEEEEE);
+				cardview6.setCardBackgroundColor(0xFFFFFFFF);
+				textview99.setTextColor(0xFF000000);
+				textview100.setTextColor(0xFF000000);
 			}
-			textview99.setTextColor(0xFF000000);
-			textview100.setTextColor(0xFF000000);
-			textview101.setTextColor(0xFF000000);
-			textview101.setText("DISABLED");
 		}
 		if (settings.getString("pfp", "").equals("1")) {
 			cardview16.setCardBackgroundColor(0xFFFFAB91);
@@ -676,14 +644,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview16.setCardBackgroundColor(0xFF424242);
+				textview129.setTextColor(0xFFFFFFFF);
+				textview130.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview16.setCardBackgroundColor(0xFFEEEEEE);
+				cardview16.setCardBackgroundColor(0xFFFFFFFF);
+				textview129.setTextColor(0xFF000000);
+				textview130.setTextColor(0xFF000000);
 			}
-			textview129.setTextColor(0xFF000000);
-			textview130.setTextColor(0xFF000000);
-			textview131.setTextColor(0xFF000000);
-			textview131.setText("DISABLED");
 		}
 		if (settings.getString("ytplayer", "").equals("1")) {
 			cardview14.setCardBackgroundColor(0xFFFFCC80);
@@ -691,14 +659,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview14.setCardBackgroundColor(0xFF424242);
+				textview124.setTextColor(0xFFFFFFFF);
+				textview125.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview14.setCardBackgroundColor(0xFFEEEEEE);
+				cardview14.setCardBackgroundColor(0xFFFFFFFF);
+				textview124.setTextColor(0xFF000000);
+				textview125.setTextColor(0xFF000000);
 			}
-			textview124.setTextColor(0xFF000000);
-			textview125.setTextColor(0xFF000000);
-			textview126.setTextColor(0xFF000000);
-			textview126.setText("DISABLED");
 		}
 		if (settings.getString("tabletmode", "").equals("1")) {
 			cardview12.setCardBackgroundColor(0xFF80CBC4);
@@ -706,14 +674,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview12.setCardBackgroundColor(0xFF424242);
+				textview117.setTextColor(0xFFFFFFFF);
+				textview118.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview12.setCardBackgroundColor(0xFFEEEEEE);
+				cardview12.setCardBackgroundColor(0xFFFFFFFF);
+				textview117.setTextColor(0xFF000000);
+				textview118.setTextColor(0xFF000000);
 			}
-			textview117.setTextColor(0xFF000000);
-			textview118.setTextColor(0xFF000000);
-			textview119.setTextColor(0xFF000000);
-			textview119.setText("DISABLED");
 		}
 		if (settings.getString("splash", "").equals("1")) {
 			cardview7.setCardBackgroundColor(0xFFA5D6A7);
@@ -721,14 +689,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview7.setCardBackgroundColor(0xFF424242);
+				textview102.setTextColor(0xFFFFFFFF);
+				textview103.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview7.setCardBackgroundColor(0xFFEEEEEE);
+				cardview7.setCardBackgroundColor(0xFFFFFFFF);
+				textview102.setTextColor(0xFF000000);
+				textview103.setTextColor(0xFF000000);
 			}
-			textview102.setTextColor(0xFF000000);
-			textview103.setTextColor(0xFF000000);
-			textview104.setTextColor(0xFF000000);
-			textview104.setText("DISABLED");
 		}
 		if (settings.getString("miuispinner", "").equals("1")) {
 			cardview13.setCardBackgroundColor(0xFF9FA8DA);
@@ -736,14 +704,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview13.setCardBackgroundColor(0xFF424242);
+				textview120.setTextColor(0xFFFFFFFF);
+				textview121.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview13.setCardBackgroundColor(0xFFEEEEEE);
+				cardview13.setCardBackgroundColor(0xFFFFFFFF);
+				textview120.setTextColor(0xFF000000);
+				textview121.setTextColor(0xFF000000);
 			}
-			textview120.setTextColor(0xFF000000);
-			textview121.setTextColor(0xFF000000);
-			textview122.setTextColor(0xFF000000);
-			textview122.setText("DISABLED");
 		}
 		if (settings.getString("killnoconnection", "").equals("1")) {
 			cardview18.setCardBackgroundColor(0xFF90CAF9);
@@ -751,16 +719,17 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
 				cardview13.setCardBackgroundColor(0xFF424242);
+				textview134.setTextColor(0xFFFFFFFF);
+				textview135.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview13.setCardBackgroundColor(0xFFEEEEEE);
+				cardview13.setCardBackgroundColor(0xFFFFFFFF);
+				textview134.setTextColor(0xFF000000);
+				textview135.setTextColor(0xFF000000);
 			}
-			textview134.setTextColor(0xFF000000);
-			textview135.setTextColor(0xFF000000);
-			textview136.setTextColor(0xFF000000);
-			textview136.setText("DISABLED");
 		}
 		Window w = this.getWindow();w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(Color.parseColor("#9E9E9E"));
+		_ripples();
 	}
 	
 	@Override
@@ -879,6 +848,32 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		};
 		_timer.scheduleAtFixedRate(reloader, (int)(0), (int)(1000));
+	}
+	
+	
+	public void _ripples () {
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+			cardview7.setVisibility(View.INVISIBLE);
+		}
+		_rippleRoundStroke(linear102, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear96, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear97, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear87, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear86, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear92, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear110, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+		_rippleRoundStroke(linear99, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
+	}
+	
+	
+	public void _rippleRoundStroke (final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
+		android.graphics.drawable.GradientDrawable GG = new android.graphics.drawable.GradientDrawable();
+		GG.setColor(Color.parseColor(_focus));
+		GG.setCornerRadius((float)_round);
+		GG.setStroke((int) _stroke,
+		Color.parseColor("#" + _strokeclr.replace("#", "")));
+		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
+		_view.setBackground(RE);
 	}
 	
 	

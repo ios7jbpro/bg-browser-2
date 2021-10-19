@@ -102,17 +102,13 @@
 # view res/layout/debug.xml #generated:73
 # view res/layout/dialog_download_yt.xml #generated:22
 # view res/layout/dialog_download_yt.xml #generated:37
-# view res/layout/dialog_ytplayer.xml #generated:116
-# view res/layout/dialog_ytplayer.xml #generated:149
-# view res/layout/dialog_ytplayer.xml #generated:182
-# view res/layout/dialog_ytplayer.xml #generated:215
-# view res/layout/dialog_ytplayer.xml #generated:22
-# view res/layout/dialog_ytplayer.xml #generated:252
-# view res/layout/dialog_ytplayer.xml #generated:265
-# view res/layout/dialog_ytplayer.xml #generated:304
-# view res/layout/dialog_ytplayer.xml #generated:37
-# view res/layout/dialog_ytplayer.xml #generated:60
-# view res/layout/dialog_ytplayer.xml #generated:83
+# view res/layout/dialog_ytplayer.xml #generated:110
+# view res/layout/dialog_ytplayer.xml #generated:142
+# view res/layout/dialog_ytplayer.xml #generated:15
+# view res/layout/dialog_ytplayer.xml #generated:175
+# view res/layout/dialog_ytplayer.xml #generated:208
+# view res/layout/dialog_ytplayer.xml #generated:27
+# view res/layout/dialog_ytplayer.xml #generated:71
 # view res/layout/editpic.xml #generated:15
 # view res/layout/editpic.xml #generated:58
 # view res/layout/editpic.xml #generated:81
@@ -140,20 +136,17 @@
 # view res/layout/seccheck.xml #generated:56
 # view res/layout/sendhelp.xml #generated:15
 # view res/layout/settings.xml #generated:150
-# view res/layout/settings_general.xml #generated:156
-# view res/layout/settings_general.xml #generated:203
-# view res/layout/settings_general.xml #generated:256
-# view res/layout/settings_general.xml #generated:303
-# view res/layout/settings_general.xml #generated:369
+# view res/layout/settings_general.xml #generated:157
+# view res/layout/settings_general.xml #generated:195
+# view res/layout/settings_general.xml #generated:239
+# view res/layout/settings_general.xml #generated:277
+# view res/layout/settings_general.xml #generated:334
+# view res/layout/settings_general.xml #generated:372
 # view res/layout/settings_general.xml #generated:416
-# view res/layout/settings_general.xml #generated:469
-# view res/layout/settings_general.xml #generated:511
+# view res/layout/settings_general.xml #generated:458
+# view res/layout/settings_general.xml #generated:569
 # view res/layout/settings_general.xml #generated:622
-# view res/layout/settings_general.xml #generated:684
 # view res/layout/settings_general.xml #generated:70
-# view res/layout/settings_spacingp.xml #generated:145
-# view res/layout/settings_spacingp.xml #generated:57
-# view res/layout/settings_spacingp.xml #generated:96
 # view res/layout/spinnerdialog.xml #generated:131
 # view res/layout/spinnerdialog.xml #generated:164
 # view res/layout/spinnerdialog.xml #generated:20
@@ -182,93 +175,90 @@
 # view res/layout/main.xml #generated:538
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:220
+# view AndroidManifest.xml #generated:212
 -keep class com.bgbrowser.two.A11dmwarnActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:117
+# view AndroidManifest.xml #generated:116
 -keep class com.bgbrowser.two.A11warnActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:61
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:234
+# view AndroidManifest.xml #generated:226
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:89
+# view AndroidManifest.xml #generated:88
 -keep class com.bgbrowser.two.DialogDownloadYtActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:82
 -keep class com.bgbrowser.two.DialogYtplayerActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:131
+# view AndroidManifest.xml #generated:123
 -keep class com.bgbrowser.two.DownloadActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:199
+# view AndroidManifest.xml #generated:191
 -keep class com.bgbrowser.two.EditimageActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:192
+# view AndroidManifest.xml #generated:184
 -keep class com.bgbrowser.two.EditpicActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:34
 -keep class com.bgbrowser.two.ExperimentalActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:227
+# view AndroidManifest.xml #generated:219
 -keep class com.bgbrowser.two.ExtracthtmlActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:156
+# view AndroidManifest.xml #generated:148
 -keep class com.bgbrowser.two.ForcelaunchActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:69
 -keep class com.bgbrowser.two.HistoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:206
+# view AndroidManifest.xml #generated:198
 -keep class com.bgbrowser.two.HomesettdialogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:54
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:241
+# view AndroidManifest.xml #generated:233
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:184
+# view AndroidManifest.xml #generated:176
 -keep class com.bgbrowser.two.OpentabActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:143
+# view AndroidManifest.xml #generated:135
 -keep class com.bgbrowser.two.OtherfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:124
--keep class com.bgbrowser.two.PipactivityActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:163
+# view AndroidManifest.xml #generated:155
 -keep class com.bgbrowser.two.SavepdfActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:170
+# view AndroidManifest.xml #generated:162
 -keep class com.bgbrowser.two.SeccheckActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:177
+# view AndroidManifest.xml #generated:169
 -keep class com.bgbrowser.two.SendhelpActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:28
 -keep class com.bgbrowser.two.SettingsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:96
+# view AndroidManifest.xml #generated:95
 -keep class com.bgbrowser.two.SettingsGeneralActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:9
 -keep class com.bgbrowser.two.SketchApplication { <init>(...); }
 
-# view AndroidManifest.xml #generated:149
+# view AndroidManifest.xml #generated:141
 -keep class com.bgbrowser.two.SpinnerdialogActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:102
+# view AndroidManifest.xml #generated:101
 -keep class com.bgbrowser.two.SplashActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:137
+# view AndroidManifest.xml #generated:129
 -keep class com.bgbrowser.two.TextfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:213
+# view AndroidManifest.xml #generated:205
 -keep class com.bgbrowser.two.UpdatedialogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:40
@@ -277,7 +267,7 @@
 # view AndroidManifest.xml #generated:47
 -keep class com.bgbrowser.two.Welcome2Activity { <init>(...); }
 
-# view AndroidManifest.xml #generated:109
+# view AndroidManifest.xml #generated:108
 -keep class com.bgbrowser.two.YtfullscreenActivity { <init>(...); }
 
 # view res/layout/test_toolbar.xml #generated:16
@@ -353,7 +343,7 @@
 # view res/layout/material_chip_input_combo.xml #generated:18
 -keep class com.google.android.material.timepicker.ChipTextInputComboView { <init>(...); }
 
-# view res/layout/dialog_ytplayer.xml #generated:316
+# view res/layout/dialog_ytplayer.xml #generated:82
 # view res/layout/pipactivity.xml #generated:44
 # view res/layout/ytfullscreen.xml #generated:8
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView { <init>(...); }
@@ -379,8 +369,4 @@
 # view res/layout/credits.xml #generated:981
 # view res/layout/credits.xml #generated:99
 -keep class de.hdodenhof.circleimageview.CircleImageView { <init>(...); }
-
-# view res/layout/settings_spacingp.xml #generated:175
-# view res/layout/settings_spacingp.xml #generated:86
--keep class vn.luongvo.widget.iosswitchview.SwitchView { <init>(...); }
 

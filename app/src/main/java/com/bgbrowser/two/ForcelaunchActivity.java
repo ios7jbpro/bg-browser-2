@@ -277,7 +277,7 @@ public class ForcelaunchActivity extends AppCompatActivity {
 		cardview16.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				a.setClass(getApplicationContext(), PipactivityActivity.class);
+				
 				startActivity(a);
 				finish();
 			}

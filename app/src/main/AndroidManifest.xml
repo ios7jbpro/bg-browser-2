@@ -84,7 +84,6 @@
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
 			android:hardwareAccelerated="true"
 			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
 			android:name=".DialogDownloadYtActivity"
@@ -116,13 +115,6 @@
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
 			android:name=".A11warnActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
-			android:windowSoftInputMode="stateHidden"/>
-		<activity
-			android:name=".PipactivityActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
 			android:hardwareAccelerated="true"
 			android:supportsPictureInPicture="true"

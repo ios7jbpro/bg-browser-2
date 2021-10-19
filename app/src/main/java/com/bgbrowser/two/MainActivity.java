@@ -755,7 +755,6 @@ public class MainActivity extends AppCompatActivity {
 					progressbar1.setVisibility(View.VISIBLE);
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview1.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setAction(Intent.ACTION_VIEW);
 							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
 							startActivity(ytb);
 							dialogytlink.edit().putString("link", webview1.getUrl()).commit();
@@ -831,7 +830,6 @@ public class MainActivity extends AppCompatActivity {
 					edittext1.setText(webview2.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview2.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setAction(Intent.ACTION_VIEW);
 							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
 							startActivity(ytb);
 							dialogytlink.edit().putString("link", webview2.getUrl()).commit();
@@ -904,7 +902,6 @@ public class MainActivity extends AppCompatActivity {
 					edittext1.setText(webview3.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview3.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setAction(Intent.ACTION_VIEW);
 							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
 							startActivity(ytb);
 							dialogytlink.edit().putString("link", webview3.getUrl()).commit();
@@ -977,7 +974,6 @@ public class MainActivity extends AppCompatActivity {
 					edittext1.setText(webview4.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview4.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setAction(Intent.ACTION_VIEW);
 							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
 							startActivity(ytb);
 							dialogytlink.edit().putString("link", webview4.getUrl()).commit();
@@ -1474,7 +1470,6 @@ public class MainActivity extends AppCompatActivity {
 				webcheck.startRequestNetwork(RequestNetworkController.GET, webview5.getUrl(), "A", _webcheck_request_listener);
 				if (settings.getString("ytplayer", "").equals("1")) {
 					if (webview5.getUrl().contains("m.youtube.com")) {
-						ytb.setAction(Intent.ACTION_VIEW);
 						ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
 						startActivity(ytb);
 						dialogytlink.edit().putString("link", webview5.getUrl()).commit();

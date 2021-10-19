@@ -75,7 +75,7 @@
 				android:padding="8dp"
 				android:background="#82B1FF"
 				app:cardElevation="0dp"
-				app:cardCornerRadius="16dp">
+				app:cardCornerRadius="15dp">
 				<LinearLayout
 					android:id="@+id/linear104"
 					android:layout_width="match_parent"
@@ -119,6 +119,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
+						android:gravity="center_vertical"
 						android:orientation="horizontal">
 						<TextView
 							android:id="@+id/textview133"
@@ -165,7 +166,7 @@
 					android:background="#FFAB91"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear102"
 						android:layout_width="match_parent"
@@ -189,19 +190,10 @@
 							android:text="Show a profile\npicture"
 							android:textSize="12sp"
 							android:textColor="#FF5722"/>
-						<TextView
-							android:id="@+id/textview131"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#FF5722"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview7"
+					android:id="@+id/cardview12"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="8dp"
@@ -209,63 +201,10 @@
 					android:layout_marginRight="15dp"
 					android:layout_marginBottom="15dp"
 					android:padding="8dp"
-					android:background="#A5D6A7"
-					android:layout_weight="1"
-					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
-					<LinearLayout
-						android:id="@+id/linear87"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:padding="8dp"
-						android:orientation="vertical">
-						<TextView
-							android:id="@+id/textview102"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="Splash Screen"
-							android:textSize="12sp"
-							android:textStyle="bold"
-							android:textColor="#4CAF50"/>
-						<TextView
-							android:id="@+id/textview103"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="Show logo on\nstart"
-							android:textSize="12sp"
-							android:textColor="#4CAF50"/>
-						<TextView
-							android:id="@+id/textview104"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#4CAF50"/>
-					</LinearLayout>
-				</androidx.cardview.widget.CardView>
-			</LinearLayout>
-			<LinearLayout
-				android:id="@+id/linear95"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview12"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginTop="15dp"
-					android:layout_marginRight="8dp"
-					android:layout_marginBottom="15dp"
-					android:padding="8dp"
 					android:background="#80CBC4"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear96"
 						android:layout_width="match_parent"
@@ -289,30 +228,27 @@
 							android:text="Adapt UI to\na tablet"
 							android:textSize="12sp"
 							android:textColor="#009688"/>
-						<TextView
-							android:id="@+id/textview119"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#009688"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear95"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
 				<androidx.cardview.widget.CardView
 					android:id="@+id/cardview13"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="8dp"
+					android:layout_marginLeft="15dp"
 					android:layout_marginTop="15dp"
-					android:layout_marginRight="15dp"
+					android:layout_marginRight="8dp"
 					android:layout_marginBottom="15dp"
 					android:padding="8dp"
 					android:background="#9FA8DA"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear97"
 						android:layout_width="match_parent"
@@ -336,15 +272,44 @@
 							android:text="MIUI styled spinner\ndropdown menus"
 							android:textSize="12sp"
 							android:textColor="#3F51B5"/>
+					</LinearLayout>
+				</androidx.cardview.widget.CardView>
+				<androidx.cardview.widget.CardView
+					android:id="@+id/cardview7"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="15dp"
+					android:layout_marginRight="15dp"
+					android:layout_marginBottom="15dp"
+					android:padding="8dp"
+					android:background="#A5D6A7"
+					android:layout_weight="1"
+					app:cardElevation="3dp"
+					app:cardCornerRadius="15dp">
+					<LinearLayout
+						android:id="@+id/linear87"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:orientation="vertical">
 						<TextView
-							android:id="@+id/textview122"
+							android:id="@+id/textview102"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
+							android:padding="4dp"
+							android:text="Splash Screen"
+							android:textSize="12sp"
 							android:textStyle="bold"
-							android:textColor="#3F51B5"/>
+							android:textColor="#4CAF50"/>
+						<TextView
+							android:id="@+id/textview103"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="4dp"
+							android:text="Show logo on\nstart"
+							android:textSize="12sp"
+							android:textColor="#4CAF50"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 			</LinearLayout>
@@ -378,7 +343,7 @@
 					android:background="#A5D6A7"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear86"
 						android:layout_width="match_parent"
@@ -402,15 +367,6 @@
 							android:text="Let websites leave\ncookies"
 							android:textSize="12sp"
 							android:textColor="#4CAF50"/>
-						<TextView
-							android:id="@+id/textview101"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#4CAF50"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 				<androidx.cardview.widget.CardView
@@ -425,7 +381,7 @@
 					android:background="#CE93D8"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear92"
 						android:layout_width="match_parent"
@@ -449,15 +405,6 @@
 							android:text="Requires system\nwebview above 76!"
 							android:textSize="12sp"
 							android:textColor="#9C27B0"/>
-						<TextView
-							android:id="@+id/textview115"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
-							android:textColor="#9C27B0"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
 			</LinearLayout>
@@ -474,7 +421,7 @@
 					android:padding="8dp"
 					android:background="#F48FB1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear94"
 						android:layout_width="match_parent"
@@ -516,7 +463,7 @@
 					android:padding="8dp"
 					android:background="#80DEEA"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear101"
 						android:layout_width="match_parent"
@@ -627,7 +574,7 @@
 					android:padding="8dp"
 					android:background="#90CAF9"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear110"
 						android:layout_width="match_parent"
@@ -650,15 +597,6 @@
 							android:padding="4dp"
 							android:text="Disable the &quot;No Connection/Internet&quot; page and keep showing the website even when offline(recommended for Run HTML)"
 							android:textSize="12sp"
-							android:textColor="#2196F3"/>
-						<TextView
-							android:id="@+id/textview136"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
 							android:textColor="#2196F3"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
@@ -690,7 +628,7 @@
 					android:background="#FFCC80"
 					android:layout_weight="1"
 					app:cardElevation="3dp"
-					app:cardCornerRadius="11dp">
+					app:cardCornerRadius="15dp">
 					<LinearLayout
 						android:id="@+id/linear99"
 						android:layout_width="match_parent"
@@ -713,15 +651,6 @@
 							android:padding="4dp"
 							android:text="Enable/disable youtube\nlib player"
 							android:textSize="12sp"
-							android:textColor="#FF9800"/>
-						<TextView
-							android:id="@+id/textview126"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="8dp"
-							android:text="ENABLED"
-							android:textSize="16sp"
-							android:textStyle="bold"
 							android:textColor="#FF9800"/>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>

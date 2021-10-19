@@ -319,7 +319,7 @@ public class SettingsActivity extends AppCompatActivity {
 			imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
 			if (settings.getString("mnb", "").equals("1")) {
 				
-				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#F5F5F5"));
+				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
 			}
 			else {
 				
@@ -332,7 +332,7 @@ public class SettingsActivity extends AppCompatActivity {
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 				Window w =SettingsActivity.this.getWindow();
 				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFF5F5F5);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 			}
 		}
 	}

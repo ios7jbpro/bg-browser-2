@@ -25,9 +25,9 @@ import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
 import androidx.cardview.widget.CardView;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.ImageView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.*;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerUtils;
@@ -58,46 +58,35 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	private String share = "";
 	
 	private LinearLayout linear6;
-	private LinearLayout linear21;
-	private CardView cardview9;
 	private CardView cardview1;
-	private CardView cardview14;
-	private LinearLayout linear22;
-	private LinearLayout linear15;
-	private HorizontalScrollView hscroll1;
-	private LinearLayout linear7;
-	private CardView cardview4;
+	private ScrollView vscroll1;
+	private LinearLayout linear2;
+	private CardView cardview2;
+	private TextView linktext;
+	private CardView cardview3;
+	private LinearLayout linear3;
+	private ImageView imageview3;
+	private ImageView imageview1;
+	private TextView textview1;
+	private LinearLayout linear4;
+	private YouTubePlayerView youtube1;
+	private LinearLayout linear23;
 	private CardView cardview6;
 	private CardView cardview11;
-	private CardView cardview13;
 	private CardView cardview10;
-	private CardView cardview12;
-	private LinearLayout linear8;
-	private ImageView imageview3;
+	private CardView cardview13;
 	private LinearLayout linear12;
 	private ImageView imageview2;
 	private TextView textview5;
 	private LinearLayout linear18;
 	private ImageView imageview5;
 	private TextView textview9;
-	private LinearLayout linear20;
-	private ImageView imageview7;
-	private TextView textview11;
 	private LinearLayout linear16;
 	private ImageView imageview4;
 	private TextView textview7;
-	private LinearLayout linear19;
-	private ImageView imageview6;
-	private TextView textview10;
-	private LinearLayout linear2;
-	private CardView cardview2;
-	private TextView linktext;
-	private CardView cardview3;
-	private LinearLayout linear3;
-	private ImageView imageview1;
-	private TextView textview1;
-	private LinearLayout linear4;
-	private YouTubePlayerView youtube1;
+	private LinearLayout linear20;
+	private ImageView imageview7;
+	private TextView textview11;
 	
 	private SharedPreferences dialogytlink;
 	private RequestNetwork t;
@@ -121,52 +110,41 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	
 	private void initialize(Bundle _savedInstanceState) {
 		linear6 = (LinearLayout) findViewById(R.id.linear6);
-		linear21 = (LinearLayout) findViewById(R.id.linear21);
-		cardview9 = (CardView) findViewById(R.id.cardview9);
 		cardview1 = (CardView) findViewById(R.id.cardview1);
-		cardview14 = (CardView) findViewById(R.id.cardview14);
-		linear22 = (LinearLayout) findViewById(R.id.linear22);
-		linear15 = (LinearLayout) findViewById(R.id.linear15);
-		hscroll1 = (HorizontalScrollView) findViewById(R.id.hscroll1);
-		linear7 = (LinearLayout) findViewById(R.id.linear7);
-		cardview4 = (CardView) findViewById(R.id.cardview4);
+		vscroll1 = (ScrollView) findViewById(R.id.vscroll1);
+		linear2 = (LinearLayout) findViewById(R.id.linear2);
+		cardview2 = (CardView) findViewById(R.id.cardview2);
+		linktext = (TextView) findViewById(R.id.linktext);
+		cardview3 = (CardView) findViewById(R.id.cardview3);
+		linear3 = (LinearLayout) findViewById(R.id.linear3);
+		imageview3 = (ImageView) findViewById(R.id.imageview3);
+		imageview1 = (ImageView) findViewById(R.id.imageview1);
+		textview1 = (TextView) findViewById(R.id.textview1);
+		linear4 = (LinearLayout) findViewById(R.id.linear4);
+		youtube1 = (YouTubePlayerView) findViewById(R.id.youtube1);
+		linear23 = (LinearLayout) findViewById(R.id.linear23);
 		cardview6 = (CardView) findViewById(R.id.cardview6);
 		cardview11 = (CardView) findViewById(R.id.cardview11);
-		cardview13 = (CardView) findViewById(R.id.cardview13);
 		cardview10 = (CardView) findViewById(R.id.cardview10);
-		cardview12 = (CardView) findViewById(R.id.cardview12);
-		linear8 = (LinearLayout) findViewById(R.id.linear8);
-		imageview3 = (ImageView) findViewById(R.id.imageview3);
+		cardview13 = (CardView) findViewById(R.id.cardview13);
 		linear12 = (LinearLayout) findViewById(R.id.linear12);
 		imageview2 = (ImageView) findViewById(R.id.imageview2);
 		textview5 = (TextView) findViewById(R.id.textview5);
 		linear18 = (LinearLayout) findViewById(R.id.linear18);
 		imageview5 = (ImageView) findViewById(R.id.imageview5);
 		textview9 = (TextView) findViewById(R.id.textview9);
-		linear20 = (LinearLayout) findViewById(R.id.linear20);
-		imageview7 = (ImageView) findViewById(R.id.imageview7);
-		textview11 = (TextView) findViewById(R.id.textview11);
 		linear16 = (LinearLayout) findViewById(R.id.linear16);
 		imageview4 = (ImageView) findViewById(R.id.imageview4);
 		textview7 = (TextView) findViewById(R.id.textview7);
-		linear19 = (LinearLayout) findViewById(R.id.linear19);
-		imageview6 = (ImageView) findViewById(R.id.imageview6);
-		textview10 = (TextView) findViewById(R.id.textview10);
-		linear2 = (LinearLayout) findViewById(R.id.linear2);
-		cardview2 = (CardView) findViewById(R.id.cardview2);
-		linktext = (TextView) findViewById(R.id.linktext);
-		cardview3 = (CardView) findViewById(R.id.cardview3);
-		linear3 = (LinearLayout) findViewById(R.id.linear3);
-		imageview1 = (ImageView) findViewById(R.id.imageview1);
-		textview1 = (TextView) findViewById(R.id.textview1);
-		linear4 = (LinearLayout) findViewById(R.id.linear4);
-		youtube1 = (YouTubePlayerView) findViewById(R.id.youtube1);
+		linear20 = (LinearLayout) findViewById(R.id.linear20);
+		imageview7 = (ImageView) findViewById(R.id.imageview7);
+		textview11 = (TextView) findViewById(R.id.textview11);
 		dialogytlink = getSharedPreferences("dialogytlink", Activity.MODE_PRIVATE);
 		t = new RequestNetwork(this);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		h = new AlertDialog.Builder(this);
 		
-		cardview4.setOnClickListener(new View.OnClickListener() {
+		imageview3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				finish();
@@ -190,15 +168,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			}
 		});
 		
-		cardview13.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				pip.setClass(getApplicationContext(), PipactivityActivity.class);
-				startActivity(pip);
-				finish();
-			}
-		});
-		
 		cardview10.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -209,13 +178,13 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			}
 		});
 		
-		cardview12.setOnClickListener(new View.OnClickListener() {
+		cardview13.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				ytintent.setAction(Intent.ACTION_VIEW);
-				ytintent.setData(Uri.parse("https://m.youtube.com/watch?v=".concat(dialogytlink.getString("link", ""))));
-				startActivity(ytintent);
-				finish();
+				enterPictureInPictureMode();
+				vscroll1.setVisibility(View.GONE);
+				cardview2.setVisibility(View.GONE);
+				linear6.setBackgroundColor(0xFF000000);
 			}
 		});
 		
@@ -238,21 +207,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		if (getIntent().getBooleanExtra("dialogTheme",true)) {
-			// To make the dialog corners round
-			getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
-			
-			{
-				android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
-				int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
-				SketchUi.setColor(0x00000000);SketchUi.setCornerRadius(d*15);
-				
-				((ViewGroup)getWindow().getDecorView()).getChildAt(0).setBackground(SketchUi);
-			}
-			
-			// Codes Generated by SketchUi 
-		}
-		// you may face some issues if you use enable ActionBar due to dialog theme
 		linktext.setText(dialogytlink.getString("link", ""));
 		if (Double.parseDouble(Build.VERSION.SDK) < 26) {
 			cardview13.setVisibility(View.GONE);
@@ -272,8 +226,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		_setViewSize(linear6, SketchwareUtil.getDisplayWidthPixels(getApplicationContext()) - 130, SketchwareUtil.getDisplayHeightPixels(getApplicationContext()) - 180);
-		_removeScrollBar(hscroll1);
 		getLifecycle().addObserver(youtube1);
 		if (linktext.getText().toString().contains("https://youtu.be/")) {
 			linktext.setText(linktext.getText().toString().replace("https://youtu.be/", ""));
@@ -317,63 +269,30 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 		cardview1.setCardElevation((float)3);
 		cardview1.setPreventCornerOverlap(true);
 		cardview2.setCardBackgroundColor(0xFFEEEEEE);
-		cardview2.setRadius((float)15);
-		cardview2.setCardElevation((float)3);
 		cardview2.setPreventCornerOverlap(true);
 		cardview3.setCardBackgroundColor(0xFFFFFFFF);
 		cardview3.setRadius((float)15);
 		cardview3.setCardElevation((float)3);
 		cardview3.setPreventCornerOverlap(true);
-		cardview4.setCardBackgroundColor(0xFFFFFFFF);
-		cardview4.setRadius((float)360);
-		cardview4.setCardElevation((float)0);
-		cardview4.setPreventCornerOverlap(true);
-		cardview6.setCardBackgroundColor(0xFFFFFFFF);
-		cardview6.setRadius((float)360);
-		cardview6.setCardElevation((float)0);
-		cardview6.setPreventCornerOverlap(true);
-		cardview9.setCardBackgroundColor(Color.TRANSPARENT);
-		cardview9.setRadius((float)360);
-		cardview9.setCardElevation((float)0);
-		cardview9.setPreventCornerOverlap(true);
-		cardview10.setCardBackgroundColor(0xFFFFFFFF);
-		cardview10.setRadius((float)360);
-		cardview10.setCardElevation((float)0);
-		cardview10.setPreventCornerOverlap(true);
-		cardview11.setCardBackgroundColor(0xFFFFFFFF);
-		cardview11.setRadius((float)360);
-		cardview11.setCardElevation((float)0);
-		cardview11.setPreventCornerOverlap(true);
-		cardview12.setCardBackgroundColor(0xFFFFFFFF);
-		cardview12.setRadius((float)360);
-		cardview12.setCardElevation((float)0);
-		cardview12.setPreventCornerOverlap(true);
-		cardview13.setCardBackgroundColor(0xFFFFFFFF);
-		cardview13.setRadius((float)360);
-		cardview13.setCardElevation((float)0);
-		cardview13.setPreventCornerOverlap(true);
-		cardview14.setCardBackgroundColor(0xFFFFFFFF);
-		cardview14.setRadius((float)360);
-		cardview14.setCardElevation((float)0);
-		cardview14.setPreventCornerOverlap(true);
 		textview5.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
 		textview9.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-		textview10.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
 		textview11.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
 		if (settings.getString("darkmode", "").equals("1")) {
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+				Window w =DialogYtplayerActivity.this.getWindow();
+				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
+			}
 			cardview1.setCardBackgroundColor(0xFF000000);
 			cardview2.setCardBackgroundColor(0xFF212121);
 			cardview3.setCardBackgroundColor(0xFF000000);
-			cardview4.setCardBackgroundColor(0xFF000000);
-			cardview6.setCardBackgroundColor(0xFF000000);
-			cardview10.setCardBackgroundColor(0xFF000000);
-			cardview11.setCardBackgroundColor(0xFF000000);
-			cardview12.setCardBackgroundColor(0xFF000000);
-			cardview13.setCardBackgroundColor(0xFF000000);
+			cardview6.setCardBackgroundColor(0xFF212121);
+			cardview10.setCardBackgroundColor(0xFF212121);
+			cardview11.setCardBackgroundColor(0xFF212121);
+			cardview13.setCardBackgroundColor(0xFF212121);
 			textview1.setTextColor(0xFFFFFFFF);
 			textview7.setTextColor(0xFFFFFFFF);
 			textview9.setTextColor(0xFFFFFFFF);
-			textview10.setTextColor(0xFFFFFFFF);
 			textview11.setTextColor(0xFFFFFFFF);
 			imageview2.setImageResource(R.drawable.ic_get_app_white);
 			imageview3.setImageResource(R.drawable.ic_close_white);
@@ -383,19 +302,23 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			textview5.setTextColor(0xFFFFFFFF);
 		}
 		else {
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+			getWindow().setStatusBarColor(0xFFFFFFFF);
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+				Window w =DialogYtplayerActivity.this.getWindow();
+				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
+			}
 			cardview1.setCardBackgroundColor(0xFFFFFFFF);
 			cardview2.setCardBackgroundColor(0xFFEEEEEE);
 			cardview3.setCardBackgroundColor(0xFFFFFFFF);
-			cardview4.setCardBackgroundColor(0xFFFFFFFF);
-			cardview6.setCardBackgroundColor(0xFFFFFFFF);
-			cardview10.setCardBackgroundColor(0xFFFFFFFF);
-			cardview11.setCardBackgroundColor(0xFFFFFFFF);
-			cardview12.setCardBackgroundColor(0xFFFFFFFF);
-			cardview13.setCardBackgroundColor(0xFFFFFFFF);
+			cardview6.setCardBackgroundColor(0xFFF5F5F5);
+			cardview10.setCardBackgroundColor(0xFFF5F5F5);
+			cardview11.setCardBackgroundColor(0xFFF5F5F5);
+			cardview13.setCardBackgroundColor(0xFFF5F5F5);
 			textview1.setTextColor(0xFF000000);
 			textview7.setTextColor(0xFF000000);
 			textview9.setTextColor(0xFF000000);
-			textview10.setTextColor(0xFF000000);
 			textview11.setTextColor(0xFF000000);
 			imageview2.setImageResource(R.drawable.ic_get_app_black);
 			imageview3.setImageResource(R.drawable.ic_clear_black);
@@ -405,36 +328,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			textview5.setTextColor(0xFF000000);
 		}
 	}
-	public void _dialogTheme () {
-	}
-	// setTheme() should be set before setContentView() so a small hack to do this in sketchware
-	 @Override 
-	    public void setContentView( int layoutResID) {
-		if(getIntent().getBooleanExtra("dialogTheme",true)){
-			supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-			setTheme(R.style.Theme_AppCompat_Light_Dialog);
-			setFinishOnTouchOutside(false);
-			
-			//change true to false if you want to make dialog non cancellable when clicked outside
-			//if you want to use this without app compat  change supportRequestWindowFeature() and setTheme() to below codes.
-			/*
-requestWindowFeature(Window.FEATURE_NO_TITLE);
-setTheme(android.R.style.Theme_Dialog);
-*/
-			// Calling this allows the Activity behind this one to be seen again. Once all such Activities have been redrawn
-			try {
-				 	java.lang.reflect.Method getActivityOptions = Activity.class.getDeclaredMethod("getActivityOptions"); getActivityOptions.setAccessible(true);
-				 Object options = getActivityOptions.invoke(this); Class<?>[] classes = Activity.class.getDeclaredClasses(); Class<?> translucentConversionListenerClazz = null; 
-				for (Class clazz : classes) { if (clazz.getSimpleName().contains("TranslucentConversionListener")) { translucentConversionListenerClazz = clazz; } } 
-				java.lang.reflect.Method convertToTranslucent = Activity.class.getDeclaredMethod("convertToTranslucent", translucentConversionListenerClazz, ActivityOptions.class); convertToTranslucent.setAccessible(true); convertToTranslucent.invoke(this, null, options); } catch (Throwable t) {
-			}
-		}
-		super.setContentView(layoutResID);  
-	}
-	{
-	}
-	
-	
 	public void _rippleRoundStroke (final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
 		android.graphics.drawable.GradientDrawable GG = new android.graphics.drawable.GradientDrawable();
 		GG.setColor(Color.parseColor(_focus));
@@ -452,14 +345,14 @@ setTheme(android.R.style.Theme_Dialog);
 	
 	
 	public void _invisible () {
-		cardview9.setVisibility(View.GONE);
+		
 		cardview2.setVisibility(View.GONE);
 		
 	}
 	
 	
 	public void _visible () {
-		cardview9.setVisibility(View.VISIBLE);
+		
 		cardview2.setVisibility(View.VISIBLE);
 		if (true) {
 			
