@@ -24,13 +24,14 @@ import java.util.regex.*;
 import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.content.Intent;
 import android.net.Uri;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.view.View;
 import androidx.webkit.*;
 import com.monstertechno.adblocker.*;
@@ -43,15 +44,19 @@ public class Welcome1Activity extends AppCompatActivity {
 	private Timer _timer = new Timer();
 	
 	private LinearLayout linear1;
-	private LinearLayout linear5;
 	private LinearLayout linear4;
-	private Button button1;
 	private LinearLayout linear3;
 	private ImageView imageview2;
 	private TextView textview2;
+	private LinearLayout linear6;
+	private TextView textview3;
+	private LinearLayout linear7;
+	private TextView textview4;
 	
 	private TimerTask loading;
 	private Intent hjs = new Intent();
+	private SharedPreferences setup;
+	private SharedPreferences settings;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -63,14 +68,27 @@ public class Welcome1Activity extends AppCompatActivity {
 	
 	private void initialize(Bundle _savedInstanceState) {
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
-		linear5 = (LinearLayout) findViewById(R.id.linear5);
 		linear4 = (LinearLayout) findViewById(R.id.linear4);
-		button1 = (Button) findViewById(R.id.button1);
 		linear3 = (LinearLayout) findViewById(R.id.linear3);
 		imageview2 = (ImageView) findViewById(R.id.imageview2);
 		textview2 = (TextView) findViewById(R.id.textview2);
+		linear6 = (LinearLayout) findViewById(R.id.linear6);
+		textview3 = (TextView) findViewById(R.id.textview3);
+		linear7 = (LinearLayout) findViewById(R.id.linear7);
+		textview4 = (TextView) findViewById(R.id.textview4);
+		setup = getSharedPreferences("setup", Activity.MODE_PRIVATE);
+		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		
-		button1.setOnClickListener(new View.OnClickListener() {
+		textview3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				setup.edit().putString("setup", "done").commit();
+				settings.edit().putString("homeurl", "https://www.google.com").commit();
+				finish();
+			}
+		});
+		
+		textview4.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				hjs.setClass(getApplicationContext(), Welcome2Activity.class);
@@ -81,10 +99,7 @@ public class Welcome1Activity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-		gd.setColor(Color.parseColor("#2196F3"));
-		gd.setCornerRadius(11);
-		button1.setBackground(gd);
+		_rippleRoundStroke(textview4, "#2196F3", "#FFFFFF", 360, 0, "#000000");
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 		getWindow().setStatusBarColor(0xFFFFFFFF);
 	}
@@ -103,151 +118,14 @@ public class Welcome1Activity extends AppCompatActivity {
 	public void onBackPressed() {
 		SketchwareUtil.showMessage(getApplicationContext(), "Please complete setup before!");
 	}
-	public void _loadinganimation () {
-		loading = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						
-						loading = new TimerTask() {
-							@Override
-							public void run() {
-								runOnUiThread(new Runnable() {
-									@Override
-									public void run() {
-										
-										loading = new TimerTask() {
-											@Override
-											public void run() {
-												runOnUiThread(new Runnable() {
-													@Override
-													public void run() {
-														
-														loading = new TimerTask() {
-															@Override
-															public void run() {
-																runOnUiThread(new Runnable() {
-																	@Override
-																	public void run() {
-																		
-																		loading = new TimerTask() {
-																			@Override
-																			public void run() {
-																				runOnUiThread(new Runnable() {
-																					@Override
-																					public void run() {
-																						
-																						loading = new TimerTask() {
-																							@Override
-																							public void run() {
-																								runOnUiThread(new Runnable() {
-																									@Override
-																									public void run() {
-																										
-																										loading = new TimerTask() {
-																											@Override
-																											public void run() {
-																												runOnUiThread(new Runnable() {
-																													@Override
-																													public void run() {
-																														
-																														loading = new TimerTask() {
-																															@Override
-																															public void run() {
-																																runOnUiThread(new Runnable() {
-																																	@Override
-																																	public void run() {
-																																		
-																																		loading = new TimerTask() {
-																																			@Override
-																																			public void run() {
-																																				runOnUiThread(new Runnable() {
-																																					@Override
-																																					public void run() {
-																																						
-																																						loading = new TimerTask() {
-																																							@Override
-																																							public void run() {
-																																								runOnUiThread(new Runnable() {
-																																									@Override
-																																									public void run() {
-																																										
-																																										loading = new TimerTask() {
-																																											@Override
-																																											public void run() {
-																																												runOnUiThread(new Runnable() {
-																																													@Override
-																																													public void run() {
-																																														
-																																														loading = new TimerTask() {
-																																															@Override
-																																															public void run() {
-																																																runOnUiThread(new Runnable() {
-																																																	@Override
-																																																	public void run() {
-																																																		
-																																																	}
-																																																});
-																																															}
-																																														};
-																																														_timer.schedule(loading, (int)(50));
-																																													}
-																																												});
-																																											}
-																																										};
-																																										_timer.schedule(loading, (int)(50));
-																																									}
-																																								});
-																																							}
-																																						};
-																																						_timer.schedule(loading, (int)(50));
-																																					}
-																																				});
-																																			}
-																																		};
-																																		_timer.schedule(loading, (int)(50));
-																																	}
-																																});
-																															}
-																														};
-																														_timer.schedule(loading, (int)(50));
-																													}
-																												});
-																											}
-																										};
-																										_timer.schedule(loading, (int)(50));
-																									}
-																								});
-																							}
-																						};
-																						_timer.schedule(loading, (int)(50));
-																					}
-																				});
-																			}
-																		};
-																		_timer.schedule(loading, (int)(50));
-																	}
-																});
-															}
-														};
-														_timer.schedule(loading, (int)(50));
-													}
-												});
-											}
-										};
-										_timer.schedule(loading, (int)(50));
-									}
-								});
-							}
-						};
-						_timer.schedule(loading, (int)(50));
-					}
-				});
-			}
-		};
-		_timer.scheduleAtFixedRate(loading, (int)(0), (int)(600));
+	public void _rippleRoundStroke (final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
+		android.graphics.drawable.GradientDrawable GG = new android.graphics.drawable.GradientDrawable();
+		GG.setColor(Color.parseColor(_focus));
+		GG.setCornerRadius((float)_round);
+		GG.setStroke((int) _stroke,
+		Color.parseColor("#" + _strokeclr.replace("#", "")));
+		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
+		_view.setBackground(RE);
 	}
 	
 	

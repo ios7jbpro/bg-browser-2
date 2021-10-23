@@ -139,13 +139,12 @@
 # view res/layout/settings_general.xml #generated:157
 # view res/layout/settings_general.xml #generated:195
 # view res/layout/settings_general.xml #generated:239
-# view res/layout/settings_general.xml #generated:277
-# view res/layout/settings_general.xml #generated:334
-# view res/layout/settings_general.xml #generated:372
-# view res/layout/settings_general.xml #generated:416
-# view res/layout/settings_general.xml #generated:458
-# view res/layout/settings_general.xml #generated:569
-# view res/layout/settings_general.xml #generated:622
+# view res/layout/settings_general.xml #generated:293
+# view res/layout/settings_general.xml #generated:331
+# view res/layout/settings_general.xml #generated:375
+# view res/layout/settings_general.xml #generated:417
+# view res/layout/settings_general.xml #generated:528
+# view res/layout/settings_general.xml #generated:581
 # view res/layout/settings_general.xml #generated:70
 # view res/layout/spinnerdialog.xml #generated:131
 # view res/layout/spinnerdialog.xml #generated:164
@@ -176,16 +175,13 @@
 # view res/layout/main.xml #generated:512
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:205
+# view AndroidManifest.xml #generated:184
 -keep class com.bgbrowser.two.A11dmwarnActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:116
--keep class com.bgbrowser.two.A11warnActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:61
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:225
+# view AndroidManifest.xml #generated:204
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
@@ -195,23 +191,20 @@
 # view AndroidManifest.xml #generated:82
 -keep class com.bgbrowser.two.DialogYtplayerActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:123
+# view AndroidManifest.xml #generated:116
 -keep class com.bgbrowser.two.DownloadActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:191
+# view AndroidManifest.xml #generated:170
 -keep class com.bgbrowser.two.EditimageActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:184
+# view AndroidManifest.xml #generated:163
 -keep class com.bgbrowser.two.EditpicActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:34
 -keep class com.bgbrowser.two.ExperimentalActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:212
+# view AndroidManifest.xml #generated:191
 -keep class com.bgbrowser.two.ExtracthtmlActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:148
--keep class com.bgbrowser.two.ForcelaunchActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:69
 -keep class com.bgbrowser.two.HistoryActivity { <init>(...); }
@@ -220,22 +213,22 @@
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:232
+# view AndroidManifest.xml #generated:211
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:176
+# view AndroidManifest.xml #generated:155
 -keep class com.bgbrowser.two.OpentabActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:135
+# view AndroidManifest.xml #generated:128
 -keep class com.bgbrowser.two.OtherfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:155
+# view AndroidManifest.xml #generated:134
 -keep class com.bgbrowser.two.SavepdfActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:162
+# view AndroidManifest.xml #generated:141
 -keep class com.bgbrowser.two.SeccheckActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:169
+# view AndroidManifest.xml #generated:148
 -keep class com.bgbrowser.two.SendhelpActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:28
@@ -247,19 +240,16 @@
 # view AndroidManifest.xml #generated:9
 -keep class com.bgbrowser.two.SketchApplication { <init>(...); }
 
-# view AndroidManifest.xml #generated:141
--keep class com.bgbrowser.two.SpinnerdialogActivity { <init>(...); }
-
 # view AndroidManifest.xml #generated:101
 -keep class com.bgbrowser.two.SplashActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:129
+# view AndroidManifest.xml #generated:122
 -keep class com.bgbrowser.two.TextfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:198
+# view AndroidManifest.xml #generated:177
 -keep class com.bgbrowser.two.UpdatedialogActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:219
+# view AndroidManifest.xml #generated:198
 -keep class com.bgbrowser.two.UpdatelogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:40

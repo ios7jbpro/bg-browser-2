@@ -114,13 +114,6 @@
 			android:screenOrientation="landscape"
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
-			android:name=".A11warnActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
-			android:windowSoftInputMode="stateHidden"/>
-		<activity
 			android:name=".DownloadActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
 			android:hardwareAccelerated="true"
@@ -138,20 +131,6 @@
 			android:hardwareAccelerated="true"
 			android:supportsPictureInPicture="true"
 			android:theme="@style/AppTheme.FullScreen"/>
-		<activity
-			android:name=".SpinnerdialogActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
-			android:windowSoftInputMode="stateHidden"/>
-		<activity
-			android:name=".ForcelaunchActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
-			android:windowSoftInputMode="stateHidden"/>
 		<activity
 			android:name=".SavepdfActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

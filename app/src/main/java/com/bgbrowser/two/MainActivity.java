@@ -512,39 +512,7 @@ public class MainActivity extends AppCompatActivity {
 		imageview31.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				if (settings.getString("miuispinner", "").equals("1")) {
-					if (swiperefreshlayout1.isEnabled()) {
-						pdf.edit().putString("page", "1").commit();
-						pdf.edit().putString("url", webview1.getUrl()).commit();
-					}
-					else {
-						if (swiperefreshlayout2.isEnabled()) {
-							pdf.edit().putString("page", "2").commit();
-							pdf.edit().putString("url", webview2.getUrl()).commit();
-						}
-						else {
-							if (swiperefreshlayout3.isEnabled()) {
-								pdf.edit().putString("page", "3").commit();
-								pdf.edit().putString("url", webview3.getUrl()).commit();
-							}
-							else {
-								if (swiperefreshlayout4.isEnabled()) {
-									pdf.edit().putString("page", "4").commit();
-									pdf.edit().putString("url", webview4.getUrl()).commit();
-								}
-								else {
-									
-								}
-							}
-						}
-					}
-					spinnerdialog.setAction(Intent.ACTION_VIEW);
-					spinnerdialog.setClass(getApplicationContext(), SpinnerdialogActivity.class);
-					startActivity(spinnerdialog);
-				}
-				else {
-					_Popup();
-				}
+				_Popup();
 			}
 		});
 		
@@ -1909,16 +1877,6 @@ public class MainActivity extends AppCompatActivity {
 						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 					}
 				}
-			}
-		}
-		if (Double.parseDouble(Build.VERSION.SDK) > 29) {
-			if (settings.getString("a11warn", "").equals("0")) {
-				
-			}
-			else {
-				a11.setAction(Intent.ACTION_VIEW);
-				a11.setClass(getApplicationContext(), A11warnActivity.class);
-				startActivity(a11);
 			}
 		}
 		EditText editText = (EditText)findViewById(R.id.edittext1); editText.setOnEditorActionListener(new OnEditorActionListener() {

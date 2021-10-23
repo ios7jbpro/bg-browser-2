@@ -237,51 +237,10 @@
 				android:layout_height="wrap_content"
 				android:orientation="horizontal">
 				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview13"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="15dp"
-					android:layout_marginTop="15dp"
-					android:layout_marginRight="8dp"
-					android:layout_marginBottom="15dp"
-					android:padding="8dp"
-					android:background="#9FA8DA"
-					android:layout_weight="1"
-					app:cardElevation="3dp"
-					app:cardCornerRadius="15dp">
-					<LinearLayout
-						android:id="@+id/linear97"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:padding="8dp"
-						android:orientation="vertical">
-						<TextView
-							android:id="@+id/textview120"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="MIUI Style Spinners"
-							android:textSize="12sp"
-							android:textStyle="bold"
-							android:textColor="#3F51B5"/>
-						<TextView
-							android:id="@+id/textview121"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="MIUI styled spinner\ndropdown menus"
-							android:textSize="12sp"
-							android:textColor="#3F51B5"/>
-					</LinearLayout>
-				</androidx.cardview.widget.CardView>
-				<androidx.cardview.widget.CardView
 					android:id="@+id/cardview7"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="8dp"
-					android:layout_marginTop="15dp"
-					android:layout_marginRight="15dp"
-					android:layout_marginBottom="15dp"
+					android:layout_margin="15dp"
 					android:padding="8dp"
 					android:background="#A5D6A7"
 					android:layout_weight="1"

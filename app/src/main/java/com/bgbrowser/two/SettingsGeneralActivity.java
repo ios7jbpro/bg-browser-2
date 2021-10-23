@@ -98,11 +98,7 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private LinearLayout linear96;
 	private TextView textview117;
 	private TextView textview118;
-	private CardView cardview13;
 	private CardView cardview7;
-	private LinearLayout linear97;
-	private TextView textview120;
-	private TextView textview121;
 	private LinearLayout linear87;
 	private TextView textview102;
 	private TextView textview103;
@@ -207,11 +203,7 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		linear96 = (LinearLayout) findViewById(R.id.linear96);
 		textview117 = (TextView) findViewById(R.id.textview117);
 		textview118 = (TextView) findViewById(R.id.textview118);
-		cardview13 = (CardView) findViewById(R.id.cardview13);
 		cardview7 = (CardView) findViewById(R.id.cardview7);
-		linear97 = (LinearLayout) findViewById(R.id.linear97);
-		textview120 = (TextView) findViewById(R.id.textview120);
-		textview121 = (TextView) findViewById(R.id.textview121);
 		linear87 = (LinearLayout) findViewById(R.id.linear87);
 		textview102 = (TextView) findViewById(R.id.textview102);
 		textview103 = (TextView) findViewById(R.id.textview103);
@@ -359,31 +351,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 					cardview12.setCardBackgroundColor(0xFF80CBC4);
 					textview117.setTextColor(0xFF009688);
 					textview118.setTextColor(0xFF009688);
-				}
-			}
-		});
-		
-		cardview13.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (settings.getString("miuispinner", "").equals("1")) {
-					settings.edit().putString("miuispinner", "0").commit();
-					if (settings.getString("darkmode", "").equals("1")) {
-						cardview13.setCardBackgroundColor(0xFF424242);
-						textview120.setTextColor(0xFFFFFFFF);
-						textview121.setTextColor(0xFFFFFFFF);
-					}
-					else {
-						cardview13.setCardBackgroundColor(0xFFFFFFFF);
-						textview120.setTextColor(0xFF000000);
-						textview121.setTextColor(0xFF000000);
-					}
-				}
-				else {
-					settings.edit().putString("miuispinner", "1").commit();
-					cardview13.setCardBackgroundColor(0xFF9FA8DA);
-					textview120.setTextColor(0xFF3F51B5);
-					textview121.setTextColor(0xFF3F51B5);
 				}
 			}
 		});
@@ -575,7 +542,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		cardview14.setPreventCornerOverlap(true);
 		cardview12.setPreventCornerOverlap(true);
 		cardview7.setPreventCornerOverlap(true);
-		cardview13.setPreventCornerOverlap(true);
 		cardview17.setCardBackgroundColor(0xFF82B1FF);
 		cardview17.setPreventCornerOverlap(true);
 		if (settings.getString("homeurl", "").equals("")) {
@@ -697,32 +663,17 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 				textview103.setTextColor(0xFF000000);
 			}
 		}
-		if (settings.getString("miuispinner", "").equals("1")) {
-			cardview13.setCardBackgroundColor(0xFF9FA8DA);
-		}
-		else {
-			if (settings.getString("darkmode", "").equals("1")) {
-				cardview13.setCardBackgroundColor(0xFF424242);
-				textview120.setTextColor(0xFFFFFFFF);
-				textview121.setTextColor(0xFFFFFFFF);
-			}
-			else {
-				cardview13.setCardBackgroundColor(0xFFFFFFFF);
-				textview120.setTextColor(0xFF000000);
-				textview121.setTextColor(0xFF000000);
-			}
-		}
 		if (settings.getString("killnoconnection", "").equals("1")) {
 			cardview18.setCardBackgroundColor(0xFF90CAF9);
 		}
 		else {
 			if (settings.getString("darkmode", "").equals("1")) {
-				cardview13.setCardBackgroundColor(0xFF424242);
+				cardview18.setCardBackgroundColor(0xFF424242);
 				textview134.setTextColor(0xFFFFFFFF);
 				textview135.setTextColor(0xFFFFFFFF);
 			}
 			else {
-				cardview13.setCardBackgroundColor(0xFFFFFFFF);
+				cardview18.setCardBackgroundColor(0xFFFFFFFF);
 				textview134.setTextColor(0xFF000000);
 				textview135.setTextColor(0xFF000000);
 			}
@@ -852,11 +803,10 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	
 	public void _ripples () {
 		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
-			cardview7.setVisibility(View.INVISIBLE);
+			linear95.setVisibility(View.GONE);
 		}
 		_rippleRoundStroke(linear102, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
 		_rippleRoundStroke(linear96, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear97, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
 		_rippleRoundStroke(linear87, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
 		_rippleRoundStroke(linear86, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
 		_rippleRoundStroke(linear92, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
