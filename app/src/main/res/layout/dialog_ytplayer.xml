@@ -55,7 +55,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="4dp"
-							android:text="YTPlayerLib v7.6reborn"
+							android:text="YTPlayerLib v7.7reborn"
 							android:textSize="20sp"
 							android:textColor="#000000"/>
 					</LinearLayout>
@@ -200,39 +200,6 @@
 							android:layout_height="wrap_content"
 							android:padding="4dp"
 							android:text="Reload Video"
-							android:textSize="12sp"
-							android:textStyle="bold"
-							android:textColor="#000000"/>
-					</LinearLayout>
-				</androidx.cardview.widget.CardView>
-				<androidx.cardview.widget.CardView
-					android:id="@+id/cardview13"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="8dp"
-					android:padding="8dp"
-					android:background="#F5F5F5"
-					app:cardElevation="0dp"
-					app:cardCornerRadius="360dp">
-					<LinearLayout
-						android:id="@+id/linear20"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:padding="8dp"
-						android:gravity="center_vertical"
-						android:orientation="horizontal">
-						<ImageView
-							android:id="@+id/imageview7"
-							android:layout_width="25dp"
-							android:layout_height="25dp"
-							android:src="@drawable/ic_tab_unselected_black"
-							android:scaleType="fitXY"/>
-						<TextView
-							android:id="@+id/textview11"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:text="Enter PiP mode"
 							android:textSize="12sp"
 							android:textStyle="bold"
 							android:textColor="#000000"/>

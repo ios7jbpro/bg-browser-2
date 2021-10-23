@@ -42,7 +42,6 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import java.text.DecimalFormat;
 import androidx.webkit.*;
-import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

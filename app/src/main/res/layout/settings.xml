@@ -147,6 +147,36 @@
 						android:scaleType="center"/>
 				</LinearLayout>
 			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear84"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				<TextView
+					android:id="@+id/textview98"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="Update Log"
+					android:textSize="18sp"
+					android:textStyle="bold"
+					android:textColor="#000000"/>
+				<LinearLayout
+					android:id="@+id/linear85"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="right|center_vertical"
+					android:orientation="horizontal">
+					<ImageView
+						android:id="@+id/imageview8"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:src="@drawable/ic_keyboard_arrow_right_black"
+						android:scaleType="center"/>
+				</LinearLayout>
+			</LinearLayout>
 			<androidx.cardview.widget.CardView
 				android:id="@+id/cardview5"
 				android:layout_width="match_parent"

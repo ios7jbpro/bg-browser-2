@@ -45,7 +45,6 @@ import android.net.Uri;
 import android.content.ClipData;
 import android.view.View;
 import androidx.webkit.*;
-import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -763,8 +762,8 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	
 	public void _darkmode () {
 		if (settings.getString("darkmode", "").equals("1")) {
-			linear2.setBackgroundColor(0xFF212121);
-			linear1.setBackgroundColor(0xFF212121);
+			linear2.setBackgroundColor(0xFF000000);
+			linear1.setBackgroundColor(0xFF000000);
 			textview1.setTextColor(0xFFFFFFFF);
 			textview105.setTextColor(0xFFFFFFFF);
 			textview106.setTextColor(0xFFFFFFFF);
@@ -773,13 +772,13 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			textview133.setTextColor(0xFFFFFFFF);
 			imageview2.setImageResource(R.drawable.ic_chevron_left_white);
 			
-			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#212121"));
+			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
 			View decor = getWindow().getDecorView();
 			decor.setSystemUiVisibility(0);
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 				Window w =SettingsGeneralActivity.this.getWindow();
 				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF212121);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
 			}
 			cardview17.setCardBackgroundColor(0xFF0D47A1);
 		}

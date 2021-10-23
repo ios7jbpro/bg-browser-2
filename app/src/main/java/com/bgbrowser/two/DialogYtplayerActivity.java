@@ -45,7 +45,6 @@ import java.util.TimerTask;
 import android.view.View;
 import android.graphics.Typeface;
 import androidx.webkit.*;
-import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -74,7 +73,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	private CardView cardview6;
 	private CardView cardview11;
 	private CardView cardview10;
-	private CardView cardview13;
 	private LinearLayout linear12;
 	private ImageView imageview2;
 	private TextView textview5;
@@ -84,9 +82,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	private LinearLayout linear16;
 	private ImageView imageview4;
 	private TextView textview7;
-	private LinearLayout linear20;
-	private ImageView imageview7;
-	private TextView textview11;
 	
 	private SharedPreferences dialogytlink;
 	private RequestNetwork t;
@@ -126,7 +121,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 		cardview6 = (CardView) findViewById(R.id.cardview6);
 		cardview11 = (CardView) findViewById(R.id.cardview11);
 		cardview10 = (CardView) findViewById(R.id.cardview10);
-		cardview13 = (CardView) findViewById(R.id.cardview13);
 		linear12 = (LinearLayout) findViewById(R.id.linear12);
 		imageview2 = (ImageView) findViewById(R.id.imageview2);
 		textview5 = (TextView) findViewById(R.id.textview5);
@@ -136,9 +130,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 		linear16 = (LinearLayout) findViewById(R.id.linear16);
 		imageview4 = (ImageView) findViewById(R.id.imageview4);
 		textview7 = (TextView) findViewById(R.id.textview7);
-		linear20 = (LinearLayout) findViewById(R.id.linear20);
-		imageview7 = (ImageView) findViewById(R.id.imageview7);
-		textview11 = (TextView) findViewById(R.id.textview11);
 		dialogytlink = getSharedPreferences("dialogytlink", Activity.MODE_PRIVATE);
 		t = new RequestNetwork(this);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
@@ -178,16 +169,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			}
 		});
 		
-		cardview13.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				enterPictureInPictureMode();
-				vscroll1.setVisibility(View.GONE);
-				cardview2.setVisibility(View.GONE);
-				linear6.setBackgroundColor(0xFF000000);
-			}
-		});
-		
 		_t_request_listener = new RequestNetwork.RequestListener() {
 			@Override
 			public void onResponse(String _param1, String _param2, HashMap<String, Object> _param3) {
@@ -208,8 +189,8 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	
 	private void initializeLogic() {
 		linktext.setText(dialogytlink.getString("link", ""));
-		if (Double.parseDouble(Build.VERSION.SDK) < 26) {
-			cardview13.setVisibility(View.GONE);
+		if (Double.parseDouble(Build.VERSION.SDK) > 26) {
+			_overlay();
 		}
 	}
 	
@@ -276,7 +257,6 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 		cardview3.setPreventCornerOverlap(true);
 		textview5.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
 		textview9.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-		textview11.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
 		if (settings.getString("darkmode", "").equals("1")) {
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 				Window w =DialogYtplayerActivity.this.getWindow();
@@ -289,16 +269,13 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			cardview6.setCardBackgroundColor(0xFF212121);
 			cardview10.setCardBackgroundColor(0xFF212121);
 			cardview11.setCardBackgroundColor(0xFF212121);
-			cardview13.setCardBackgroundColor(0xFF212121);
 			textview1.setTextColor(0xFFFFFFFF);
 			textview7.setTextColor(0xFFFFFFFF);
 			textview9.setTextColor(0xFFFFFFFF);
-			textview11.setTextColor(0xFFFFFFFF);
 			imageview2.setImageResource(R.drawable.ic_get_app_white);
 			imageview3.setImageResource(R.drawable.ic_close_white);
 			imageview4.setImageResource(R.drawable.ic_loop_white);
 			imageview5.setImageResource(R.drawable.ic_send_white);
-			imageview7.setImageResource(R.drawable.ic_tab_unselected_white);
 			textview5.setTextColor(0xFFFFFFFF);
 		}
 		else {
@@ -315,17 +292,14 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 			cardview6.setCardBackgroundColor(0xFFF5F5F5);
 			cardview10.setCardBackgroundColor(0xFFF5F5F5);
 			cardview11.setCardBackgroundColor(0xFFF5F5F5);
-			cardview13.setCardBackgroundColor(0xFFF5F5F5);
 			textview1.setTextColor(0xFF000000);
 			textview7.setTextColor(0xFF000000);
 			textview9.setTextColor(0xFF000000);
-			textview11.setTextColor(0xFF000000);
 			imageview2.setImageResource(R.drawable.ic_get_app_black);
 			imageview3.setImageResource(R.drawable.ic_clear_black);
 			imageview4.setImageResource(R.drawable.ic_loop_black);
-			imageview5.setImageResource(R.drawable.ic_send_black);
-			imageview7.setImageResource(R.drawable.ic_tab_unselected_black);
 			textview5.setTextColor(0xFF000000);
+			imageview5.setImageResource(R.drawable.ic_send_black);
 		}
 	}
 	public void _rippleRoundStroke (final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
@@ -362,6 +336,24 @@ public class DialogYtplayerActivity extends AppCompatActivity {
 	
 	public void _removeScrollBar (final View _view) {
 		_view.setVerticalScrollBarEnabled(false); _view.setHorizontalScrollBarEnabled(false);
+	}
+	
+	
+	public void _overlay () {
+		ViewGroup parent = (ViewGroup)linear6.getParent(); 
+		ViewGroup root = (ViewGroup) parent.getParent(); 
+		View inflate = getLayoutInflater().inflate(R.layout.plroverlay, null); 
+		inflate.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,android.widget.LinearLayout.LayoutParams.MATCH_PARENT)); 
+		root.addView(inflate); 
+		LinearLayout pipbutton = inflate.findViewById(R.id.pipbutton);
+		ImageView imageview = inflate.findViewById(R.id.imageview);
+		pipbutton.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				imageview.setImageResource(R.drawable.transparentimage);
+				enterPictureInPictureMode();
+				vscroll1.setVisibility(View.GONE);
+				cardview2.setVisibility(View.GONE);
+				linear6.setBackgroundColor(0xFF000000);
+			} });
 	}
 	
 	

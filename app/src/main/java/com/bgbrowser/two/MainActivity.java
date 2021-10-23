@@ -26,12 +26,12 @@ import org.json.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
 import android.app.AlertDialog;
@@ -46,9 +46,9 @@ import android.content.ClipData;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import android.webkit.WebViewClient;
-import android.view.View;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import java.text.DecimalFormat;
 import android.graphics.Typeface;
 import android.content.ClipboardManager;
@@ -56,7 +56,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.bumptech.glide.Glide;
 import androidx.webkit.*;
-import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -92,11 +91,12 @@ public class MainActivity extends AppCompatActivity {
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
 	
+	private LinearLayout rootlinear;
 	private LinearLayout linear17;
 	private LinearLayout intenturlpage;
-	private LinearLayout linear10;
 	private LinearLayout linear19;
 	private LinearLayout linear18;
+	private TextView languagetext;
 	private ImageView pfp_tablet;
 	private ImageView imageview26;
 	private ImageView imageview28;
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 	private SwipeRefreshLayout swiperefreshlayout3;
 	private SwipeRefreshLayout swiperefreshlayout4;
 	private LinearLayout linear7;
-	private LinearLayout linear5;
 	private ImageView profile_picture;
 	private LinearLayout linear2;
 	private ImageView imageview31;
@@ -145,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 	private TextView textview7;
 	private WebView webview3;
 	private WebView webview4;
+	private TextView intenturltext;
 	private TextView textview3;
 	private LinearLayout linear13;
 	private ImageView tab1;
@@ -153,11 +153,6 @@ public class MainActivity extends AppCompatActivity {
 	private ImageView tab4;
 	private ImageView tabclose;
 	private ImageView tabadd;
-	private ImageView imageview16;
-	private ImageView imageview2;
-	private TextView intenturltext;
-	private TextView languagetext;
-	private ImageView imageview33;
 	private LinearLayout linear16;
 	private SwipeRefreshLayout swiperefreshlayout5;
 	private ImageView imageview21;
@@ -248,11 +243,12 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
+		rootlinear = (LinearLayout) findViewById(R.id.rootlinear);
 		linear17 = (LinearLayout) findViewById(R.id.linear17);
 		intenturlpage = (LinearLayout) findViewById(R.id.intenturlpage);
-		linear10 = (LinearLayout) findViewById(R.id.linear10);
 		linear19 = (LinearLayout) findViewById(R.id.linear19);
 		linear18 = (LinearLayout) findViewById(R.id.linear18);
+		languagetext = (TextView) findViewById(R.id.languagetext);
 		pfp_tablet = (ImageView) findViewById(R.id.pfp_tablet);
 		imageview26 = (ImageView) findViewById(R.id.imageview26);
 		imageview28 = (ImageView) findViewById(R.id.imageview28);
@@ -269,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout3 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout3);
 		swiperefreshlayout4 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout4);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
-		linear5 = (LinearLayout) findViewById(R.id.linear5);
 		profile_picture = (ImageView) findViewById(R.id.profile_picture);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		imageview31 = (ImageView) findViewById(R.id.imageview31);
@@ -309,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
 		webview4 = (WebView) findViewById(R.id.webview4);
 		webview4.getSettings().setJavaScriptEnabled(true);
 		webview4.getSettings().setSupportZoom(true);
+		intenturltext = (TextView) findViewById(R.id.intenturltext);
 		textview3 = (TextView) findViewById(R.id.textview3);
 		linear13 = (LinearLayout) findViewById(R.id.linear13);
 		tab1 = (ImageView) findViewById(R.id.tab1);
@@ -317,11 +313,6 @@ public class MainActivity extends AppCompatActivity {
 		tab4 = (ImageView) findViewById(R.id.tab4);
 		tabclose = (ImageView) findViewById(R.id.tabclose);
 		tabadd = (ImageView) findViewById(R.id.tabadd);
-		imageview16 = (ImageView) findViewById(R.id.imageview16);
-		imageview2 = (ImageView) findViewById(R.id.imageview2);
-		intenturltext = (TextView) findViewById(R.id.intenturltext);
-		languagetext = (TextView) findViewById(R.id.languagetext);
-		imageview33 = (ImageView) findViewById(R.id.imageview33);
 		linear16 = (LinearLayout) findViewById(R.id.linear16);
 		swiperefreshlayout5 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout5);
 		imageview21 = (ImageView) findViewById(R.id.imageview21);
@@ -1273,155 +1264,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		
-		imageview16.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (linear7.isEnabled()) {
-					linear7.setEnabled(false);
-					linear7.setVisibility(View.GONE);
-					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Closed Tab Switcher"))))).commit();
-				}
-				else {
-					linear7.setEnabled(true);
-					linear7.setVisibility(View.VISIBLE);
-					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Opened Tab Switcher"))))).commit();
-				}
-			}
-		});
-		
-		imageview2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (settings.getString("homeurl", "").equals("")) {
-					homepage.setTitle("You did not set a homepage yet!");
-					homepage.setMessage("Go to the settings to set a homepage.");
-					homepage.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface _dialog, int _which) {
-							bzh.setClass(getApplicationContext(), SettingsActivity.class);
-							startActivity(bzh);
-						}
-					});
-					homepage.create().show();
-				}
-				else {
-					if (swiperefreshlayout1.isEnabled()) {
-						webview1.loadUrl(settings.getString("homeurl", ""));
-					}
-					else {
-						if (swiperefreshlayout2.isEnabled()) {
-							webview2.loadUrl(settings.getString("homeurl", ""));
-						}
-						else {
-							if (swiperefreshlayout3.isEnabled()) {
-								webview3.loadUrl(settings.getString("homeurl", ""));
-							}
-							else {
-								if (swiperefreshlayout4.isEnabled()) {
-									webview4.loadUrl(settings.getString("homeurl", ""));
-								}
-								else {
-									
-								}
-							}
-						}
-					}
-				}
-			}
-		});
-		
-		imageview33.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				final com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = new com.google.android.material.bottomsheet.BottomSheetDialog(MainActivity.this);
-				
-				View bottomSheetView; bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_p2,null );
-				bottomSheetDialog.setContentView(bottomSheetView);
-				
-				bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
-				TextView t1 = (TextView) bottomSheetView.findViewById(R.id.t1);
-				
-				LinearLayout b2 = (LinearLayout) bottomSheetView.findViewById(R.id.b2);
-				
-				LinearLayout b1 = (LinearLayout) bottomSheetView.findViewById(R.id.b1);
-				
-				ImageView imageb1 = (ImageView) bottomSheetView.findViewById(R.id.imageb1);
-				
-				ImageView imageb2 = (ImageView) bottomSheetView.findViewById(R.id.imageb2);
-				
-				TextView textb1 = (TextView) bottomSheetView.findViewById(R.id.textb1);
-				
-				TextView textb2 = (TextView) bottomSheetView.findViewById(R.id.textb2);
-				
-				LinearLayout bg = (LinearLayout) bottomSheetView.findViewById(R.id.bg);
-				_rippleRoundStroke(bg, "#FFFFFF", "#000000", 15, 0, "#000000");
-				_rippleRoundStroke(b1, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-				_rippleRoundStroke(b2, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-				b1.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-						if (settings.getString("flagfollowsystem", "").equals("1")) {
-							SketchwareUtil.showMessage(getApplicationContext(), "The browser will not follow system anymore. You can turn follow system back on in settings.");
-						}
-						settings.edit().putString("flagfollowsystem", "0").commit();
-						if (settings.getString("darkmode", "").equals("1")) {
-							_dmdm1();
-							_bscoded();
-							settings.edit().putString("darkmode", "0").commit();
-							_rippleRoundStroke(bg, "#FFFFFF", "#000000", 15, 0, "#000000");
-							_rippleRoundStroke(b1, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-							_rippleRoundStroke(b2, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-							t1.setTextColor(0xFF000000);
-							imageb1.setImageResource(R.drawable.ic_format_paint_black);
-							imageb2.setImageResource(R.drawable.settings);
-							textb1.setTextColor(0xFF000000);
-							textb2.setTextColor(0xFF000000);
-						}
-						else {
-							_dmlm1();
-							_bscodel();
-							settings.edit().putString("darkmode", "1").commit();
-							_rippleRoundStroke(bg, "#000000", "#000000", 15, 0, "#000000");
-							_rippleRoundStroke(b1, "#000000", "#212121", 15, 2.5d, "#212121");
-							_rippleRoundStroke(b2, "#000000", "#212121", 15, 2.5d, "#212121");
-							t1.setTextColor(0xFFFFFFFF);
-							imageb1.setImageResource(R.drawable.ic_format_paint_white);
-							imageb2.setImageResource(R.drawable.outline_settings_white_48);
-							textb1.setTextColor(0xFFFFFFFF);
-							textb2.setTextColor(0xFFFFFFFF);
-						}
-						bottomSheetDialog.dismiss();
-					}
-				});
-				b2.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-						bzh.setClass(getApplicationContext(), SettingsActivity.class);
-						startActivity(bzh);
-						bottomSheetDialog.dismiss();
-					}
-				});
-				if (settings.getString("darkmode", "").equals("1")) {
-					_rippleRoundStroke(bg, "#000000", "#000000", 15, 0, "#000000");
-					_rippleRoundStroke(b1, "#000000", "#212121", 15, 2.5d, "#212121");
-					_rippleRoundStroke(b2, "#000000", "#212121", 15, 2.5d, "#212121");
-					t1.setTextColor(0xFFFFFFFF);
-					imageb1.setImageResource(R.drawable.ic_format_paint_white);
-					imageb2.setImageResource(R.drawable.outline_settings_white_48);
-					textb1.setTextColor(0xFFFFFFFF);
-					textb2.setTextColor(0xFFFFFFFF);
-				}
-				else {
-					_rippleRoundStroke(bg, "#FFFFFF", "#000000", 15, 0, "#000000");
-					_rippleRoundStroke(b1, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-					_rippleRoundStroke(b2, "#FFFFFF", "#EEEEEE", 15, 2.5d, "#EEEEEE");
-					t1.setTextColor(0xFF000000);
-					imageb1.setImageResource(R.drawable.ic_format_paint_black);
-					imageb2.setImageResource(R.drawable.settings);
-					textb1.setTextColor(0xFF000000);
-					textb2.setTextColor(0xFF000000);
-				}
-				bottomSheetDialog.setCancelable(true);
-				bottomSheetDialog.show();
-			}
-		});
-		
 		swiperefreshlayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override 
 			public void onRefresh() {
@@ -1935,7 +1777,6 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout4.setEnabled(false);
 		linear16.setElevation(2);
 		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview3.setVisibility:False"))))).commit();
-		
 		edittext1.setVisibility(View.GONE);
 		textview1.setVisibility(View.VISIBLE);
 		linear7.setEnabled(false);
@@ -1963,7 +1804,7 @@ public class MainActivity extends AppCompatActivity {
 			settings.edit().putString("mnb", "1").commit();
 		}
 		if (settings.getString("tabletmode", "").equals("1")) {
-			linear5.setVisibility(View.GONE);
+			
 		}
 		else {
 			linear19.setVisibility(View.GONE);
@@ -1993,7 +1834,6 @@ public class MainActivity extends AppCompatActivity {
 				webview3.setVisibility(View.GONE);
 				webview4.setVisibility(View.GONE);
 				linear19.setVisibility(View.GONE);
-				linear5.setVisibility(View.GONE);
 				progressbar1.setVisibility(View.GONE);
 				textview5.setText(webview5.getUrl());
 				webview5.setVisibility(View.VISIBLE);
@@ -2093,8 +1933,6 @@ public class MainActivity extends AppCompatActivity {
 				return handled;
 			}
 		});
-		_Ripple("GREY", imageview16);
-		_Ripple("GREY", imageview2);
 		_Ripple("GREY", tab1);
 		_Ripple("GREY", tab2);
 		_Ripple("GREY", tab3);
@@ -2106,7 +1944,6 @@ public class MainActivity extends AppCompatActivity {
 		_Ripple("GREY", imageview22);
 		_Ripple("GREY", imageview23);
 		_Ripple("GREY", imageview31);
-		_Ripple("GREY", imageview33);
 		_Ripple("GREY", imageview34);
 		imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
 		KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener(){
@@ -2132,6 +1969,7 @@ public class MainActivity extends AppCompatActivity {
 				
 			} 
 		});
+		_bottomoverlay();
 	}
 	
 	@Override
@@ -2669,38 +2507,27 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public void _language () {
-		settingsreolader = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						if (languagetext.getText().toString().equals("English")) {
-							textview3.setText("Tabs");
-						}
-						else {
-							if (languagetext.getText().toString().equals("Türkçe")) {
-								textview3.setText("Sekmeler");
-							}
-							else {
-								if (languagetext.getText().toString().equals("Deutsch")) {
-									textview3.setText("Tabs");
-								}
-								else {
-									if (languagetext.getText().toString().equals("español")) {
-										textview3.setText("Pestañas");
-									}
-									else {
-										
-									}
-								}
-							}
-						}
-					}
-				});
+		if (languagetext.getText().toString().equals("English")) {
+			textview3.setText("Tabs");
+		}
+		else {
+			if (languagetext.getText().toString().equals("Türkçe")) {
+				textview3.setText("Sekmeler");
 			}
-		};
-		_timer.scheduleAtFixedRate(settingsreolader, (int)(0), (int)(500));
+			else {
+				if (languagetext.getText().toString().equals("Deutsch")) {
+					textview3.setText("Tabs");
+				}
+				else {
+					if (languagetext.getText().toString().equals("español")) {
+						textview3.setText("Pestañas");
+					}
+					else {
+						
+					}
+				}
+			}
+		}
 	}
 	
 	
@@ -2857,9 +2684,7 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public void _dmlm1 () {
-		linear5.setBackgroundColor(0xFF000000);
 		linear19.setBackgroundColor(0xFF000000);
-		imageview2.setImageResource(R.drawable.outline_home_white_48);
 		linear7.setBackgroundColor(0xFF000000);
 		nonet.setBackgroundColor(0xFF000000);
 		textview3.setTextColor(0xFFFFFFFF);
@@ -2887,7 +2712,6 @@ public class MainActivity extends AppCompatActivity {
 		imageview25.setImageResource(R.drawable.outline_settings_white_48);
 		imageview26.setImageResource(R.drawable.outline_home_white_48);
 		imageview28.setImageResource(R.drawable.ic_chevron_left_white);
-		imageview33.setImageResource(R.drawable.ic_dehaze_white);
 		imageview34.setImageResource(R.drawable.ic_filter_none_white);
 		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
 		tabclose.setImageResource(R.drawable.ic_close_white);
@@ -2942,9 +2766,7 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public void _dmdm1 () {
-		linear5.setBackgroundColor(0xFFFFFFFF);
 		linear19.setBackgroundColor(0xFFFFFFFF);
-		imageview2.setImageResource(R.drawable.home);
 		linear7.setBackgroundColor(0xFFFFFFFF);
 		nonet.setBackgroundColor(0xFFFFFFFF);
 		textview3.setTextColor(0xFF000000);
@@ -2972,7 +2794,6 @@ public class MainActivity extends AppCompatActivity {
 		imageview25.setImageResource(R.drawable.settings);
 		imageview26.setImageResource(R.drawable.home);
 		imageview28.setImageResource(R.drawable.ic_chevron_left_black);
-		imageview33.setImageResource(R.drawable.ic_dehaze_black);
 		imageview34.setImageResource(R.drawable.ic_filter_none_black);
 		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
 		tabclose.setImageResource(R.drawable.ic_clear_black);
@@ -3248,16 +3069,16 @@ public class MainActivity extends AppCompatActivity {
 					@Override
 					public void run() {
 						if (settings.getString("space", "").equals("on")) {
-							linear10.setVisibility(View.VISIBLE);
+							
 							if (settings.getString("spacecolor", "").equals("white")) {
-								linear10.setBackgroundColor(0xFFFFFFFF);
+								
 							}
 							else {
-								linear10.setBackgroundColor(0xFF000000);
+								
 							}
 						}
 						else {
-							linear10.setVisibility(View.GONE);
+							
 						}
 						if (settings.getString("cookies", "").equals("1")) {
 							CookieManager.getInstance().setAcceptCookie(true);
@@ -4695,6 +4516,121 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 		Intent i = new Intent(android.content.Intent.ACTION_SEND);i.setType("text/plain"); i.putExtra(android.content.Intent.EXTRA_TEXT, share); startActivity(Intent.createChooser(i,"Share using"));
+	}
+	
+	
+	public void _bottomoverlay () {
+		ViewGroup parent = (ViewGroup)rootlinear.getParent(); 
+		ViewGroup root = (ViewGroup) parent.getParent(); 
+		View inflate = getLayoutInflater().inflate(R.layout.mainoverlay, null); 
+		inflate.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,android.widget.LinearLayout.LayoutParams.MATCH_PARENT)); 
+		root.addView(inflate); 
+		LinearLayout bottomlinear = inflate.findViewById(R.id.bottomlinear);
+		LinearLayout expandedbtns = inflate.findViewById(R.id.expandedbtns);
+		ImageView expandbtn = inflate.findViewById(R.id.expandbtn);
+		ImageView homebtn = inflate.findViewById(R.id.homebtn);
+		ImageView tabsbtn = inflate.findViewById(R.id.tabsbtn);
+		expandedbtns.setVisibility(View.GONE);
+		expandedbtns.setEnabled(false);
+		if (settings.getString("darkmode", "").equals("1")) {
+			_rippleRoundStroke(bottomlinear, "#000000", "#000000", 360, 0, "#000000");
+			homebtn.setImageResource(R.drawable.outline_home_white_48);
+			if (expandedbtns.isEnabled()) {
+				expandbtn.setImageResource(R.drawable.ic_chevron_right_white);
+			}
+			else {
+				expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
+			}
+		}
+		else {
+			_rippleRoundStroke(bottomlinear, "#FFFFFF", "#000000", 360, 0, "#000000");
+			homebtn.setImageResource(R.drawable.home);
+			if (expandedbtns.isEnabled()) {
+				expandbtn.setImageResource(R.drawable.ic_chevron_right_black);
+			}
+			else {
+				expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
+			}
+		}
+		expandbtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (expandedbtns.isEnabled()) {
+					expandedbtns.setVisibility(View.GONE);
+					expandedbtns.setEnabled(false);
+					if (settings.getString("darkmode", "").equals("1")) {
+						expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
+					}
+					else {
+						expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
+					}
+				}
+				else {
+					expandedbtns.setVisibility(View.VISIBLE);
+					expandedbtns.setEnabled(true);
+					if (settings.getString("darkmode", "").equals("1")) {
+						expandbtn.setImageResource(R.drawable.ic_chevron_right_white);
+					}
+					else {
+						expandbtn.setImageResource(R.drawable.ic_chevron_right_black);
+					}
+				}
+			} });
+		homebtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (settings.getString("homeurl", "").equals("")) {
+					homepage.setTitle("You did not set a homepage yet!");
+					homepage.setMessage("Go to the settings to set a homepage.");
+					homepage.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface _dialog, int _which) {
+							bzh.setClass(getApplicationContext(), SettingsActivity.class);
+							startActivity(bzh);
+						}
+					});
+					homepage.create().show();
+				}
+				else {
+					if (swiperefreshlayout1.isEnabled()) {
+						webview1.loadUrl(settings.getString("homeurl", ""));
+					}
+					else {
+						if (swiperefreshlayout2.isEnabled()) {
+							webview2.loadUrl(settings.getString("homeurl", ""));
+						}
+						else {
+							if (swiperefreshlayout3.isEnabled()) {
+								webview3.loadUrl(settings.getString("homeurl", ""));
+							}
+							else {
+								if (swiperefreshlayout4.isEnabled()) {
+									webview4.loadUrl(settings.getString("homeurl", ""));
+								}
+								else {
+									
+								}
+							}
+						}
+					}
+				}
+			} });
+		tabsbtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (linear7.isEnabled()) {
+					linear7.setEnabled(false);
+					linear7.setVisibility(View.GONE);
+					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Closed Tab Switcher"))))).commit();
+				}
+				else {
+					linear7.setEnabled(true);
+					linear7.setVisibility(View.VISIBLE);
+					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Opened Tab Switcher"))))).commit();
+				}
+				expandedbtns.setVisibility(View.GONE);
+				expandedbtns.setEnabled(false);
+				if (settings.getString("darkmode", "").equals("1")) {
+					expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
+				}
+				else {
+					expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
+				}
+			} });
 	}
 	
 	

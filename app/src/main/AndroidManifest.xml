@@ -196,13 +196,6 @@
 			android:screenOrientation="portrait"
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
-			android:name=".HomesettdialogActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:theme="@style/AppTheme.FullScreen"
-			android:windowSoftInputMode="stateHidden"/>
-		<activity
 			android:name=".UpdatedialogActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
 			android:hardwareAccelerated="true"
@@ -222,6 +215,12 @@
 			android:hardwareAccelerated="true"
 			android:supportsPictureInPicture="true"
 			android:theme="@style/AppTheme.FullScreen"
+			android:windowSoftInputMode="stateHidden"/>
+		<activity
+			android:name=".UpdatelogActivity"
+			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+			android:hardwareAccelerated="true"
+			android:supportsPictureInPicture="true"
 			android:windowSoftInputMode="stateHidden"/>
 		<activity
 			android:name=".DebugActivity"

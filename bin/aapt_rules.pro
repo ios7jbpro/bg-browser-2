@@ -106,7 +106,6 @@
 # view res/layout/dialog_ytplayer.xml #generated:142
 # view res/layout/dialog_ytplayer.xml #generated:15
 # view res/layout/dialog_ytplayer.xml #generated:175
-# view res/layout/dialog_ytplayer.xml #generated:208
 # view res/layout/dialog_ytplayer.xml #generated:27
 # view res/layout/dialog_ytplayer.xml #generated:71
 # view res/layout/editpic.xml #generated:15
@@ -131,11 +130,12 @@
 # view res/layout/forcelaunch.xml #generated:49
 # view res/layout/forcelaunch.xml #generated:75
 # view res/layout/homesettdialog.xml #generated:15
+# view res/layout/plroverlay.xml #generated:8
 # view res/layout/savepdf.xml #generated:36
 # view res/layout/seccheck.xml #generated:30
 # view res/layout/seccheck.xml #generated:56
 # view res/layout/sendhelp.xml #generated:15
-# view res/layout/settings.xml #generated:150
+# view res/layout/settings.xml #generated:180
 # view res/layout/settings_general.xml #generated:157
 # view res/layout/settings_general.xml #generated:195
 # view res/layout/settings_general.xml #generated:239
@@ -153,6 +153,7 @@
 # view res/layout/spinnerdialog.xml #generated:33
 # view res/layout/spinnerdialog.xml #generated:66
 # view res/layout/spinnerdialog.xml #generated:98
+# view res/layout/updtlog.xml #generated:8
 -keep class androidx.cardview.widget.CardView { <init>(...); }
 
 # view res/layout/design_bottom_sheet_dialog.xml #generated:26
@@ -167,15 +168,15 @@
 # view res/layout/mtrl_calendar_months.xml #generated:18
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# view res/layout/main.xml #generated:295
-# view res/layout/main.xml #generated:305
-# view res/layout/main.xml #generated:315
-# view res/layout/main.xml #generated:354
-# view res/layout/main.xml #generated:364
-# view res/layout/main.xml #generated:538
+# view res/layout/main.xml #generated:300
+# view res/layout/main.xml #generated:310
+# view res/layout/main.xml #generated:320
+# view res/layout/main.xml #generated:359
+# view res/layout/main.xml #generated:369
+# view res/layout/main.xml #generated:512
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:212
+# view AndroidManifest.xml #generated:205
 -keep class com.bgbrowser.two.A11dmwarnActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:116
@@ -184,7 +185,7 @@
 # view AndroidManifest.xml #generated:61
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:226
+# view AndroidManifest.xml #generated:225
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
@@ -206,7 +207,7 @@
 # view AndroidManifest.xml #generated:34
 -keep class com.bgbrowser.two.ExperimentalActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:219
+# view AndroidManifest.xml #generated:212
 -keep class com.bgbrowser.two.ExtracthtmlActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:148
@@ -215,14 +216,11 @@
 # view AndroidManifest.xml #generated:69
 -keep class com.bgbrowser.two.HistoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:198
--keep class com.bgbrowser.two.HomesettdialogActivity { <init>(...); }
-
 # view AndroidManifest.xml #generated:54
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:233
+# view AndroidManifest.xml #generated:232
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:176
@@ -258,8 +256,11 @@
 # view AndroidManifest.xml #generated:129
 -keep class com.bgbrowser.two.TextfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:205
+# view AndroidManifest.xml #generated:198
 -keep class com.bgbrowser.two.UpdatedialogActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:219
+-keep class com.bgbrowser.two.UpdatelogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:40
 -keep class com.bgbrowser.two.Welcome1Activity { <init>(...); }
@@ -344,15 +345,11 @@
 -keep class com.google.android.material.timepicker.ChipTextInputComboView { <init>(...); }
 
 # view res/layout/dialog_ytplayer.xml #generated:82
-# view res/layout/pipactivity.xml #generated:44
 # view res/layout/ytfullscreen.xml #generated:8
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView { <init>(...); }
 
 # view res/layout/ayp_default_player_ui.xml #generated:110
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar { <init>(...); }
-
-# view res/layout/extracthtml.xml #generated:15
--keep class com.tuyenmonkey.mkloader.MKLoader { <init>(...); }
 
 # view res/layout/credits.xml #generated:1020
 # view res/layout/credits.xml #generated:209

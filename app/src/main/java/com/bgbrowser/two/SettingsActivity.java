@@ -44,7 +44,6 @@ import java.text.SimpleDateFormat;
 import android.view.View;
 import android.graphics.Typeface;
 import androidx.webkit.*;
-import com.tuyenmonkey.mkloader.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -68,6 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
 	private LinearLayout linear75;
 	private LinearLayout linear82;
 	private LinearLayout linear60;
+	private LinearLayout linear84;
 	private CardView cardview5;
 	private TextView textview14;
 	private TextView textview96;
@@ -81,6 +81,9 @@ public class SettingsActivity extends AppCompatActivity {
 	private TextView textview5;
 	private LinearLayout linear7;
 	private ImageView imageview6;
+	private TextView textview98;
+	private LinearLayout linear85;
+	private ImageView imageview8;
 	private LinearLayout linear10;
 	private Button button1;
 	
@@ -121,6 +124,7 @@ public class SettingsActivity extends AppCompatActivity {
 		linear75 = (LinearLayout) findViewById(R.id.linear75);
 		linear82 = (LinearLayout) findViewById(R.id.linear82);
 		linear60 = (LinearLayout) findViewById(R.id.linear60);
+		linear84 = (LinearLayout) findViewById(R.id.linear84);
 		cardview5 = (CardView) findViewById(R.id.cardview5);
 		textview14 = (TextView) findViewById(R.id.textview14);
 		textview96 = (TextView) findViewById(R.id.textview96);
@@ -134,6 +138,9 @@ public class SettingsActivity extends AppCompatActivity {
 		textview5 = (TextView) findViewById(R.id.textview5);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
 		imageview6 = (ImageView) findViewById(R.id.imageview6);
+		textview98 = (TextView) findViewById(R.id.textview98);
+		linear85 = (LinearLayout) findViewById(R.id.linear85);
+		imageview8 = (ImageView) findViewById(R.id.imageview8);
 		linear10 = (LinearLayout) findViewById(R.id.linear10);
 		button1 = (Button) findViewById(R.id.button1);
 		adaptive = getSharedPreferences("adaptive", Activity.MODE_PRIVATE);
@@ -171,6 +178,14 @@ public class SettingsActivity extends AppCompatActivity {
 			}
 		});
 		
+		linear84.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				kk.setClass(getApplicationContext(), UpdatelogActivity.class);
+				startActivity(kk);
+			}
+		});
+		
 		textview14.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -193,15 +208,7 @@ public class SettingsActivity extends AppCompatActivity {
 		button1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				updatelog.setTitle("Update Log");
-				updatelog.setMessage("-SCROLL AL THE WAY DOWN-\n-FOR THE LASTEST LOG-\n\nJune 9#1:\nApp translated to english\n\nJune 9#2:\nSearch feature\n\nJune 9#3:\nMaterial URL Bar\n\nJune 9#4:\nAdaptive Opening Removed\nLoading circle removed\nChanged position of icons for more space\n\nJune 10#1:\nExperimental features\n\nJune 10#2:\nDownload enabled\n\nJune 10#3:\nHome Page URL Editing\n\nJune 10#4:\nNew outlined material icons\n\nJune 18:\nThird Tab[EX]\nInterface Fixes\n\nJune 26#1:\nWelcome/Setup Screen\n\nJune 26#2:\nUpdate Log Page\nHome page(when there is no URL loaded)\nNew Icon,thanks to Solid Designs from Telegram\n\nJune 26#3:\nFixed bypassing setup screen\n\nJune 26#4:\nChanged IME type to \"done\"\n\nJune 26#5:\nAdded credits page\n\nJune 26#6:\nFixed not added [June 26#5] log\n\nJune 26#7:\nAdded two more persons to Credits\nFixed home button doesnt work on Tab 3(thanks for report,Wind/owz!)\n\nJune 27:\nFixed a tab glitch(thanks Aless!)\n\nJune 28#1:\nEnabled upload(Thanks for testing Solid Designs!)\n\nJune 28#2:\nAdded Google Sans Font(thanks for sending me file/suggestion Aless/Solid Designs!)\n\nJune 28#3:\nAdded language support\n\nJune 28#4:\nVietnam translation(thanks Reggyxt!)\n\nJune 28#5:\nFixed English language does not take effect\n\nJune28#6:\nMade url bar actually material\nChanged loading animation beacuse doesnt wotk with material url bar\n\nJune28#7:\nMade update where it attempts to fix a bug that causes codebase to mess up\n\nJune 28#8:\nAdded spacing option for navigation gestures\nChanged settings interface\n\nJune 28#9:\nAdded Webud search\n\nJune 29#1:\nChanged interface\nChanged link of Webud search\n\nJune 29#2:\nFixed some translations(thanks Wind/owz!)\n\nJune 29#3:\nDark mode added\n\nJune 29#4:\nMade Dark Mode Premium\nSome fixes under the hood\n\nJuly 1#1:\nExpired code:FANOFTESLA2020\nFixed [June 29#4] log did not show up an update\n\nJuly 2#1:\nAdded option to change default search engine\nFixed [June 29#4] and [July 1#1] log did not show up some updates\n\nJuly 2#2:\nRemoved Webud search button\n\nJuly 4#1:\nAdded DuckDuckGo&Yahoo(thanks for recommendation @Stingenstein!)\n\nJuly 4#2:\nAdded Bing(thanks for recommendation Aless!)\nFixed translations that does not take effect\nAdded one more person&edited Credits page\n\nJuly 4#3:\nAdded Telegram button\n\nJuly 4#4:\nAdded an option for material navbar(Q only)\n\nSeptember 6#1:\nAdded white status bar");
-				updatelog.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface _dialog, int _which) {
-						
-					}
-				});
-				updatelog.create().show();
+				
 			}
 		});
 	}
@@ -278,6 +285,7 @@ public class SettingsActivity extends AppCompatActivity {
 			_rippleRoundStroke(linear75, "#000000", "#212121", 0, 0, "#000000");
 			_rippleRoundStroke(linear82, "#000000", "#212121", 0, 0, "#000000");
 			_rippleRoundStroke(linear60, "#000000", "#212121", 0, 0, "#000000");
+			_rippleRoundStroke(linear84, "#000000", "#212121", 0, 0, "#000000");
 			cardview5.setCardBackgroundColor(0xFF000000);
 			rootmode = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 			nz = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
@@ -287,22 +295,25 @@ public class SettingsActivity extends AppCompatActivity {
 			button1.setBackgroundColor(0xFF000000);
 			imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 			textview97.setTextColor(0xFFFFFFFF);
+			textview98.setTextColor(0xFFFFFFFF);
 			imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 			imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+			imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 			
-			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#212121"));
+			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
 			View decor = getWindow().getDecorView();
 			decor.setSystemUiVisibility(0);
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 				Window w =SettingsActivity.this.getWindow();
 				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF212121);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
 			}
 		}
 		else {
 			_rippleRoundStroke(linear75, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
 			_rippleRoundStroke(linear82, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
 			_rippleRoundStroke(linear60, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
+			_rippleRoundStroke(linear84, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
 			cardview5.setCardBackgroundColor(0xFFFFFFFF);
 			rootmode = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
 			nz = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
@@ -315,8 +326,10 @@ public class SettingsActivity extends AppCompatActivity {
 			button1.setBackgroundColor(0xFFFFFFFF);
 			imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
 			textview97.setTextColor(0xFF000000);
+			textview98.setTextColor(0xFF000000);
 			imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
 			imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+			imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
 			if (settings.getString("mnb", "").equals("1")) {
 				
 				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
