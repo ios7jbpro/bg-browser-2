@@ -53,7 +53,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
-
+import java.lang.reflect.*;;
 
 public class SettingsGeneralActivity extends AppCompatActivity {
 	public final int REQ_CD_PFPCHOOSER = 101;
@@ -64,6 +64,8 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	
 	private LinearLayout linear1;
 	private ScrollView vscroll1;
+	private LinearLayout linearstatusbar12;
+	private LinearLayout linear111;
 	private ImageView imageview2;
 	private TextView textview1;
 	private LinearLayout linear2;
@@ -169,6 +171,8 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private void initialize(Bundle _savedInstanceState) {
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
 		vscroll1 = (ScrollView) findViewById(R.id.vscroll1);
+		linearstatusbar12 = (LinearLayout) findViewById(R.id.linearstatusbar12);
+		linear111 = (LinearLayout) findViewById(R.id.linear111);
 		imageview2 = (ImageView) findViewById(R.id.imageview2);
 		textview1 = (TextView) findViewById(R.id.textview1);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
@@ -532,6 +536,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private void initializeLogic() {
 		languagetext.setText(Locale.getDefault().getDisplayLanguage());
 		_language();
+		_function();
+		_setViewSize(linearstatusbar12, SketchwareUtil.getDisplayWidthPixels(getApplicationContext()), Double.parseDouble(settings.getString("sbheight", "")));
+		if (Double.parseDouble(Build.VERSION.SDK) < 31) {
+			linearstatusbar12.setVisibility(View.GONE);
+		}
+		if (Double.parseDouble(Build.VERSION.SDK) < 28) {
+			cardview17.setVisibility(View.GONE);
+		}
 		cardview11.setCardBackgroundColor(0xFFF48FB1);
 		cardview11.setPreventCornerOverlap(true);
 		cardview15.setCardBackgroundColor(0xFF80DEEA);
@@ -712,54 +724,85 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	}
 	
 	public void _darkmode () {
-		if (settings.getString("darkmode", "").equals("1")) {
-			linear2.setBackgroundColor(0xFF000000);
-			linear1.setBackgroundColor(0xFF000000);
-			textview1.setTextColor(0xFFFFFFFF);
-			textview105.setTextColor(0xFFFFFFFF);
-			textview106.setTextColor(0xFFFFFFFF);
-			textview123.setTextColor(0xFFFFFFFF);
-			textview132.setTextColor(0xFFFFFFFF);
-			textview133.setTextColor(0xFFFFFFFF);
-			imageview2.setImageResource(R.drawable.ic_chevron_left_white);
-			
-			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =SettingsGeneralActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
-			}
-			cardview17.setCardBackgroundColor(0xFF0D47A1);
-		}
-		else {
-			linear1.setBackgroundColor(0xFFF5F5F5);
-			linear2.setBackgroundColor(0xFFF5F5F5);
-			textview1.setTextColor(0xFF000000);
-			textview105.setTextColor(0xFF000000);
-			textview106.setTextColor(0xFF000000);
-			textview123.setTextColor(0xFF000000);
-			textview132.setTextColor(0xFF000000);
-			textview133.setTextColor(0xFF000000);
-			imageview2.setImageResource(R.drawable.ic_chevron_left_black);
-			cardview17.setCardBackgroundColor(0xFF82B1FF);
-			if (settings.getString("mnb", "").equals("1")) {
-				
-				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#F5F5F5"));
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+			if (settings.getString("darkmode", "").equals("1")) {
+				linear2.setBackgroundColor(getColor("system_accent2_800"));
+				linear1.setBackgroundColor(getColor("system_accent2_800"));
+				textview1.setTextColor(0xFFFFFFFF);
+				textview105.setTextColor(0xFFFFFFFF);
+				textview106.setTextColor(0xFFFFFFFF);
+				textview123.setTextColor(0xFFFFFFFF);
+				textview132.setTextColor(0xFFFFFFFF);
+				textview133.setTextColor(0xFFFFFFFF);
+				imageview2.setImageResource(R.drawable.ic_chevron_left_white);
+				cardview17.setCardBackgroundColor(0xFF0D47A1);
 			}
 			else {
+				linear1.setBackgroundColor(getColor("system_accent2_50"));
+				linear2.setBackgroundColor(getColor("system_accent2_50"));
+				textview1.setTextColor(0xFF000000);
+				textview105.setTextColor(0xFF000000);
+				textview106.setTextColor(0xFF000000);
+				textview123.setTextColor(0xFF000000);
+				textview132.setTextColor(0xFF000000);
+				textview133.setTextColor(0xFF000000);
+				imageview2.setImageResource(R.drawable.ic_chevron_left_black);
+				cardview17.setCardBackgroundColor(0xFF82B1FF);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+			}
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { Window w = getWindow();  w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS); };
+		}
+		else {
+			if (settings.getString("darkmode", "").equals("1")) {
+				linear2.setBackgroundColor(0xFF000000);
+				linear1.setBackgroundColor(0xFF000000);
+				textview1.setTextColor(0xFFFFFFFF);
+				textview105.setTextColor(0xFFFFFFFF);
+				textview106.setTextColor(0xFFFFFFFF);
+				textview123.setTextColor(0xFFFFFFFF);
+				textview132.setTextColor(0xFFFFFFFF);
+				textview133.setTextColor(0xFFFFFFFF);
+				imageview2.setImageResource(R.drawable.ic_chevron_left_white);
 				
 				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =SettingsGeneralActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
+				}
+				cardview17.setCardBackgroundColor(0xFF0D47A1);
 			}
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			getWindow().setStatusBarColor(0xFFFFFFFF);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =SettingsGeneralActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFF5F5F5);
+			else {
+				linear1.setBackgroundColor(0xFFF5F5F5);
+				linear2.setBackgroundColor(0xFFF5F5F5);
+				textview1.setTextColor(0xFF000000);
+				textview105.setTextColor(0xFF000000);
+				textview106.setTextColor(0xFF000000);
+				textview123.setTextColor(0xFF000000);
+				textview132.setTextColor(0xFF000000);
+				textview133.setTextColor(0xFF000000);
+				imageview2.setImageResource(R.drawable.ic_chevron_left_black);
+				cardview17.setCardBackgroundColor(0xFF82B1FF);
+				if (settings.getString("mnb", "").equals("1")) {
+					
+					Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#F5F5F5"));
+				}
+				else {
+					
+					Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+				}
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =SettingsGeneralActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFF5F5F5);
+				}
 			}
 		}
 	}
@@ -823,6 +866,21 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		Color.parseColor("#" + _strokeclr.replace("#", "")));
 		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
 		_view.setBackground(RE);
+	}
+	
+	
+	public void _function () {
+	}
+	private int getColor(String name){
+		return getColor(getResources().getIdentifier(name,"color","android"));
+	}
+	
+	{
+	}
+	
+	
+	public void _setViewSize (final View _view1, final double _width, final double _height) {
+		_view1.setLayoutParams(new LinearLayout.LayoutParams((int)_width, (int)_height));
 	}
 	
 	

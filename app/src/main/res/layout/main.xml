@@ -81,59 +81,66 @@
 						android:layout_marginLeft="8dp"
 						android:src="@drawable/default_image"
 						android:scaleType="fitXY"/>
-					<LinearLayout
-						android:id="@+id/linear2"
+					<androidx.cardview.widget.CardView
+						android:id="@+id/cardview1"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_margin="8dp"
-						android:padding="11dp"
-						android:background="#FFFFFF"
-						android:gravity="center_horizontal|center_vertical"
-						android:orientation="horizontal"
-						android:layout_weight="1">
-						<ImageView
-							android:id="@+id/imageview32"
-							android:layout_width="22dp"
-							android:layout_height="22dp"
-							android:src="@drawable/ic_check_white"
-							android:scaleType="fitXY"/>
-						<EditText
-							android:id="@+id/edittext1"
+						android:layout_weight="1"
+						app:cardElevation="4dp"
+						app:cardCornerRadius="9dp">
+						<LinearLayout
+							android:id="@+id/linear2"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:padding="4dp"
-							android:background="#FFFFFF"
-							android:textSize="12sp"
-							android:textColor="#000000"
-							android:hint="URL"
-							android:textColorHint="#607D8B"
-							android:singleLine="true"
-							android:lines="1"
-							android:imeOptions="actionGo"
-							android:layout_weight="1"/>
-						<TextView
-							android:id="@+id/textview1"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
+							android:padding="11dp"
 							android:gravity="center_horizontal|center_vertical"
-							android:text="BG Browser 2"
-							android:textSize="16sp"
-							android:textColor="#9E9E9E"
-							android:singleLine="true"
-							android:layout_weight="1"/>
-						<ImageView
-							android:id="@+id/imageview11"
-							android:layout_width="17dp"
-							android:layout_height="17dp"
-							android:src="@drawable/ic_delete_black"
-							android:scaleType="fitXY"/>
-						<ImageView
-							android:id="@+id/imageview8"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:src="@drawable/ic_arrow_forward_black"
-							android:scaleType="center"/>
-					</LinearLayout>
+							android:orientation="horizontal"
+							android:layout_weight="1">
+							<ImageView
+								android:id="@+id/imageview32"
+								android:layout_width="22dp"
+								android:layout_height="22dp"
+								android:src="@drawable/ic_check_white"
+								android:scaleType="fitXY"/>
+							<EditText
+								android:id="@+id/edittext1"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:padding="4dp"
+								android:background="#FFFFFF"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:hint="URL"
+								android:textColorHint="#607D8B"
+								android:singleLine="true"
+								android:lines="1"
+								android:imeOptions="actionGo"
+								android:layout_weight="1"/>
+							<TextView
+								android:id="@+id/textview1"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:gravity="center_horizontal|center_vertical"
+								android:text="BG Browser 2"
+								android:textSize="16sp"
+								android:textColor="#9E9E9E"
+								android:singleLine="true"
+								android:layout_weight="1"/>
+							<ImageView
+								android:id="@+id/imageview11"
+								android:layout_width="17dp"
+								android:layout_height="17dp"
+								android:src="@drawable/ic_delete_black"
+								android:scaleType="fitXY"/>
+							<ImageView
+								android:id="@+id/imageview8"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:src="@drawable/ic_arrow_forward_black"
+								android:scaleType="center"/>
+						</LinearLayout>
+					</androidx.cardview.widget.CardView>
 					<ImageView
 						android:id="@+id/imageview31"
 						android:layout_width="25dp"

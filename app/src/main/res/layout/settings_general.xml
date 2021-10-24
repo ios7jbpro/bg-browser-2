@@ -11,22 +11,35 @@
 		android:layout_height="wrap_content"
 		android:background="#F5F5F5"
 		android:gravity="center_vertical"
-		android:orientation="horizontal">
-		<ImageView
-			android:id="@+id/imageview2"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:src="@drawable/ic_chevron_left_black"
-			android:scaleType="fitXY"/>
-		<TextView
-			android:id="@+id/textview1"
-			android:layout_width="wrap_content"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linearstatusbar12"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:text="General"
-			android:textSize="20sp"
-			android:textStyle="bold"
-			android:textColor="#000000"/>
+			android:orientation="horizontal"/>
+		<LinearLayout
+			android:id="@+id/linear111"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+			<ImageView
+				android:id="@+id/imageview2"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:src="@drawable/ic_chevron_left_black"
+				android:scaleType="fitXY"/>
+			<TextView
+				android:id="@+id/textview1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="General"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:textColor="#000000"/>
+		</LinearLayout>
 	</LinearLayout>
 	<ScrollView
 		android:id="@+id/vscroll1"

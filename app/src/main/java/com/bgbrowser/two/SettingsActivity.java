@@ -42,13 +42,12 @@ import java.util.TimerTask;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import android.view.View;
-import android.graphics.Typeface;
 import androidx.webkit.*;
 import com.monstertechno.adblocker.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
-
+import java.lang.reflect.*;;
 
 public class SettingsActivity extends AppCompatActivity {
 	private Timer _timer = new Timer();
@@ -214,10 +213,10 @@ public class SettingsActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
+		_function();
 		languagetext.setText(Locale.getDefault().getDisplayLanguage());
 		cardview5.setVisibility(View.GONE);
 		_language();
-		_googlesans();
 		_rounders();
 		_shades();
 		settingsreloader = new TimerTask() {
@@ -264,88 +263,110 @@ public class SettingsActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _googlesans () {
-		if (ex.getString("googlesans", "").equals("1")) {
-			textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-			textview5.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-			button1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-			
-			
-			
-			textview10.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-		}
-	}
-	
-	
 	public void _darkmode () {
-		if (settings.getString("darkmode", "").equals("1")) {
-			linear2.setBackgroundColor(0xFF000000);
-			topbar.setBackgroundColor(0xFF000000);
-			textview1.setTextColor(0xFFFFFFFF);
-			_rippleRoundStroke(linear75, "#000000", "#212121", 0, 0, "#000000");
-			_rippleRoundStroke(linear82, "#000000", "#212121", 0, 0, "#000000");
-			_rippleRoundStroke(linear60, "#000000", "#212121", 0, 0, "#000000");
-			_rippleRoundStroke(linear84, "#000000", "#212121", 0, 0, "#000000");
-			cardview5.setCardBackgroundColor(0xFF000000);
-			rootmode = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-			nz = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-			textview10.setTextColor(0xFFFFFFFF);
-			textview5.setTextColor(0xFFFFFFFF);
-			button1.setTextColor(0xFFFFFFFF);
-			button1.setBackgroundColor(0xFF000000);
-			imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
-			textview97.setTextColor(0xFFFFFFFF);
-			textview98.setTextColor(0xFFFFFFFF);
-			imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
-			imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
-			imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
-			
-			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =SettingsActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
-			}
-		}
-		else {
-			_rippleRoundStroke(linear75, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
-			_rippleRoundStroke(linear82, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
-			_rippleRoundStroke(linear60, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
-			_rippleRoundStroke(linear84, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
-			cardview5.setCardBackgroundColor(0xFFFFFFFF);
-			rootmode = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-			nz = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-			topbar.setBackgroundColor(0xFFFFFFFF);
-			linear2.setBackgroundColor(0xFFFFFFFF);
-			textview1.setTextColor(0xFF000000);
-			textview10.setTextColor(0xFF000000);
-			textview5.setTextColor(0xFF000000);
-			button1.setTextColor(0xFF000000);
-			button1.setBackgroundColor(0xFFFFFFFF);
-			imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
-			textview97.setTextColor(0xFF000000);
-			textview98.setTextColor(0xFF000000);
-			imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
-			imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
-			imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
-			if (settings.getString("mnb", "").equals("1")) {
-				
-				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+			if (settings.getString("darkmode", "").equals("1")) {
+				linear2.setBackgroundColor(getColor("system_accent2_800"));
+				topbar.setBackgroundColor(getColor("system_accent2_800"));
+				textview1.setTextColor(0xFFFFFFFF);
+				cardview5.setCardBackgroundColor(0xFF000000);
+				textview10.setTextColor(0xFFFFFFFF);
+				textview5.setTextColor(0xFFFFFFFF);
+				button1.setTextColor(0xFFFFFFFF);
+				button1.setBackgroundColor(0xFF000000);
+				imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				textview97.setTextColor(0xFFFFFFFF);
+				textview98.setTextColor(0xFFFFFFFF);
+				imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 			}
 			else {
+				linear2.setBackgroundColor(getColor("system_accent2_50"));
+				topbar.setBackgroundColor(getColor("system_accent2_50"));
+				cardview5.setCardBackgroundColor(0xFFFFFFFF);
+				textview1.setTextColor(0xFF000000);
+				textview10.setTextColor(0xFF000000);
+				textview5.setTextColor(0xFF000000);
+				button1.setTextColor(0xFF000000);
+				button1.setBackgroundColor(0xFFFFFFFF);
+				imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				textview97.setTextColor(0xFF000000);
+				textview98.setTextColor(0xFF000000);
+				imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+			}
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { Window w = getWindow();  w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS); };
+		}
+		else {
+			if (settings.getString("darkmode", "").equals("1")) {
+				linear2.setBackgroundColor(0xFF000000);
+				topbar.setBackgroundColor(0xFF000000);
+				textview1.setTextColor(0xFFFFFFFF);
+				_rippleRoundStroke(linear75, "#000000", "#212121", 0, 0, "#000000");
+				_rippleRoundStroke(linear82, "#000000", "#212121", 0, 0, "#000000");
+				_rippleRoundStroke(linear60, "#000000", "#212121", 0, 0, "#000000");
+				_rippleRoundStroke(linear84, "#000000", "#212121", 0, 0, "#000000");
+				cardview5.setCardBackgroundColor(0xFF000000);
+				textview10.setTextColor(0xFFFFFFFF);
+				textview5.setTextColor(0xFFFFFFFF);
+				button1.setTextColor(0xFFFFFFFF);
+				button1.setBackgroundColor(0xFF000000);
+				imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				textview97.setTextColor(0xFFFFFFFF);
+				textview98.setTextColor(0xFFFFFFFF);
+				imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
+				imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 				
 				Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =SettingsActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
+				}
 			}
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			getWindow().setStatusBarColor(0xFFFFFFFF);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =SettingsActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
+			else {
+				_rippleRoundStroke(linear75, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
+				_rippleRoundStroke(linear82, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
+				_rippleRoundStroke(linear60, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
+				_rippleRoundStroke(linear84, "#FFFFFF", "#E0E0E0", 0, 0, "#000000");
+				cardview5.setCardBackgroundColor(0xFFFFFFFF);
+				topbar.setBackgroundColor(0xFFFFFFFF);
+				linear2.setBackgroundColor(0xFFFFFFFF);
+				textview1.setTextColor(0xFF000000);
+				textview10.setTextColor(0xFF000000);
+				textview5.setTextColor(0xFF000000);
+				button1.setTextColor(0xFF000000);
+				button1.setBackgroundColor(0xFFFFFFFF);
+				imageview3.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				textview97.setTextColor(0xFF000000);
+				textview98.setTextColor(0xFF000000);
+				imageview7.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				imageview6.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				imageview8.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
+				if (settings.getString("mnb", "").equals("1")) {
+					
+					Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
+				}
+				else {
+					
+					Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+				}
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =SettingsActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
+				}
 			}
 		}
 	}
@@ -431,6 +452,16 @@ public class SettingsActivity extends AppCompatActivity {
 		Color.parseColor("#" + _strokeclr.replace("#", "")));
 		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
 		_view.setBackground(RE);
+	}
+	
+	
+	public void _function () {
+	}
+	private int getColor(String name){
+		return getColor(getResources().getIdentifier(name,"color","android"));
+	}
+	
+	{
 	}
 	
 	

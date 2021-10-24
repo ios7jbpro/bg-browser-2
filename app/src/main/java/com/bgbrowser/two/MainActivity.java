@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
+import androidx.cardview.widget.CardView;
 import android.widget.EditText;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
@@ -67,6 +68,7 @@ import android.content.pm.PackageManager;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.EditorInfo;
+import java.lang.reflect.*;;
 
 public class MainActivity extends AppCompatActivity {
 	public final int REQ_CD_FP = 101;
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 	private boolean isKeyboardVisible = false;
 	private boolean hasFocus = false;
 	private String share = "";
+	private String s = "";
 	
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
@@ -114,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
 	private SwipeRefreshLayout swiperefreshlayout4;
 	private LinearLayout linear7;
 	private ImageView profile_picture;
-	private LinearLayout linear2;
+	private CardView cardview1;
 	private ImageView imageview31;
+	private LinearLayout linear2;
 	private ImageView imageview32;
 	private EditText edittext1;
 	private TextView textview1;
@@ -266,8 +270,9 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout4 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout4);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
 		profile_picture = (ImageView) findViewById(R.id.profile_picture);
-		linear2 = (LinearLayout) findViewById(R.id.linear2);
+		cardview1 = (CardView) findViewById(R.id.cardview1);
 		imageview31 = (ImageView) findViewById(R.id.imageview31);
+		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		imageview32 = (ImageView) findViewById(R.id.imageview32);
 		edittext1 = (EditText) findViewById(R.id.edittext1);
 		textview1 = (TextView) findViewById(R.id.textview1);
@@ -1403,15 +1408,9 @@ public class MainActivity extends AppCompatActivity {
 		catch (Exception e){ showMessage(e.toString()); }
 		updatcheck.startRequestNetwork(RequestNetworkController.GET, "https://root.apurixz.com/file/user_upload/bg-browser-2-main/database.json", "", _updatcheck_request_listener);
 		_checkupdt();
-		android.content.pm.ShortcutManager shortcutManager = getSystemService(android.content.pm.ShortcutManager.class);
-		android.content.pm.ShortcutInfo newtabShortcut = new android.content.pm.ShortcutInfo.Builder(MainActivity.this, "id1")
-				.setShortLabel("Open tab")
-				.setRank(0)
-				.setLongLabel("Open a new tab")
-				.setIcon(android.graphics.drawable.Icon.createWithResource(MainActivity.this, R.drawable.opennewtab))
-				.setIntent(new Intent(Intent.ACTION_MAIN, Uri.EMPTY, MainActivity.this, OpentabActivity.class))
-				.build();
-		shortcutManager.setDynamicShortcuts(Arrays.asList(newtabShortcut));
+		_function();
+		String s = String.valueOf(MathClass.getStatusBarHeight(getApplicationContext()));
+		settings.edit().putString("sbheight", s).commit();
 		
 		Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
 		if (settings.getString("splash", "").equals("1")) {
@@ -1431,14 +1430,12 @@ public class MainActivity extends AppCompatActivity {
 		};
 		_timer.schedule(settingsreolader, (int)(1800));
 		languagetext.setText(Locale.getDefault().getDisplayLanguage());
+		cardview1.setPreventCornerOverlap(true);
 		if (settings.getString("debug", "").equals("1")) {
 			bzh.setClass(getApplicationContext(), ExperimentalActivity.class);
 			startActivity(bzh);
 			finish();
 		}
-		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm").format(ei.getTime()).concat("]".concat("##ROOT/APP LAUNCH##"))))).commit();
-		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm").format(ei.getTime()).concat("]".concat("App Started"))))).commit();
-		ei = Calendar.getInstance();
 		
 		webview1.setWebChromeClient(new CustomWebClient() {
 			// For 3.0+ Devices
@@ -1814,7 +1811,12 @@ public class MainActivity extends AppCompatActivity {
 			if (settings.getString("flagfollowsystem", "").equals("1")) {
 				switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
 					    case Configuration.UI_MODE_NIGHT_YES:
-					_dmlm1();
+					if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+						_a12darkmode();
+					}
+					else {
+						_dmlm1();
+					}
 					window.setNavigationBarColor(Color.parseColor("#000000"));
 					getWindow().getDecorView();
 					a.setSystemUiVisibility(0);
@@ -1827,7 +1829,12 @@ public class MainActivity extends AppCompatActivity {
 					
 					        break;
 					    case Configuration.UI_MODE_NIGHT_NO:
-					_dmdm1();
+					if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+						_a12lightmode();
+					}
+					else {
+						_dmdm1();
+					}
 					if (settings.getString("mnb", "").equals("1")) {
 						window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
 					}
@@ -1877,6 +1884,16 @@ public class MainActivity extends AppCompatActivity {
 						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 					}
 				}
+			}
+		}
+		else {
+			_dmdm1();
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+			getWindow().setStatusBarColor(0xFFFFFFFF);
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+				Window w =MainActivity.this.getWindow();
+				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 			}
 		}
 		EditText editText = (EditText)findViewById(R.id.edittext1); editText.setOnEditorActionListener(new OnEditorActionListener() {
@@ -2490,151 +2507,69 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public void _darkmode () {
-		
-		Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
-		if (settings.getString("darkmode", "").equals("1")) {
-			_dmlm1();
-			window.setNavigationBarColor(Color.parseColor("#000000"));
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =MainActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
-			}
-		}
-		else {
-			_dmdm1();
-			if (settings.getString("mnb", "").equals("1")) {
-				window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
-			}
-			else {
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+			
+			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+			if (settings.getString("darkmode", "").equals("1")) {
+				_a12darkmode();
 				window.setNavigationBarColor(Color.parseColor("#000000"));
-			}
-			View decor = getWindow().getDecorView();
-			decor.setSystemUiVisibility(0);
-			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			getWindow().setStatusBarColor(0xFFFFFFFF);
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-				Window w =MainActivity.this.getWindow();
-				w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
-			}
-		}
-		_youtubetopbar();
-		_mediafiretopbar();
-		_githubtopbar();
-		_xdatopbar();
-		_apkpuretopbar();
-	}
-	
-	
-	public void _youtubetopbar () {
-		if (webview1.isEnabled()) {
-			if (webview1.getUrl().contains("m.youtube.com")) {
-				linear14.setBackgroundColor(0xFF222222);
 				View decor = getWindow().getDecorView();
 				decor.setSystemUiVisibility(0);
 				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 					Window w =MainActivity.this.getWindow();
 					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF222222);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
 				}
 			}
 			else {
-				
+				_a12lightmode();
+				if (settings.getString("mnb", "").equals("1")) {
+					window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
+				}
+				else {
+					window.setNavigationBarColor(Color.parseColor("#000000"));
+				}
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =MainActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
+				}
 			}
 		}
 		else {
-			if (webview2.isEnabled()) {
-				if (webview2.getUrl().contains("m.youtube.com")) {
-					linear14.setBackgroundColor(0xFF222222);
-					View decor = getWindow().getDecorView();
-					decor.setSystemUiVisibility(0);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-						Window w =MainActivity.this.getWindow();
-						w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF222222);
-					}
-				}
-				else {
-					
-				}
-			}
-			else {
-				if (webview3.isEnabled()) {
-					if (webview3.getUrl().contains("m.youtube.com")) {
-						linear14.setBackgroundColor(0xFF222222);
-						View decor = getWindow().getDecorView();
-						decor.setSystemUiVisibility(0);
-						if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-							Window w =MainActivity.this.getWindow();
-							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF222222);
-						}
-					}
-					else {
-						
-					}
-				}
-				else {
-					
-				}
-			}
-		}
-	}
-	
-	
-	public void _mediafiretopbar () {
-		if (webview1.isEnabled()) {
-			if (webview1.getUrl().contains("www.mediafire.com")) {
-				linear14.setBackgroundColor(0xFF1565C0);
+			
+			Window window = this.getWindow();window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); window.setNavigationBarColor(Color.parseColor("#000000"));
+			if (settings.getString("darkmode", "").equals("1")) {
+				_dmlm1();
+				window.setNavigationBarColor(Color.parseColor("#000000"));
 				View decor = getWindow().getDecorView();
 				decor.setSystemUiVisibility(0);
 				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 					Window w =MainActivity.this.getWindow();
 					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF1565C0);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF000000);
 				}
 			}
 			else {
-				
-			}
-		}
-		else {
-			if (webview2.isEnabled()) {
-				if (webview2.getUrl().contains("www.mediafire.com")) {
-					linear14.setBackgroundColor(0xFF1565C0);
-					View decor = getWindow().getDecorView();
-					decor.setSystemUiVisibility(0);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-						Window w =MainActivity.this.getWindow();
-						w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF1565C0);
-					}
+				_dmdm1();
+				if (settings.getString("mnb", "").equals("1")) {
+					window.setNavigationBarColor(Color.parseColor("#FFFFFF"));
 				}
 				else {
-					
+					window.setNavigationBarColor(Color.parseColor("#000000"));
 				}
-			}
-			else {
-				if (webview3.isEnabled()) {
-					if (webview3.getUrl().contains("www.mediafire.com")) {
-						linear14.setBackgroundColor(0xFF1565C0);
-						View decor = getWindow().getDecorView();
-						decor.setSystemUiVisibility(0);
-						if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-							Window w =MainActivity.this.getWindow();
-							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF1565C0);
-						}
-					}
-					else {
-						
-					}
-				}
-				else {
-					
+				View decor = getWindow().getDecorView();
+				decor.setSystemUiVisibility(0);
+				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+				getWindow().setStatusBarColor(0xFFFFFFFF);
+				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+					Window w =MainActivity.this.getWindow();
+					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 				}
 			}
 		}
@@ -2676,38 +2611,7 @@ public class MainActivity extends AppCompatActivity {
 		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
 		imageview31.setImageResource(R.drawable.ic_more_vert_white);
 		suggesturl.setBackgroundColor(0xFF000000);
-		if (String.valueOf((long)(width)).equals("1440")) {
-			android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-			gd.setColor(Color.parseColor("#000000"));
-			gd.setCornerRadius(25);
-			linear2.setBackground(gd);
-			linear2.setElevation(16);
-		}
-		else {
-			if (String.valueOf((long)(width)).equals("1080")) {
-				android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-				gd.setColor(Color.parseColor("#000000"));
-				gd.setCornerRadius(18);
-				linear2.setBackground(gd);
-				linear2.setElevation(12);
-			}
-			else {
-				if (String.valueOf((long)(width)).equals("720")) {
-					android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-					gd.setColor(Color.parseColor("#000000"));
-					gd.setCornerRadius(12);
-					linear2.setBackground(gd);
-					linear2.setElevation(9);
-				}
-				else {
-					android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-					gd.setColor(Color.parseColor("#000000"));
-					gd.setCornerRadius(25);
-					linear2.setBackground(gd);
-					linear2.setElevation(16);
-				}
-			}
-		}
+		cardview1.setCardBackgroundColor(0xFF000000);
 		if (settings.getString("darkwebview", "").equals("1")) {
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
 			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
@@ -2758,38 +2662,7 @@ public class MainActivity extends AppCompatActivity {
 		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
 		imageview31.setImageResource(R.drawable.ic_more_vert_black);
 		suggesturl.setBackgroundColor(0xFFFFFFFF);
-		if (String.valueOf((long)(width)).equals("1440")) {
-			android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-			gd.setColor(Color.parseColor("#FFFFFF"));
-			gd.setCornerRadius(25);
-			linear2.setBackground(gd);
-			linear2.setElevation(16);
-		}
-		else {
-			if (String.valueOf((long)(width)).equals("1080")) {
-				android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-				gd.setColor(Color.parseColor("#FFFFFF"));
-				gd.setCornerRadius(18);
-				linear2.setBackground(gd);
-				linear2.setElevation(12);
-			}
-			else {
-				if (String.valueOf((long)(width)).equals("720")) {
-					android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-					gd.setColor(Color.parseColor("#FFFFFF"));
-					gd.setCornerRadius(12);
-					linear2.setBackground(gd);
-					linear2.setElevation(9);
-				}
-				else {
-					android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
-					gd.setColor(Color.parseColor("#FFFFFF"));
-					gd.setCornerRadius(25);
-					linear2.setBackground(gd);
-					linear2.setElevation(16);
-				}
-			}
-		}
+		cardview1.setCardBackgroundColor(0xFFFFFFFF);
 		if (settings.getString("darkwebview", "").equals("1")) {
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
 			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
@@ -2847,118 +2720,6 @@ public class MainActivity extends AppCompatActivity {
 							Window w =MainActivity.this.getWindow();
 							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24292E);
-						}
-					}
-					else {
-						
-					}
-				}
-				else {
-					
-				}
-			}
-		}
-	}
-	
-	
-	public void _xdatopbar () {
-		if (webview1.isEnabled()) {
-			if (webview1.getUrl().contains("xda-developers.com")) {
-				linear14.setBackgroundColor(0xFF2E2E2E);
-				View decor = getWindow().getDecorView();
-				decor.setSystemUiVisibility(0);
-				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-					Window w =MainActivity.this.getWindow();
-					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF2E2E2E);
-				}
-			}
-			else {
-				
-			}
-		}
-		else {
-			if (webview2.isEnabled()) {
-				if (webview2.getUrl().contains("xda-developers.com")) {
-					linear14.setBackgroundColor(0xFF2E2E2E);
-					View decor = getWindow().getDecorView();
-					decor.setSystemUiVisibility(0);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-						Window w =MainActivity.this.getWindow();
-						w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF2E2E2E);
-					}
-				}
-				else {
-					
-				}
-			}
-			else {
-				if (webview3.isEnabled()) {
-					if (webview3.getUrl().contains("xda-developers.com")) {
-						linear14.setBackgroundColor(0xFF2E2E2E);
-						View decor = getWindow().getDecorView();
-						decor.setSystemUiVisibility(0);
-						if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-							Window w =MainActivity.this.getWindow();
-							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF2E2E2E);
-						}
-					}
-					else {
-						
-					}
-				}
-				else {
-					
-				}
-			}
-		}
-	}
-	
-	
-	public void _apkpuretopbar () {
-		if (webview1.isEnabled()) {
-			if (webview1.getUrl().contains("m.apkpure.com")) {
-				linear14.setBackgroundColor(0xFF24CD77);
-				View decor = getWindow().getDecorView();
-				decor.setSystemUiVisibility(0);
-				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-					Window w =MainActivity.this.getWindow();
-					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24CD77);
-				}
-			}
-			else {
-				
-			}
-		}
-		else {
-			if (webview2.isEnabled()) {
-				if (webview2.getUrl().contains("m.apkpure.com")) {
-					linear14.setBackgroundColor(0xFF24CD77);
-					View decor = getWindow().getDecorView();
-					decor.setSystemUiVisibility(0);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-						Window w =MainActivity.this.getWindow();
-						w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24CD77);
-					}
-				}
-				else {
-					
-				}
-			}
-			else {
-				if (webview3.isEnabled()) {
-					if (webview3.getUrl().contains("m.apkpure.com")) {
-						linear14.setBackgroundColor(0xFF24CD77);
-						View decor = getWindow().getDecorView();
-						decor.setSystemUiVisibility(0);
-						if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-							Window w =MainActivity.this.getWindow();
-							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24CD77);
 						}
 					}
 					else {
@@ -3641,53 +3402,95 @@ public class MainActivity extends AppCompatActivity {
 			} });
 		
 		if (settings.getString("darkmode", "").equals("1")) {
-			android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
-			round.setColor (Color.parseColor("#2E2F32"));
-			
-			round.setCornerRadius (20);
-			
-			line_popup.setBackground (round);
-			
-			line_popup.setElevation(8);
-			
-			text1.setTextColor(0xFFFFFFFF);
-			text2.setTextColor(0xFFFFFFFF);
-			text3.setTextColor(0xFFFFFFFF);
-			text4.setTextColor(0xFFFFFFFF);
-			text5.setTextColor(0xFFFFFFFF);
-			text6.setTextColor(0xFFFFFFFF);
-			text7.setTextColor(0xFFFFFFFF);
-			text8.setTextColor(0xFFFFFFFF);
-			
-			line_div1.setBackgroundColor(0xFF202124);
-			line_div2.setBackgroundColor(0xFF202124);
-			line_div3.setBackgroundColor(0xFF202124);
-			line_div4.setBackgroundColor(0xFF202124);
-			line_div5.setBackgroundColor(0xFF202124);
-			line_div6.setBackgroundColor(0xFF202124);
-			line_div7.setBackgroundColor(0xFF202124);
-			line_div8.setBackgroundColor(0xFF202124);
-			
-			image_settings.setImageResource(R.drawable.outline_settings_white_48);
-			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
-			image_find.setImageResource(R.drawable.ic_search_white);
-			image_download.setImageResource(R.drawable.ic_get_app_white);
-			image_savepicture.setImageResource(R.drawable.ic_image_white);
-			image_reload.setImageResource(R.drawable.ic_loop_white);
-			image_forward.setImageResource(R.drawable.ic_chevron_right_white);
-			_rippleRoundStroke(holder_top, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_forward, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_reload, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_Download, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_find, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_pdf, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_savepicture, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_html, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_extracthtml, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_desktopmode, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_share, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
+				round.setColor (getColor("system_accent2_800"));
+				
+				
+				round.setCornerRadius (20);
+				
+				line_popup.setBackground (round);
+				
+				line_popup.setElevation(8);
+				
+				text1.setTextColor(0xFFFFFFFF);
+				text2.setTextColor(0xFFFFFFFF);
+				text3.setTextColor(0xFFFFFFFF);
+				text4.setTextColor(0xFFFFFFFF);
+				text5.setTextColor(0xFFFFFFFF);
+				text6.setTextColor(0xFFFFFFFF);
+				text7.setTextColor(0xFFFFFFFF);
+				text8.setTextColor(0xFFFFFFFF);
+				text9.setTextColor(0xFFFFFFFF);
+				
+				line_div1.setBackgroundColor(0xFF202124);
+				line_div2.setBackgroundColor(0xFF202124);
+				line_div3.setBackgroundColor(0xFF202124);
+				line_div4.setBackgroundColor(0xFF202124);
+				line_div5.setBackgroundColor(0xFF202124);
+				line_div6.setBackgroundColor(0xFF202124);
+				line_div7.setBackgroundColor(0xFF202124);
+				line_div8.setBackgroundColor(0xFF202124);
+				
+				image_settings.setImageResource(R.drawable.outline_settings_white_48);
+				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
+				image_find.setImageResource(R.drawable.ic_search_white);
+				image_download.setImageResource(R.drawable.ic_get_app_white);
+				image_savepicture.setImageResource(R.drawable.ic_image_white);
+				image_reload.setImageResource(R.drawable.ic_loop_white);
+				image_forward.setImageResource(R.drawable.ic_chevron_right_white);
+			}
+			else {
+				android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
+				round.setColor (Color.parseColor("#2E2F32"));
+				
+				
+				round.setCornerRadius (20);
+				
+				line_popup.setBackground (round);
+				
+				line_popup.setElevation(8);
+				
+				text1.setTextColor(0xFFFFFFFF);
+				text2.setTextColor(0xFFFFFFFF);
+				text3.setTextColor(0xFFFFFFFF);
+				text4.setTextColor(0xFFFFFFFF);
+				text5.setTextColor(0xFFFFFFFF);
+				text6.setTextColor(0xFFFFFFFF);
+				text7.setTextColor(0xFFFFFFFF);
+				text8.setTextColor(0xFFFFFFFF);
+				text9.setTextColor(0xFFFFFFFF);
+				
+				line_div1.setBackgroundColor(0xFF202124);
+				line_div2.setBackgroundColor(0xFF202124);
+				line_div3.setBackgroundColor(0xFF202124);
+				line_div4.setBackgroundColor(0xFF202124);
+				line_div5.setBackgroundColor(0xFF202124);
+				line_div6.setBackgroundColor(0xFF202124);
+				line_div7.setBackgroundColor(0xFF202124);
+				line_div8.setBackgroundColor(0xFF202124);
+				
+				image_settings.setImageResource(R.drawable.outline_settings_white_48);
+				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
+				image_find.setImageResource(R.drawable.ic_search_white);
+				image_download.setImageResource(R.drawable.ic_get_app_white);
+				image_savepicture.setImageResource(R.drawable.ic_image_white);
+				image_reload.setImageResource(R.drawable.ic_loop_white);
+				image_forward.setImageResource(R.drawable.ic_chevron_right_white);
+				_rippleRoundStroke(holder_top, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_forward, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_reload, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_Download, "#2E2F32", "#FFFFFF", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_find, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_pdf, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_savepicture, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_html, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_editsaved, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_extracthtml, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_desktopmode, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_share, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
+			}
 			image_editsaved.setImageResource(R.drawable.ic_create_white);
 			image_html.setImageResource(R.drawable.ic_fast_forward_white);
 			image_extracthtml.setImageResource(R.drawable.ic_create_white);
@@ -3702,53 +3505,95 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 		else {
-			android.graphics.drawable.GradientDrawable round2 = new android.graphics.drawable.GradientDrawable ();
-			round2.setColor (Color.parseColor("#FFFFFF"));
-			
-			round2.setCornerRadius (20);
-			
-			line_popup.setBackground (round2);
-			
-			line_popup.setElevation(8);
-			
-			text1.setTextColor(0xFF000000);
-			text2.setTextColor(0xFF000000);
-			text3.setTextColor(0xFF000000);
-			text4.setTextColor(0xFF000000);
-			text5.setTextColor(0xFF000000);
-			text6.setTextColor(0xFF000000);
-			text7.setTextColor(0xFF000000);
-			text8.setTextColor(0xFF000000);
-			
-			line_div1.setBackgroundColor(0xFFF1F3F4);
-			line_div2.setBackgroundColor(0xFFF1F3F4);
-			line_div3.setBackgroundColor(0xFFF1F3F4);
-			line_div4.setBackgroundColor(0xFFF1F3F4);
-			line_div5.setBackgroundColor(0xFFF1F3F4);
-			line_div6.setBackgroundColor(0xFFF1F3F4);
-			line_div7.setBackgroundColor(0xFFF1F3F4);
-			line_div8.setBackgroundColor(0xFFF1F3F4);
-			
-			image_settings.setImageResource(R.drawable.settings);
-			image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
-			image_find.setImageResource(R.drawable.ic_search_black);
-			image_download.setImageResource(R.drawable.ic_get_app_black);
-			image_savepicture.setImageResource(R.drawable.ic_photo_black);
-			image_reload.setImageResource(R.drawable.ic_loop_black);
-			image_forward.setImageResource(R.drawable.ic_chevron_right_black);
-			_rippleRoundStroke(holder_top, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_forward, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_reload, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_Download, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
-			_rippleRoundStroke(line_find, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_pdf, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_savepicture, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_html, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_extracthtml, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_desktopmode, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_share, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
-			_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				android.graphics.drawable.GradientDrawable round2 = new android.graphics.drawable.GradientDrawable ();
+				round2.setColor (getColor("system_accent2_50"));
+				
+				
+				round2.setCornerRadius (20);
+				
+				line_popup.setBackground (round2);
+				
+				line_popup.setElevation(8);
+				
+				text1.setTextColor(0xFF000000);
+				text2.setTextColor(0xFF000000);
+				text3.setTextColor(0xFF000000);
+				text4.setTextColor(0xFF000000);
+				text5.setTextColor(0xFF000000);
+				text6.setTextColor(0xFF000000);
+				text7.setTextColor(0xFF000000);
+				text8.setTextColor(0xFF000000);
+				text9.setTextColor(0xFF000000);
+				
+				line_div1.setBackgroundColor(0xFFF1F3F4);
+				line_div2.setBackgroundColor(0xFFF1F3F4);
+				line_div3.setBackgroundColor(0xFFF1F3F4);
+				line_div4.setBackgroundColor(0xFFF1F3F4);
+				line_div5.setBackgroundColor(0xFFF1F3F4);
+				line_div6.setBackgroundColor(0xFFF1F3F4);
+				line_div7.setBackgroundColor(0xFFF1F3F4);
+				line_div8.setBackgroundColor(0xFFF1F3F4);
+				
+				image_settings.setImageResource(R.drawable.settings);
+				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
+				image_find.setImageResource(R.drawable.ic_search_black);
+				image_download.setImageResource(R.drawable.ic_get_app_black);
+				image_savepicture.setImageResource(R.drawable.ic_photo_black);
+				image_reload.setImageResource(R.drawable.ic_loop_black);
+				image_forward.setImageResource(R.drawable.ic_chevron_right_black);
+			}
+			else {
+				android.graphics.drawable.GradientDrawable round2 = new android.graphics.drawable.GradientDrawable ();
+				round2.setColor (Color.parseColor("#FFFFFF"));
+				
+				
+				round2.setCornerRadius (20);
+				
+				line_popup.setBackground (round2);
+				
+				line_popup.setElevation(8);
+				
+				text1.setTextColor(0xFF000000);
+				text2.setTextColor(0xFF000000);
+				text3.setTextColor(0xFF000000);
+				text4.setTextColor(0xFF000000);
+				text5.setTextColor(0xFF000000);
+				text6.setTextColor(0xFF000000);
+				text7.setTextColor(0xFF000000);
+				text8.setTextColor(0xFF000000);
+				text9.setTextColor(0xFF000000);
+				
+				line_div1.setBackgroundColor(0xFFF1F3F4);
+				line_div2.setBackgroundColor(0xFFF1F3F4);
+				line_div3.setBackgroundColor(0xFFF1F3F4);
+				line_div4.setBackgroundColor(0xFFF1F3F4);
+				line_div5.setBackgroundColor(0xFFF1F3F4);
+				line_div6.setBackgroundColor(0xFFF1F3F4);
+				line_div7.setBackgroundColor(0xFFF1F3F4);
+				line_div8.setBackgroundColor(0xFFF1F3F4);
+				
+				image_settings.setImageResource(R.drawable.settings);
+				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
+				image_find.setImageResource(R.drawable.ic_search_black);
+				image_download.setImageResource(R.drawable.ic_get_app_black);
+				image_savepicture.setImageResource(R.drawable.ic_photo_black);
+				image_reload.setImageResource(R.drawable.ic_loop_black);
+				image_forward.setImageResource(R.drawable.ic_chevron_right_black);
+				_rippleRoundStroke(holder_top, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_forward, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_reload, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_Download, "#EEEEEE", "#000000", 20, 0, "#FFFFFF");
+				_rippleRoundStroke(line_find, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_pdf, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_savepicture, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_html, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_editsaved, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_extracthtml, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_desktopmode, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_share, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
+			}
 			image_editsaved.setImageResource(R.drawable.ic_create_black);
 			image_html.setImageResource(R.drawable.ic_fast_forward_black);
 			image_extracthtml.setImageResource(R.drawable.ic_create_black);
@@ -4488,10 +4333,17 @@ public class MainActivity extends AppCompatActivity {
 		ImageView expandbtn = inflate.findViewById(R.id.expandbtn);
 		ImageView homebtn = inflate.findViewById(R.id.homebtn);
 		ImageView tabsbtn = inflate.findViewById(R.id.tabsbtn);
+		CardView holdercard = inflate.findViewById(R.id.holdercard);
 		expandedbtns.setVisibility(View.GONE);
 		expandedbtns.setEnabled(false);
+		holdercard.setPreventCornerOverlap(true);
 		if (settings.getString("darkmode", "").equals("1")) {
-			_rippleRoundStroke(bottomlinear, "#000000", "#000000", 360, 0, "#000000");
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				holdercard.setCardBackgroundColor(getColor("system_accent2_800"));
+			}
+			else {
+				holdercard.setCardBackgroundColor(0xFF000000);
+			}
 			homebtn.setImageResource(R.drawable.outline_home_white_48);
 			if (expandedbtns.isEnabled()) {
 				expandbtn.setImageResource(R.drawable.ic_chevron_right_white);
@@ -4501,7 +4353,12 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 		else {
-			_rippleRoundStroke(bottomlinear, "#FFFFFF", "#000000", 360, 0, "#000000");
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				holdercard.setCardBackgroundColor(getColor("system_accent2_100"));
+			}
+			else {
+				holdercard.setCardBackgroundColor(0xFFFFFFFF);
+			}
 			homebtn.setImageResource(R.drawable.home);
 			if (expandedbtns.isEnabled()) {
 				expandbtn.setImageResource(R.drawable.ic_chevron_right_black);
@@ -4589,6 +4446,118 @@ public class MainActivity extends AppCompatActivity {
 					expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
 				}
 			} });
+	}
+	
+	
+	public void _function () {
+	}
+	private int getColor(String name){
+		return getColor(getResources().getIdentifier(name,"color","android"));
+	}
+	
+	{
+	}
+	
+	
+	public void _a12lightmode () {
+		linear19.setBackgroundColor(getColor("system_accent2_100"));
+		linear7.setBackgroundColor(getColor("system_accent2_100"));
+		nonet.setBackgroundColor(0xFFFFFFFF);
+		textview3.setTextColor(0xFF000000);
+		edittext1.setTextColor(0xFF000000);
+		textview5.setTextColor(0xFF000000);
+		textview6.setTextColor(0xFF000000);
+		textview7.setTextColor(0xFF000000);
+		edittext2.setTextColor(0xFF000000);
+		textview9.setTextColor(0xFF000000);
+		textview10.setTextColor(0xFF000000);
+		textview11.setTextColor(0xFF000000);
+		textview12.setTextColor(0xFF000000);
+		textview13.setTextColor(0xFF000000);
+		imageview8.setImageResource(R.drawable.ic_arrow_forward_black);
+		edittext1.setBackgroundColor(getColor("system_accent2_100"));
+		linear14.setBackgroundColor(0xFFFFFFFF);
+		linear16.setBackgroundColor(getColor("system_accent2_100"));
+		linear21.setBackgroundColor(getColor("system_accent2_100"));
+		edittext2.setBackgroundColor(getColor("system_accent2_100"));
+		imageview20.setImageResource(R.drawable.ic_create_black);
+		imageview21.setImageResource(R.drawable.ic_clear_black);
+		imageview22.setImageResource(R.drawable.ic_filter_none_black);
+		imageview23.setImageResource(R.drawable.ic_open_in_new_black);
+		imageview24.setImageResource(R.drawable.ic_do_not_disturb_black);
+		imageview25.setImageResource(R.drawable.settings);
+		imageview26.setImageResource(R.drawable.home);
+		imageview28.setImageResource(R.drawable.ic_chevron_left_black);
+		imageview34.setImageResource(R.drawable.ic_filter_none_black);
+		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
+		tabclose.setImageResource(R.drawable.ic_clear_black);
+		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
+		imageview31.setImageResource(R.drawable.ic_more_vert_black);
+		suggesturl.setBackgroundColor(0xFFFFFFFF);
+		cardview1.setCardBackgroundColor(getColor("system_accent2_100"));
+		if (settings.getString("darkwebview", "").equals("1")) {
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+		}
+	}
+	
+	
+	public void _a12darkmode () {
+		linear19.setBackgroundColor(getColor("system_accent2_800"));
+		linear7.setBackgroundColor(getColor("system_accent2_800"));
+		nonet.setBackgroundColor(0xFF000000);
+		textview3.setTextColor(0xFFFFFFFF);
+		edittext1.setTextColor(0xFFFFFFFF);
+		textview5.setTextColor(0xFFFFFFFF);
+		textview6.setTextColor(0xFFFFFFFF);
+		textview7.setTextColor(0xFFFFFFFF);
+		edittext2.setTextColor(0xFFFFFFFF);
+		textview9.setTextColor(0xFFFFFFFF);
+		textview10.setTextColor(0xFFFFFFFF);
+		textview11.setTextColor(0xFFFFFFFF);
+		textview12.setTextColor(0xFFFFFFFF);
+		textview13.setTextColor(0xFFFFFFFF);
+		imageview8.setImageResource(R.drawable.ic_arrow_forward_white);
+		edittext1.setBackgroundColor(getColor("system_accent2_800"));
+		linear14.setBackgroundColor(0xFF000000);
+		linear16.setBackgroundColor(getColor("system_accent2_800"));
+		linear21.setBackgroundColor(getColor("system_accent2_800"));
+		edittext2.setBackgroundColor(getColor("system_accent2_800"));
+		imageview20.setImageResource(R.drawable.ic_create_white);
+		imageview21.setImageResource(R.drawable.ic_close_white);
+		imageview22.setImageResource(R.drawable.ic_filter_none_white);
+		imageview23.setImageResource(R.drawable.ic_launch_white);
+		imageview24.setImageResource(R.drawable.ic_do_not_disturb_white);
+		imageview25.setImageResource(R.drawable.outline_settings_white_48);
+		imageview26.setImageResource(R.drawable.outline_home_white_48);
+		imageview28.setImageResource(R.drawable.ic_chevron_left_white);
+		imageview34.setImageResource(R.drawable.ic_filter_none_white);
+		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
+		tabclose.setImageResource(R.drawable.ic_close_white);
+		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
+		imageview31.setImageResource(R.drawable.ic_more_vert_white);
+		suggesturl.setBackgroundColor(0xFF000000);
+		cardview1.setCardBackgroundColor(getColor("system_accent2_800"));
+		if (settings.getString("darkwebview", "").equals("1")) {
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+		}
 	}
 	
 	

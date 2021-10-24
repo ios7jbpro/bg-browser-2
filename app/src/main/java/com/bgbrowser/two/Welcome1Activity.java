@@ -45,10 +45,10 @@ public class Welcome1Activity extends AppCompatActivity {
 	
 	private LinearLayout linear1;
 	private LinearLayout linear4;
+	private LinearLayout linear6;
 	private LinearLayout linear3;
 	private ImageView imageview2;
 	private TextView textview2;
-	private LinearLayout linear6;
 	private TextView textview3;
 	private LinearLayout linear7;
 	private TextView textview4;
@@ -69,10 +69,10 @@ public class Welcome1Activity extends AppCompatActivity {
 	private void initialize(Bundle _savedInstanceState) {
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
 		linear4 = (LinearLayout) findViewById(R.id.linear4);
+		linear6 = (LinearLayout) findViewById(R.id.linear6);
 		linear3 = (LinearLayout) findViewById(R.id.linear3);
 		imageview2 = (ImageView) findViewById(R.id.imageview2);
 		textview2 = (TextView) findViewById(R.id.textview2);
-		linear6 = (LinearLayout) findViewById(R.id.linear6);
 		textview3 = (TextView) findViewById(R.id.textview3);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
 		textview4 = (TextView) findViewById(R.id.textview4);
