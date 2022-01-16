@@ -34,7 +34,9 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.view.View;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -91,7 +93,7 @@ public class Welcome1Activity extends AppCompatActivity {
 		textview4.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				hjs.setClass(getApplicationContext(), Welcome2Activity.class);
+				hjs.setClass(getApplicationContext(), WelcomesecureActivity.class);
 				startActivity(hjs);
 				finish();
 			}

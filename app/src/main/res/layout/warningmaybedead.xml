@@ -1,0 +1,68 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="15dp"
+		android:padding="8dp"
+		android:background="#FFFFFF"
+		android:orientation="vertical">
+		<TextView
+			android:id="@+id/textview1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="The app might get discontinued"
+			android:textSize="18sp"
+			android:textStyle="bold"
+			android:textColor="#F44336" />
+		<TextView
+			android:id="@+id/textview2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="...why\?\n\nOh c'mon. You all probably know it anyways. Who even uses this browser although I put effort, when there is Chrome, right\?\n\nBasically no one uses this browser because of the Chrome or other chrome based browsers out there. I feel like I'm doing this for absolutely nothing. No one even respects it...."
+			android:textSize="12sp"
+			android:textColor="#000000" />
+		<TextView
+			android:id="@+id/textview3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="But, what will happen to the app later on\?"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="#000000" />
+		<TextView
+			android:id="@+id/textview4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="Servers that app uses will still be on. App still will take updates for library updates. But will probably not get feature updates.\n-------------------\nread title again:MIGHT, UNSURE YET"
+			android:textSize="12sp"
+			android:textColor="#000000" />
+		<TextView
+			android:id="@+id/textview5"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="What about other works you do as well then\?"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="#000000" />
+		<TextView
+			android:id="@+id/textview6"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="Idk what to do about with em yet"
+			android:textSize="12sp"
+			android:textColor="#000000" />
+	</LinearLayout>
+</LinearLayout>

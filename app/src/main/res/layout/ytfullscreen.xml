@@ -17,5 +17,5 @@
 		app:showVideoDuration="true"
 		app:showSeekBar="true"
 		app:handleNetworkEvents="false"
-		app:enableAutomaticInitialization="true"/>
+		app:enableAutomaticInitialization="true" />
 </LinearLayout>

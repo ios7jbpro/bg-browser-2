@@ -23,7 +23,7 @@
 				android:layout_width="60dp"
 				android:layout_height="60dp"
 				android:src="@drawable/ic_settings_ethernet_black"
-				android:scaleType="fitXY"/>
+				android:scaleType="fitXY" />
 			<TextView
 				android:id="@+id/textview1"
 				android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
 				android:text="The app crashed due an error."
 				android:textSize="18sp"
 				android:textStyle="bold"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<TextView
 				android:id="@+id/textview2"
 				android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
 				android:padding="8dp"
 				android:text="Crash log is below."
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 		</LinearLayout>
 		<ScrollView
 			android:id="@+id/vscroll1"
@@ -60,7 +60,7 @@
 					android:padding="8dp"
 					android:text="error"
 					android:textSize="12sp"
-					android:textColor="#000000"/>
+					android:textColor="#000000" />
 			</LinearLayout>
 		</ScrollView>
 		<LinearLayout
@@ -97,7 +97,7 @@
 						android:text="EXPERIMENTALSETTINGS.XML"
 						android:textSize="14sp"
 						android:textStyle="bold"
-						android:textColor="#FFFFFF"/>
+						android:textColor="#FFFFFF" />
 				</LinearLayout>
 			</androidx.cardview.widget.CardView>
 			<androidx.cardview.widget.CardView
@@ -127,7 +127,7 @@
 						android:text="MAIN.XML"
 						android:textSize="14sp"
 						android:textStyle="bold"
-						android:textColor="#FFFFFF"/>
+						android:textColor="#FFFFFF" />
 				</LinearLayout>
 			</androidx.cardview.widget.CardView>
 		</LinearLayout>
@@ -158,7 +158,7 @@
 					android:text="COPY"
 					android:textSize="14sp"
 					android:textStyle="bold"
-					android:textColor="#FFFFFF"/>
+					android:textColor="#FFFFFF" />
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 	</LinearLayout>

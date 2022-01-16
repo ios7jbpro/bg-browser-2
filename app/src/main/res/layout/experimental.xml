@@ -21,7 +21,7 @@
 			android:text="Experimental Features"
 			android:textSize="20sp"
 			android:textStyle="bold"
-			android:textColor="#FFFFFF"/>
+			android:textColor="#FFFFFF" />
 		<Button
 			android:id="@+id/button4"
 			android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
 			android:background="#F44336"
 			android:text="LAUNCH MAINACTIVITY"
 			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
+			android:textColor="#FFFFFF" />
 	</LinearLayout>
 	<ScrollView
 		android:id="@+id/vscroll1"
@@ -72,7 +72,7 @@
 							android:padding="8dp"
 							android:text="This is some sort of debug menu. Play with/change values if you know what they do."
 							android:textSize="12sp"
-							android:textColor="#000000"/>
+							android:textColor="#000000" />
 					</LinearLayout>
 				</LinearLayout>
 			</androidx.cardview.widget.CardView>
@@ -105,7 +105,7 @@
 							android:text="Values/Flags"
 							android:textSize="12sp"
 							android:textStyle="bold"
-							android:textColor="#000000"/>
+							android:textColor="#000000" />
 					</LinearLayout>
 					<LinearLayout
 						android:id="@+id/linear14"
@@ -127,7 +127,7 @@
 								android:padding="8dp"
 								android:text="settings:darkmode="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext1"
 								android:layout_width="match_parent"
@@ -135,7 +135,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear16"
@@ -151,7 +151,7 @@
 								android:padding="8dp"
 								android:text="settings:cookies="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext2"
 								android:layout_width="match_parent"
@@ -159,7 +159,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear17"
@@ -175,7 +175,7 @@
 								android:padding="8dp"
 								android:text="settings:pfp="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext3"
 								android:layout_width="match_parent"
@@ -183,7 +183,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear18"
@@ -199,7 +199,7 @@
 								android:padding="8dp"
 								android:text="settings:darkwebview="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext4"
 								android:layout_width="match_parent"
@@ -207,7 +207,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear19"
@@ -223,7 +223,7 @@
 								android:padding="8dp"
 								android:text="settings:space="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext5"
 								android:layout_width="match_parent"
@@ -231,7 +231,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear20"
@@ -247,7 +247,7 @@
 								android:padding="8dp"
 								android:text="settings:debug="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext6"
 								android:layout_width="match_parent"
@@ -255,7 +255,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear21"
@@ -271,7 +271,7 @@
 								android:padding="8dp"
 								android:text="settings:rootmode="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext7"
 								android:layout_width="match_parent"
@@ -279,7 +279,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear22"
@@ -295,7 +295,7 @@
 								android:padding="8dp"
 								android:text="flag:followsystem="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext8"
 								android:layout_width="match_parent"
@@ -303,7 +303,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear23"
@@ -319,7 +319,7 @@
 								android:padding="8dp"
 								android:text="settings:homeurl="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext9"
 								android:layout_width="match_parent"
@@ -327,7 +327,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear24"
@@ -343,7 +343,7 @@
 								android:padding="8dp"
 								android:text="settings:mnb="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext10"
 								android:layout_width="match_parent"
@@ -351,7 +351,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 						<LinearLayout
 							android:id="@+id/linear28"
@@ -365,9 +365,9 @@
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:padding="8dp"
-								android:text="flag:style="
+								android:text="settings:usenewtabs="
 								android:textSize="12sp"
-								android:textColor="#000000"/>
+								android:textColor="#000000" />
 							<EditText
 								android:id="@+id/edittext11"
 								android:layout_width="match_parent"
@@ -375,7 +375,7 @@
 								android:padding="8dp"
 								android:textSize="12sp"
 								android:textColor="#000000"
-								android:textColorHint="#607D8B"/>
+								android:textColorHint="#607D8B" />
 						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
@@ -385,7 +385,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="175dp"
 				android:padding="8dp"
-				android:orientation="vertical"/>
+				android:orientation="vertical" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

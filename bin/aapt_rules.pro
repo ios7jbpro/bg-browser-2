@@ -77,67 +77,22 @@
 # view res/layout/abc_screen_simple_overlay_action_mode.xml #generated:32
 -keep class androidx.appcompat.widget.ViewStubCompat { <init>(...); }
 
-# view res/layout/browser_actions_context_menu_page.xml #generated:17
--keep class androidx.browser.browseractions.BrowserActionsFallbackMenuView { <init>(...); }
-
-# view res/layout/a11warn.xml #generated:15
-# view res/layout/credits.xml #generated:172
-# view res/layout/credits.xml #generated:188
-# view res/layout/credits.xml #generated:254
-# view res/layout/credits.xml #generated:270
-# view res/layout/credits.xml #generated:358
-# view res/layout/credits.xml #generated:374
-# view res/layout/credits.xml #generated:453
-# view res/layout/credits.xml #generated:469
-# view res/layout/credits.xml #generated:535
-# view res/layout/credits.xml #generated:551
-# view res/layout/credits.xml #generated:617
-# view res/layout/credits.xml #generated:62
-# view res/layout/credits.xml #generated:633
-# view res/layout/credits.xml #generated:719
-# view res/layout/credits.xml #generated:735
-# view res/layout/credits.xml #generated:78
 # view res/layout/debug.xml #generated:103
 # view res/layout/debug.xml #generated:134
 # view res/layout/debug.xml #generated:73
-# view res/layout/dialog_download_yt.xml #generated:22
-# view res/layout/dialog_download_yt.xml #generated:37
-# view res/layout/dialog_ytplayer.xml #generated:110
-# view res/layout/dialog_ytplayer.xml #generated:142
-# view res/layout/dialog_ytplayer.xml #generated:15
-# view res/layout/dialog_ytplayer.xml #generated:175
-# view res/layout/dialog_ytplayer.xml #generated:27
-# view res/layout/dialog_ytplayer.xml #generated:71
+# view res/layout/dialog_download_yt.xml #generated:38
+# view res/layout/dialog_download_yt.xml #generated:65
 # view res/layout/editpic.xml #generated:15
 # view res/layout/editpic.xml #generated:58
 # view res/layout/editpic.xml #generated:81
 # view res/layout/experimental.xml #generated:47
 # view res/layout/experimental.xml #generated:79
-# view res/layout/forcelaunch.xml #generated:102
-# view res/layout/forcelaunch.xml #generated:129
-# view res/layout/forcelaunch.xml #generated:156
-# view res/layout/forcelaunch.xml #generated:183
-# view res/layout/forcelaunch.xml #generated:210
-# view res/layout/forcelaunch.xml #generated:237
-# view res/layout/forcelaunch.xml #generated:264
-# view res/layout/forcelaunch.xml #generated:291
-# view res/layout/forcelaunch.xml #generated:31
-# view res/layout/forcelaunch.xml #generated:318
-# view res/layout/forcelaunch.xml #generated:345
-# view res/layout/forcelaunch.xml #generated:372
-# view res/layout/forcelaunch.xml #generated:399
-# view res/layout/forcelaunch.xml #generated:426
-# view res/layout/forcelaunch.xml #generated:49
-# view res/layout/forcelaunch.xml #generated:75
-# view res/layout/homesettdialog.xml #generated:15
-# view res/layout/main.xml #generated:84
 # view res/layout/mainoverlay.xml #generated:14
 # view res/layout/plroverlay.xml #generated:8
 # view res/layout/savepdf.xml #generated:36
 # view res/layout/seccheck.xml #generated:30
 # view res/layout/seccheck.xml #generated:56
 # view res/layout/sendhelp.xml #generated:15
-# view res/layout/settings.xml #generated:180
 # view res/layout/settings_general.xml #generated:170
 # view res/layout/settings_general.xml #generated:208
 # view res/layout/settings_general.xml #generated:252
@@ -147,14 +102,20 @@
 # view res/layout/settings_general.xml #generated:430
 # view res/layout/settings_general.xml #generated:541
 # view res/layout/settings_general.xml #generated:594
+# view res/layout/settings_general.xml #generated:632
 # view res/layout/settings_general.xml #generated:83
-# view res/layout/spinnerdialog.xml #generated:131
-# view res/layout/spinnerdialog.xml #generated:164
-# view res/layout/spinnerdialog.xml #generated:20
-# view res/layout/spinnerdialog.xml #generated:33
-# view res/layout/spinnerdialog.xml #generated:66
-# view res/layout/spinnerdialog.xml #generated:98
 # view res/layout/updtlog.xml #generated:8
+# view res/layout/urlbaroverlay.xml #generated:134
+# view res/layout/urlbaroverlay.xml #generated:162
+# view res/layout/urlbaroverlay.xml #generated:24
+# view res/layout/urlbaroverlay.xml #generated:87
+# view res/layout/ytplrbsheet.xml #generated:114
+# view res/layout/ytplrbsheet.xml #generated:147
+# view res/layout/ytplrbsheet.xml #generated:181
+# view res/layout/ytplrbsheet.xml #generated:215
+# view res/layout/ytplrbsheet.xml #generated:24
+# view res/layout/ytplrbsheet.xml #generated:36
+# view res/layout/ytplrbsheet.xml #generated:74
 -keep class androidx.cardview.widget.CardView { <init>(...); }
 
 # view res/layout/design_bottom_sheet_dialog.xml #generated:26
@@ -169,99 +130,126 @@
 # view res/layout/mtrl_calendar_months.xml #generated:18
 -keep class androidx.recyclerview.widget.RecyclerView { <init>(...); }
 
-# view res/layout/main.xml #generated:307
-# view res/layout/main.xml #generated:317
-# view res/layout/main.xml #generated:327
-# view res/layout/main.xml #generated:366
-# view res/layout/main.xml #generated:376
-# view res/layout/main.xml #generated:519
+# view res/layout/main.xml #generated:245
+# view res/layout/main.xml #generated:256
+# view res/layout/main.xml #generated:267
+# view res/layout/main.xml #generated:315
+# view res/layout/main.xml #generated:326
+# view res/layout/main.xml #generated:479
 -keep class androidx.swiperefreshlayout.widget.SwipeRefreshLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:184
+# view res/layout/dialog_download_yt.xml #generated:107
+# view res/layout/welcome2.xml #generated:82
+# view res/layout/welcomelibs.xml #generated:15
+# view res/layout/welcomesecure.xml #generated:15
+-keep class com.airbnb.lottie.LottieAnimationView { <init>(...); }
+
+# view AndroidManifest.xml #generated:178
 -keep class com.bgbrowser.two.A11dmwarnActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:61
+# view AndroidManifest.xml #generated:62
 -keep class com.bgbrowser.two.CreditsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:204
+# view AndroidManifest.xml #generated:250
 # view AndroidManifest.xml #generated:75
 -keep class com.bgbrowser.two.DebugActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:88
+# view AndroidManifest.xml #generated:82
 -keep class com.bgbrowser.two.DialogDownloadYtActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:82
--keep class com.bgbrowser.two.DialogYtplayerActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:116
+# view AndroidManifest.xml #generated:110
 -keep class com.bgbrowser.two.DownloadActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:170
+# view AndroidManifest.xml #generated:164
 -keep class com.bgbrowser.two.EditimageActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:163
+# view AndroidManifest.xml #generated:157
 -keep class com.bgbrowser.two.EditpicActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:34
+# view AndroidManifest.xml #generated:35
 -keep class com.bgbrowser.two.ExperimentalActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:191
+# view AndroidManifest.xml #generated:185
 -keep class com.bgbrowser.two.ExtracthtmlActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:69
 -keep class com.bgbrowser.two.HistoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:54
+# view AndroidManifest.xml #generated:55
 -keep class com.bgbrowser.two.LanguageActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:17
-# view AndroidManifest.xml #generated:211
+# view AndroidManifest.xml #generated:18
+# view AndroidManifest.xml #generated:257
 -keep class com.bgbrowser.two.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:155
+# view AndroidManifest.xml #generated:149
 -keep class com.bgbrowser.two.OpentabActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:128
+# view AndroidManifest.xml #generated:224
+-keep class com.bgbrowser.two.OpentabsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:122
 -keep class com.bgbrowser.two.OtherfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:134
+# view AndroidManifest.xml #generated:217
+-keep class com.bgbrowser.two.QuittgwebActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:128
 -keep class com.bgbrowser.two.SavepdfActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:141
+# view AndroidManifest.xml #generated:135
 -keep class com.bgbrowser.two.SeccheckActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:148
+# view AndroidManifest.xml #generated:142
 -keep class com.bgbrowser.two.SendhelpActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:28
+# view AndroidManifest.xml #generated:29
 -keep class com.bgbrowser.two.SettingsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:95
+# view AndroidManifest.xml #generated:89
 -keep class com.bgbrowser.two.SettingsGeneralActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:9
 -keep class com.bgbrowser.two.SketchApplication { <init>(...); }
 
-# view AndroidManifest.xml #generated:101
+# view AndroidManifest.xml #generated:95
 -keep class com.bgbrowser.two.SplashActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:122
+# view AndroidManifest.xml #generated:116
 -keep class com.bgbrowser.two.TextfileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:177
+# view AndroidManifest.xml #generated:211
+-keep class com.bgbrowser.two.TgwebActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:171
 -keep class com.bgbrowser.two.UpdatedialogActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:198
+# view AndroidManifest.xml #generated:192
 -keep class com.bgbrowser.two.UpdatelogActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:40
+# view AndroidManifest.xml #generated:243
+-keep class com.bgbrowser.two.UrlbartipActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:204
+-keep class com.bgbrowser.two.WarningmaybedeadActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:41
 -keep class com.bgbrowser.two.Welcome1Activity { <init>(...); }
 
-# view AndroidManifest.xml #generated:47
+# view AndroidManifest.xml #generated:48
 -keep class com.bgbrowser.two.Welcome2Activity { <init>(...); }
 
-# view AndroidManifest.xml #generated:108
+# view AndroidManifest.xml #generated:237
+-keep class com.bgbrowser.two.WelcomelibsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:231
+-keep class com.bgbrowser.two.WelcomesecureActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:102
 -keep class com.bgbrowser.two.YtfullscreenActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:198
+-keep class com.bgbrowser.two.YtplrbsheetActivity { <init>(...); }
 
 # view res/layout/test_toolbar.xml #generated:16
 # view res/layout/test_toolbar_custom_background.xml #generated:16
@@ -336,26 +324,35 @@
 # view res/layout/material_chip_input_combo.xml #generated:18
 -keep class com.google.android.material.timepicker.ChipTextInputComboView { <init>(...); }
 
-# view res/layout/dialog_ytplayer.xml #generated:82
+# view res/layout/bridge_full_height_v.xml #generated:10
+-keep class com.hkm.ezwebview.bridge.BridgeWebView { <init>(...); }
+
+# view res/layout/bridge_full_height_v.xml #generated:17
+# view res/layout/fix_height_view.xml #generated:18
+# view res/layout/full_height_nonleakview.xml #generated:18
+# view res/layout/simple_main_mv.xml #generated:18
+# view res/layout/webviewsimple.xml #generated:18
+-keep class com.hkm.ezwebview.loadingi.CircleProgressBar { <init>(...); }
+
+# view res/layout/full_height_nonleakview.xml #generated:10
+# view res/layout/hackview.xml #generated:6
+# view res/layout/webviewsimple.xml #generated:10
+-keep class com.hkm.ezwebview.webviewleakfix.NonLeakingWebView { <init>(...); }
+
 # view res/layout/ytfullscreen.xml #generated:8
+# view res/layout/ytplrbsheet.xml #generated:85
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView { <init>(...); }
 
 # view res/layout/ayp_default_player_ui.xml #generated:110
 -keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar { <init>(...); }
 
-# view res/layout/credits.xml #generated:1020
-# view res/layout/credits.xml #generated:209
-# view res/layout/credits.xml #generated:291
-# view res/layout/credits.xml #generated:395
-# view res/layout/credits.xml #generated:490
-# view res/layout/credits.xml #generated:572
-# view res/layout/credits.xml #generated:654
-# view res/layout/credits.xml #generated:756
-# view res/layout/credits.xml #generated:816
-# view res/layout/credits.xml #generated:855
-# view res/layout/credits.xml #generated:894
-# view res/layout/credits.xml #generated:942
-# view res/layout/credits.xml #generated:981
-# view res/layout/credits.xml #generated:99
+# view res/layout/credits.xml #generated:119
+# view res/layout/credits.xml #generated:161
+# view res/layout/credits.xml #generated:203
+# view res/layout/credits.xml #generated:245
+# view res/layout/credits.xml #generated:287
+# view res/layout/credits.xml #generated:329
+# view res/layout/credits.xml #generated:369
+# view res/layout/credits.xml #generated:77
 -keep class de.hdodenhof.circleimageview.CircleImageView { <init>(...); }
 

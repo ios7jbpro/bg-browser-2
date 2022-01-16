@@ -24,47 +24,49 @@ import java.util.regex.*;
 import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
-import androidx.cardview.widget.CardView;
 import android.widget.TextView;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
-import android.widget.ProgressBar;
-import android.widget.ImageView;
+import androidx.cardview.widget.CardView;
+import com.airbnb.lottie.*;
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.webkit.WebViewClient;
+import java.util.Timer;
+import java.util.TimerTask;
 import android.view.View;
-import android.graphics.Typeface;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
 
 
 public class DialogDownloadYtActivity extends AppCompatActivity {
+	private Timer _timer = new Timer();
 	
 	private LinearLayout linear4;
-	private LinearLayout linear21;
-	private CardView cardview1;
-	private CardView cardview14;
-	private LinearLayout linear22;
 	private LinearLayout linear1;
-	private LinearLayout linear2;
 	private TextView linktext;
-	private WebView webview1;
-	private LinearLayout linear3;
-	private WebView webview2;
-	private ProgressBar progressbar1;
+	private LinearLayout buttons;
+	private WebView dmp4;
+	private WebView dmp3;
+	private LinearLayout loading;
+	private CardView cardview1;
+	private CardView cardview2;
+	private LinearLayout linear2;
 	private TextView textview1;
-	private LinearLayout linear5;
-	private ImageView imageview1;
+	private LinearLayout linear3;
 	private TextView textview2;
+	private LottieAnimationView lottie1;
+	private TextView textview3;
 	
 	private SharedPreferences dialogytlink;
 	private SharedPreferences settings;
 	private RequestNetwork t;
 	private RequestNetwork.RequestListener _t_request_listener;
+	private TimerTask id;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -76,68 +78,59 @@ public class DialogDownloadYtActivity extends AppCompatActivity {
 	
 	private void initialize(Bundle _savedInstanceState) {
 		linear4 = (LinearLayout) findViewById(R.id.linear4);
-		linear21 = (LinearLayout) findViewById(R.id.linear21);
-		cardview1 = (CardView) findViewById(R.id.cardview1);
-		cardview14 = (CardView) findViewById(R.id.cardview14);
-		linear22 = (LinearLayout) findViewById(R.id.linear22);
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
-		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		linktext = (TextView) findViewById(R.id.linktext);
-		webview1 = (WebView) findViewById(R.id.webview1);
-		webview1.getSettings().setJavaScriptEnabled(true);
-		webview1.getSettings().setSupportZoom(true);
-		linear3 = (LinearLayout) findViewById(R.id.linear3);
-		webview2 = (WebView) findViewById(R.id.webview2);
-		webview2.getSettings().setJavaScriptEnabled(true);
-		webview2.getSettings().setSupportZoom(true);
-		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
+		buttons = (LinearLayout) findViewById(R.id.buttons);
+		dmp4 = (WebView) findViewById(R.id.dmp4);
+		dmp4.getSettings().setJavaScriptEnabled(true);
+		dmp4.getSettings().setSupportZoom(true);
+		dmp3 = (WebView) findViewById(R.id.dmp3);
+		dmp3.getSettings().setJavaScriptEnabled(true);
+		dmp3.getSettings().setSupportZoom(true);
+		loading = (LinearLayout) findViewById(R.id.loading);
+		cardview1 = (CardView) findViewById(R.id.cardview1);
+		cardview2 = (CardView) findViewById(R.id.cardview2);
+		linear2 = (LinearLayout) findViewById(R.id.linear2);
 		textview1 = (TextView) findViewById(R.id.textview1);
-		linear5 = (LinearLayout) findViewById(R.id.linear5);
-		imageview1 = (ImageView) findViewById(R.id.imageview1);
+		linear3 = (LinearLayout) findViewById(R.id.linear3);
 		textview2 = (TextView) findViewById(R.id.textview2);
+		lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
+		textview3 = (TextView) findViewById(R.id.textview3);
 		dialogytlink = getSharedPreferences("dialogytlink", Activity.MODE_PRIVATE);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		t = new RequestNetwork(this);
 		
 		//webviewOnProgressChanged
-		webview1.setWebChromeClient(new WebChromeClient() {
+		dmp4.setWebChromeClient(new WebChromeClient() {
 				@Override public void onProgressChanged(WebView view, int _newProgress) {
 					
 				}
 		});
 		
-		webview1.setWebViewClient(new WebViewClient() {
+		dmp4.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				webview1.setVisibility(View.GONE);
-				webview2.setVisibility(View.GONE);
-				linear2.setVisibility(View.GONE);
-				linear3.setVisibility(View.GONE);
-				progressbar1.setVisibility(View.VISIBLE);
+				
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
 			@Override
 			public void onPageFinished(WebView _param1, String _param2) {
 				final String _url = _param2;
-				progressbar1.setVisibility(View.GONE);
-				webview1.setVisibility(View.VISIBLE);
-				webview2.setVisibility(View.VISIBLE);
-				linear2.setVisibility(View.VISIBLE);
-				linear3.setVisibility(View.VISIBLE);
+				
 				super.onPageFinished(_param1, _param2);
 			}
 		});
 		
 		//webviewOnProgressChanged
-		webview2.setWebChromeClient(new WebChromeClient() {
+		dmp3.setWebChromeClient(new WebChromeClient() {
 				@Override public void onProgressChanged(WebView view, int _newProgress) {
 					
 				}
 		});
 		
-		webview2.setWebViewClient(new WebViewClient() {
+		dmp3.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
@@ -153,10 +146,45 @@ public class DialogDownloadYtActivity extends AppCompatActivity {
 			}
 		});
 		
-		imageview1.setOnClickListener(new View.OnClickListener() {
+		cardview1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				finish();
+				buttons.setVisibility(View.GONE);
+				loading.setVisibility(View.VISIBLE);
+				id = new TimerTask() {
+					@Override
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								dmp3.setVisibility(View.VISIBLE);
+								loading.setVisibility(View.GONE);
+							}
+						});
+					}
+				};
+				_timer.schedule(id, (int)(15000));
+			}
+		});
+		
+		cardview2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				buttons.setVisibility(View.GONE);
+				loading.setVisibility(View.VISIBLE);
+				id = new TimerTask() {
+					@Override
+					public void run() {
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								dmp4.setVisibility(View.VISIBLE);
+								loading.setVisibility(View.GONE);
+							}
+						});
+					}
+				};
+				_timer.schedule(id, (int)(15000));
 			}
 		});
 		
@@ -179,23 +207,55 @@ public class DialogDownloadYtActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		if (getIntent().getBooleanExtra("dialogTheme",true)) {
-			// To make the dialog corners round
-			getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
-			
-			{
-				android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
-				int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
-				SketchUi.setColor(0x00000000);SketchUi.setCornerRadius(d*0);
-				
-				((ViewGroup)getWindow().getDecorView()).getChildAt(0).setBackground(SketchUi);
+		dmp4.loadUrl("https://www.yt-download.org/api/button/videos/".concat(dialogytlink.getString("link", "")));
+		dmp3.loadUrl("https://www.yt-download.org/@api/button/mp3/".concat(dialogytlink.getString("link", "")));
+		_function();
+		dmp4.setDownloadListener(new DownloadListener() {
+			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+				String cookies = CookieManager.getInstance().getCookie(url);
+				request.addRequestHeader("cookie", cookies);
+				request.addRequestHeader("User-Agent", userAgent);
+				request.setDescription("Downloading file...");
+				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
+				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
+				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
+				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+				manager.enqueue(request);
+				showMessage("Downloading File....");
+				//Notif if success
+				BroadcastReceiver onComplete = new BroadcastReceiver() {
+					public void onReceive(Context ctxt, Intent intent) {
+						showMessage("Download Complete!");
+						unregisterReceiver(this);
+					}};
+				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 			}
-			
-			// Codes Generated by SketchUi 
-		}
-		// you may face some issues if you use enable ActionBar due to dialog theme
-		webview1.loadUrl("https://www.yt-download.org/api/button/videos/".concat(dialogytlink.getString("link", "")));
-		webview2.loadUrl("https://www.yt-download.org/@api/button/mp3/".concat(dialogytlink.getString("link", "")));
+		});
+		dmp3.setDownloadListener(new DownloadListener() {
+			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+				String cookies = CookieManager.getInstance().getCookie(url);
+				request.addRequestHeader("cookie", cookies);
+				request.addRequestHeader("User-Agent", userAgent);
+				request.setDescription("Downloading file...");
+				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
+				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
+				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
+				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+				manager.enqueue(request);
+				showMessage("Downloading File....");
+				//Notif if success
+				BroadcastReceiver onComplete = new BroadcastReceiver() {
+					public void onReceive(Context ctxt, Intent intent) {
+						showMessage("Download Complete!");
+						unregisterReceiver(this);
+					}};
+				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+			}
+		});
 	}
 	
 	@Override
@@ -211,74 +271,162 @@ public class DialogDownloadYtActivity extends AppCompatActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		_setViewSize(linear4, SketchwareUtil.getDisplayWidthPixels(getApplicationContext()) - 130, SketchwareUtil.getDisplayHeightPixels(getApplicationContext()) - 180);
-		cardview1.setCardBackgroundColor(0xFFFFFFFF);
-		cardview1.setRadius((float)15);
-		cardview1.setCardElevation((float)3);
-		cardview1.setPreventCornerOverlap(true);
-		cardview14.setCardBackgroundColor(0xFFFFFFFF);
-		cardview14.setRadius((float)360);
-		cardview14.setCardElevation((float)0);
-		cardview14.setPreventCornerOverlap(true);
-		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
-		textview2.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansbold.ttf"), 0);
+		dmp3.setVisibility(View.GONE);
+		dmp4.setVisibility(View.GONE);
+		loading.setVisibility(View.GONE);
 		if (settings.getString("darkmode", "").equals("1")) {
-			cardview1.setCardBackgroundColor(0xFF000000);
-			webview1.setBackgroundColor(0xFF000000);
-			webview2.setBackgroundColor(0xFF000000);
+			dmp4.setBackgroundColor(0xFF000000);
+			dmp3.setBackgroundColor(0xFF000000);
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			WebSettingsCompat.setForceDark(dmp4.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			WebSettingsCompat.setForceDark(dmp3.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			{
+				android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
+				int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
+				SketchUi.setColor(0xFF000000);SketchUi.setCornerRadii(new float[]{
+					d*10,d*10,d*10 ,d*10,d*0,d*0 ,d*0,d*0});
+				linear1.setElevation(d*5);
+				android.graphics.drawable.RippleDrawable SketchUiRD = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{0xFFE0E0E0}), SketchUi, null);
+				linear1.setBackground(SketchUiRD);
+				linear1.setClickable(true);
+			}
 			textview1.setTextColor(0xFFFFFFFF);
+			textview3.setTextColor(0xFFFFFFFF);
+			cardview1.setCardBackgroundColor(0xFF212121);
+			cardview2.setCardBackgroundColor(0xFF212121);
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				cardview1.setCardBackgroundColor(getColor("system_accent1_800"));
+				cardview2.setCardBackgroundColor(getColor("system_accent1_800"));
+			}
 			textview2.setTextColor(0xFFFFFFFF);
-			imageview1.setImageResource(R.drawable.ic_close_white);
+			_rippleRoundStroke(linear4, "#000000", "#000000", 360, 0, "#000000");
 		}
 		else {
-			cardview1.setCardBackgroundColor(0xFFFFFFFF);
-			webview1.setBackgroundColor(0xFFFFFFFF);
-			webview1.setBackgroundColor(0xFFFFFFFF);
+			dmp4.setBackgroundColor(0xFFFFFFFF);
+			dmp4.setBackgroundColor(0xFFFFFFFF);
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			WebSettingsCompat.setForceDark(dmp4.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-			textview1.setTextColor(0xFF000000);
-			textview2.setTextColor(0xFF000000);
-			imageview1.setImageResource(R.drawable.ic_clear_black);
-		}
-	}
-	public void _dialogTheme () {
-	}
-	// setTheme() should be set before setContentView() so a small hack to do this in sketchware
-	 @Override 
-	    public void setContentView( int layoutResID) {
-		if(getIntent().getBooleanExtra("dialogTheme",true)){
-			supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-			setTheme(R.style.Theme_AppCompat_Light_Dialog);
-			setFinishOnTouchOutside(true);
-			
-			//change true to false if you want to make dialog non cancellable when clicked outside
-			//if you want to use this without app compat  change supportRequestWindowFeature() and setTheme() to below codes.
-			/*
-requestWindowFeature(Window.FEATURE_NO_TITLE);
-setTheme(android.R.style.Theme_Dialog);
-*/
-			// Calling this allows the Activity behind this one to be seen again. Once all such Activities have been redrawn
-			try {
-				 	java.lang.reflect.Method getActivityOptions = Activity.class.getDeclaredMethod("getActivityOptions"); getActivityOptions.setAccessible(true);
-				 Object options = getActivityOptions.invoke(this); Class<?>[] classes = Activity.class.getDeclaredClasses(); Class<?> translucentConversionListenerClazz = null; 
-				for (Class clazz : classes) { if (clazz.getSimpleName().contains("TranslucentConversionListener")) { translucentConversionListenerClazz = clazz; } } 
-				java.lang.reflect.Method convertToTranslucent = Activity.class.getDeclaredMethod("convertToTranslucent", translucentConversionListenerClazz, ActivityOptions.class); convertToTranslucent.setAccessible(true); convertToTranslucent.invoke(this, null, options); } catch (Throwable t) {
+			WebSettingsCompat.setForceDark(dmp3.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			{
+				android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
+				int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
+				SketchUi.setColor(0xFFFFFFFF);SketchUi.setCornerRadii(new float[]{
+					d*10,d*10,d*10 ,d*10,d*0,d*0 ,d*0,d*0});
+				linear1.setElevation(d*5);
+				android.graphics.drawable.RippleDrawable SketchUiRD = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{0xFFE0E0E0}), SketchUi, null);
+				linear1.setBackground(SketchUiRD);
+				linear1.setClickable(true);
 			}
+			textview1.setTextColor(0xFF000000);
+			textview3.setTextColor(0xFF000000);
+			cardview1.setCardBackgroundColor(0xFFE0E0E0);
+			cardview2.setCardBackgroundColor(0xFFE0E0E0);
+			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				cardview1.setCardBackgroundColor(getColor("system_accent1_100"));
+				cardview2.setCardBackgroundColor(getColor("system_accent1_100"));
+			}
+			textview2.setTextColor(0xFF000000);
+			_rippleRoundStroke(linear4, "#FFFFFF", "#FFFFFF", 360, 0, "#000000");
 		}
-		super.setContentView(layoutResID);  
 	}
+	public void _convertToBottomSheet () {
+	}
+	private androidx.coordinatorlayout.widget.CoordinatorLayout mCoordinatorLayout;
+	@Override
+	public void finish(){
+		com.google.android.material.bottomsheet.BottomSheetBehavior.from(mCoordinatorLayout.getChildAt(0)).setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
+	}
+	private void superFinish(){
+		super.finish();
+	}
+	 @Override
+	public void setContentView(int layId){
+			if(mCoordinatorLayout == null){
+					overridePendingTransition(0,0);
+					mCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(this);
+					makeActivityTransparent();
+			mCoordinatorLayout.setBackgroundColor(0x80000000);
+					mCoordinatorLayout.setOnClickListener(new View.OnClickListener(){
+							@Override
+							public void onClick (View v){
+										finish();
+							}
+					});
+			}
+			mCoordinatorLayout.removeAllViews();
+			androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams params = new androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+			final com.google.android.material.bottomsheet.BottomSheetBehavior behavior = new com.google.android.material.bottomsheet.BottomSheetBehavior();
+			params.setBehavior(behavior);
+			behavior.setBottomSheetCallback(new com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback(){
+					@Override
+					public void onSlide(View bottomSheet, float slideOffset){
+							
+					}
+					@Override
+					public void onStateChanged(View bottomSheet, int newState){
+							if(newState == com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED){
+									superFinish();
+					overridePendingTransition(0,0);
+							}
+					}
+			});
+			View inflated = getLayoutInflater().inflate(layId,null);	
+			mCoordinatorLayout.addView(inflated,params);
+			
+			if(mCoordinatorLayout.getParent()!= null)((ViewGroup)mCoordinatorLayout.getParent()).removeView(mCoordinatorLayout);
+			setContentView(mCoordinatorLayout);
+		inflated.post(new Runnable(){
+			@Override
+			            public void run() {
+				behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
+			}});
+		
+	}
+	
+	private void makeActivityTransparent(){
+		getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(0));
+			try {
+					java.lang.reflect.Method getActivityOptions = Activity.class.getDeclaredMethod("getActivityOptions"); 
+					getActivityOptions.setAccessible(true);
+					Object options = getActivityOptions.invoke(this);
+					Class<?>[] classes = Activity.class.getDeclaredClasses();
+					Class<?> translucentConversionListenerClazz = null;
+					for (Class clazz : classes) { 
+							if (clazz.getSimpleName().contains("TranslucentConversionListener")) { 
+									translucentConversionListenerClazz = clazz;
+							} 
+					} 
+					java.lang.reflect.Method convertToTranslucent = Activity.class.getDeclaredMethod("convertToTranslucent", translucentConversionListenerClazz, ActivityOptions.class); 
+					convertToTranslucent.setAccessible(true); 
+					convertToTranslucent.invoke(this, null, options); 
+			} catch (Throwable t) {
+			}
+	}
+	
 	{
 	}
 	
 	
-	public void _setViewSize (final View _view1, final double _width, final double _height) {
-		_view1.setLayoutParams(new LinearLayout.LayoutParams((int)_width, (int)_height));
+	public void _function () {
+	}
+	private int getColor(String name){
+		return getColor(getResources().getIdentifier(name,"color","android"));
+	}
+	
+	{
+	}
+	
+	
+	public void _rippleRoundStroke (final View _view, final String _focus, final String _pressed, final double _round, final double _stroke, final String _strokeclr) {
+		android.graphics.drawable.GradientDrawable GG = new android.graphics.drawable.GradientDrawable();
+		GG.setColor(Color.parseColor(_focus));
+		GG.setCornerRadius((float)_round);
+		GG.setStroke((int) _stroke,
+		Color.parseColor("#" + _strokeclr.replace("#", "")));
+		android.graphics.drawable.RippleDrawable RE = new android.graphics.drawable.RippleDrawable(new android.content.res.ColorStateList(new int[][]{new int[]{}}, new int[]{ Color.parseColor(_pressed)}), GG, null);
+		_view.setBackground(RE);
 	}
 	
 	

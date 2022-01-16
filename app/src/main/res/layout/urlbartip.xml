@@ -1,0 +1,39 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="8dp"
+		android:background="#FFFFFF"
+		android:orientation="vertical">
+		<ImageView
+			android:id="@+id/imageview1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:src="@drawable/urlbarexample"
+			android:scaleType="fitCenter" />
+		<TextView
+			android:id="@+id/textview1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:text="URL bar is hidden for more immersive experience"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="#000000" />
+		<TextView
+			android:id="@+id/textview2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:text="Tap the arrow button in top right to see the URL bar and other things. Swipe down to close this tip forever."
+			android:textSize="12sp"
+			android:textColor="#000000" />
+	</LinearLayout>
+</LinearLayout>

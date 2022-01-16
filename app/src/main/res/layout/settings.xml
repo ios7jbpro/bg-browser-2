@@ -26,7 +26,7 @@
 				android:text="Settings"
 				android:textSize="40sp"
 				android:textStyle="bold"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 		</LinearLayout>
 	</LinearLayout>
 	<ScrollView
@@ -47,7 +47,7 @@
 				android:padding="8dp"
 				android:text="TextView"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<TextView
 				android:id="@+id/languagetext"
 				android:layout_width="0dp"
@@ -55,7 +55,7 @@
 				android:padding="8dp"
 				android:text="TextView"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<LinearLayout
 				android:id="@+id/linear75"
 				android:layout_width="match_parent"
@@ -72,7 +72,7 @@
 					android:text="General"
 					android:textSize="18sp"
 					android:textStyle="bold"
-					android:textColor="#000000"/>
+					android:textColor="#000000" />
 				<LinearLayout
 					android:id="@+id/linear76"
 					android:layout_width="match_parent"
@@ -84,7 +84,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:src="@drawable/ic_keyboard_arrow_right_black"
-						android:scaleType="center"/>
+						android:scaleType="center" />
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout
@@ -102,7 +102,7 @@
 					android:text="Info"
 					android:textSize="18sp"
 					android:textStyle="bold"
-					android:textColor="#000000"/>
+					android:textColor="#000000" />
 				<LinearLayout
 					android:id="@+id/linear83"
 					android:layout_width="match_parent"
@@ -114,7 +114,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:src="@drawable/ic_keyboard_arrow_right_black"
-						android:scaleType="center"/>
+						android:scaleType="center" />
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout
@@ -132,7 +132,7 @@
 					android:text="Experimental Features"
 					android:textSize="18sp"
 					android:textStyle="bold"
-					android:textColor="#000000"/>
+					android:textColor="#000000" />
 				<LinearLayout
 					android:id="@+id/linear7"
 					android:layout_width="match_parent"
@@ -144,7 +144,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:src="@drawable/ic_keyboard_arrow_right_black"
-						android:scaleType="center"/>
+						android:scaleType="center" />
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout
@@ -162,7 +162,7 @@
 					android:text="Update Log"
 					android:textSize="18sp"
 					android:textStyle="bold"
-					android:textColor="#000000"/>
+					android:textColor="#000000" />
 				<LinearLayout
 					android:id="@+id/linear85"
 					android:layout_width="match_parent"
@@ -174,37 +174,9 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:src="@drawable/ic_keyboard_arrow_right_black"
-						android:scaleType="center"/>
+						android:scaleType="center" />
 				</LinearLayout>
 			</LinearLayout>
-			<androidx.cardview.widget.CardView
-				android:id="@+id/cardview5"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="15dp"
-				android:layout_marginRight="15dp"
-				android:layout_marginBottom="15dp"
-				android:padding="8dp"
-				android:background="#FFFFFF"
-				app:cardElevation="10dp"
-				app:cardCornerRadius="20dp">
-				<LinearLayout
-					android:id="@+id/linear10"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:padding="9dp"
-					android:orientation="horizontal">
-					<Button
-						android:id="@+id/button1"
-						android:layout_width="wrap_content"
-						android:layout_height="30dp"
-						android:padding="4dp"
-						android:background="#FFFFFF"
-						android:text="Update LOG"
-						android:textSize="12sp"
-						android:textColor="#000000"/>
-				</LinearLayout>
-			</androidx.cardview.widget.CardView>
 			<TextView
 				android:id="@+id/textview14"
 				android:layout_width="wrap_content"
@@ -214,7 +186,7 @@
 				android:text="Click here to join our support Telegram"
 				android:textSize="12sp"
 				android:textColor="#9E9E9E"
-				android:layout_gravity="center_horizontal|center_vertical"/>
+				android:layout_gravity="center_horizontal|center_vertical" />
 			<TextView
 				android:id="@+id/textview96"
 				android:layout_width="wrap_content"
@@ -223,13 +195,13 @@
 				android:text="Ask help"
 				android:textSize="12sp"
 				android:textColor="#9E9E9E"
-				android:layout_gravity="center_horizontal|center_vertical"/>
+				android:layout_gravity="center_horizontal|center_vertical" />
 			<LinearLayout
 				android:id="@+id/linear81"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
-				android:orientation="vertical"/>
+				android:orientation="vertical" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

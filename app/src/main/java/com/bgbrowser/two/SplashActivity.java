@@ -32,7 +32,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.graphics.Typeface;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -44,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
 	private LinearLayout linear1;
 	private ImageView imageview1;
 	private LinearLayout linear2;
+	private TextView textview4;
 	private TextView textview1;
 	private TextView textview2;
 	
@@ -63,6 +66,7 @@ public class SplashActivity extends AppCompatActivity {
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
 		imageview1 = (ImageView) findViewById(R.id.imageview1);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
+		textview4 = (TextView) findViewById(R.id.textview4);
 		textview1 = (TextView) findViewById(R.id.textview1);
 		textview2 = (TextView) findViewById(R.id.textview2);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);

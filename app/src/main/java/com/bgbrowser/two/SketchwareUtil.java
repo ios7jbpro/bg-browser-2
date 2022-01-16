@@ -189,11 +189,11 @@ public class SketchwareUtil {
 	}
 
 	public static int getDisplayWidthPixels(Context _context) {
-			return _context.getResources().getDisplayMetrics().widthPixels;
+		return _context.getResources().getDisplayMetrics().widthPixels;
 	}
 
 	public static int getDisplayHeightPixels(Context _context) {
-			return _context.getResources().getDisplayMetrics().heightPixels;
+		return _context.getResources().getDisplayMetrics().heightPixels;
 	}
 
 	public static void getAllKeysFromMap(Map<String, Object> _map, ArrayList<String> _output) {

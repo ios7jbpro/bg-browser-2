@@ -25,19 +25,19 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
-				android:text="Android 11 Detected"
+				android:text="This option requires restart to the app."
 				android:textSize="16sp"
 				android:textStyle="bold"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<TextView
 				android:id="@+id/textview2"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
 				android:gravity="center_horizontal"
-				android:text="App should be\nrestarted in order\nto apply this option in Android 11."
+				android:text="App should be restarted in order to apply this option.\nThe behavior of the app is changed in 1.24+ so\nthat it needs to be restarted from now on."
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<TextView
 				android:id="@+id/textview3"
 				android:layout_width="match_parent"
@@ -48,7 +48,7 @@
 				android:text="Understood"
 				android:textSize="14sp"
 				android:textStyle="bold"
-				android:textColor="#FFFFFF"/>
+				android:textColor="#FFFFFF" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

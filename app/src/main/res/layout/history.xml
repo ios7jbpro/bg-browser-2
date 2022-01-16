@@ -21,7 +21,7 @@
 			android:text="History"
 			android:textSize="25sp"
 			android:textStyle="bold"
-			android:textColor="#000000"/>
+			android:textColor="#000000" />
 		<Button
 			android:id="@+id/button1"
 			android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
 			android:background="@android:color/transparent"
 			android:text="Clear History"
 			android:textSize="12sp"
-			android:textColor="#000000"/>
+			android:textColor="#000000" />
 	</LinearLayout>
 	<ScrollView
 		android:id="@+id/vscroll1"
@@ -50,13 +50,13 @@
 				android:padding="8dp"
 				android:text="TextView"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 			<ListView
 				android:id="@+id/listview1"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
-				android:choiceMode="none"/>
+				android:choiceMode="none" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

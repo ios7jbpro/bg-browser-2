@@ -24,32 +24,43 @@ import java.util.regex.*;
 import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Button;
+import com.airbnb.lottie.*;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import java.util.Timer;
+import java.util.TimerTask;
 import android.view.View;
 import android.text.Editable;
 import android.text.TextWatcher;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
 
 
 public class Welcome2Activity extends AppCompatActivity {
+	private Timer _timer = new Timer();
 	
 	private LinearLayout linear1;
-	private LinearLayout linear3;
+	private LinearLayout loading;
+	private LinearLayout linear4;
 	private LinearLayout linear2;
-	private Button button1;
+	private LinearLayout linear5;
 	private TextView textview1;
 	private EditText edittext1;
+	private TextView textview2;
+	private Button button1;
+	private LottieAnimationView lottie1;
 	
 	private SharedPreferences settings;
 	private SharedPreferences setup;
+	private TimerTask nzs;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -61,21 +72,17 @@ public class Welcome2Activity extends AppCompatActivity {
 	
 	private void initialize(Bundle _savedInstanceState) {
 		linear1 = (LinearLayout) findViewById(R.id.linear1);
-		linear3 = (LinearLayout) findViewById(R.id.linear3);
+		loading = (LinearLayout) findViewById(R.id.loading);
+		linear4 = (LinearLayout) findViewById(R.id.linear4);
 		linear2 = (LinearLayout) findViewById(R.id.linear2);
-		button1 = (Button) findViewById(R.id.button1);
+		linear5 = (LinearLayout) findViewById(R.id.linear5);
 		textview1 = (TextView) findViewById(R.id.textview1);
 		edittext1 = (EditText) findViewById(R.id.edittext1);
+		textview2 = (TextView) findViewById(R.id.textview2);
+		button1 = (Button) findViewById(R.id.button1);
+		lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		setup = getSharedPreferences("setup", Activity.MODE_PRIVATE);
-		
-		button1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				setup.edit().putString("setup", "done").commit();
-				finish();
-			}
-		});
 		
 		edittext1.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -94,6 +101,14 @@ public class Welcome2Activity extends AppCompatActivity {
 				
 			}
 		});
+		
+		button1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				setup.edit().putString("setup", "done").commit();
+				finish();
+			}
+		});
 	}
 	
 	private void initializeLogic() {
@@ -103,6 +118,20 @@ public class Welcome2Activity extends AppCompatActivity {
 		button1.setBackground(gd);
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 		getWindow().setStatusBarColor(0xFFFFFFFF);
+		linear1.setVisibility(View.GONE);
+		nzs = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						linear1.setVisibility(View.VISIBLE);
+						loading.setVisibility(View.GONE);
+					}
+				});
+			}
+		};
+		_timer.schedule(nzs, (int)(5000));
 	}
 	
 	@Override

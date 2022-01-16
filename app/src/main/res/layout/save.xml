@@ -26,7 +26,7 @@
 				android:layout_width="60dp"
 				android:layout_height="60dp"
 				android:src="@drawable/image"
-				android:scaleType="fitCenter"/>
+				android:scaleType="fitCenter" />
 			<TextView
 				android:id="@+id/t1"
 				android:focusable="false"
@@ -37,7 +37,7 @@
 				android:textSize="18sp"
 				android:textStyle="bold"
 				android:textColor="#FFFFFF"
-				android:layout_weight="1"/>
+				android:layout_weight="1" />
 		</LinearLayout>
 		<LinearLayout
 			android:id="@+id/e1"
@@ -54,7 +54,7 @@
 				android:textSize="16sp"
 				android:textColor="#FFFFFF"
 				android:hint="File Name"
-				android:textColorHint="#607D8B"/>
+				android:textColorHint="#607D8B" />
 		</LinearLayout>
 		<LinearLayout
 			android:id="@+id/linear5"
@@ -75,7 +75,7 @@
 				android:textSize="16sp"
 				android:textStyle="bold"
 				android:textColor="#FFFFFF"
-				android:layout_weight="1"/>
+				android:layout_weight="1" />
 			<TextView
 				android:id="@+id/b2"
 				android:focusable="false"
@@ -89,7 +89,7 @@
 				android:textSize="16sp"
 				android:textStyle="bold"
 				android:textColor="#FFFFFF"
-				android:layout_weight="1"/>
+				android:layout_weight="1" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

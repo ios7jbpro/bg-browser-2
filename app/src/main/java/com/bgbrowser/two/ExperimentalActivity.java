@@ -43,7 +43,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -361,11 +363,18 @@ public class ExperimentalActivity extends AppCompatActivity {
 			}
 		});
 		
+		edittext11.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				
+			}
+		});
+		
 		edittext11.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
 				final String _charSeq = _param1.toString();
-				ex.edit().putString("style", edittext11.getText().toString()).commit();
+				settings.edit().putString("usenewtabs", edittext11.getText().toString()).commit();
 			}
 			
 			@Override
@@ -390,18 +399,6 @@ public class ExperimentalActivity extends AppCompatActivity {
 		cardview3.setRadius((float)12);
 		cardview3.setCardElevation((float)8);
 		cardview3.setPreventCornerOverlap(true);
-		lamguage = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						_darkmode();
-					}
-				});
-			}
-		};
-		_timer.scheduleAtFixedRate(lamguage, (int)(0), (int)(500));
 		edittext1.setText(settings.getString("darkmode", ""));
 		edittext2.setText(settings.getString("cookies", ""));
 		edittext3.setText(settings.getString("pfp", ""));
@@ -412,8 +409,7 @@ public class ExperimentalActivity extends AppCompatActivity {
 		edittext8.setText(settings.getString("flagfollowsystem", ""));
 		edittext9.setText(settings.getString("homeurl", ""));
 		edittext10.setText(settings.getString("mnb", ""));
-		edittext11.setText(ex.getString("style", ""));
-		linear28.setVisibility(View.GONE);
+		edittext11.setText(settings.getString("usenewtabs", ""));
 	}
 	
 	@Override
@@ -432,66 +428,6 @@ public class ExperimentalActivity extends AppCompatActivity {
 		startActivity(nd);
 		finish();
 	}
-	public void _darkmode () {
-		if (settings.getString("darkmode", "").equals("1")) {
-			linear3.setBackgroundColor(0xFF000000);
-			textview6.setTextColor(0xFFFFFFFF);
-			textview7.setTextColor(0xFFFFFFFF);
-			edittext1.setTextColor(0xFFFFFFFF);
-			textview8.setTextColor(0xFFFFFFFF);
-			edittext2.setTextColor(0xFFFFFFFF);
-			textview9.setTextColor(0xFFFFFFFF);
-			edittext3.setTextColor(0xFFFFFFFF);
-			textview10.setTextColor(0xFFFFFFFF);
-			edittext4.setTextColor(0xFFFFFFFF);
-			textview11.setTextColor(0xFFFFFFFF);
-			edittext5.setTextColor(0xFFFFFFFF);
-			textview12.setTextColor(0xFFFFFFFF);
-			edittext6.setTextColor(0xFFFFFFFF);
-			textview13.setTextColor(0xFFFFFFFF);
-			edittext7.setTextColor(0xFFFFFFFF);
-			textview14.setTextColor(0xFFFFFFFF);
-			edittext8.setTextColor(0xFFFFFFFF);
-			textview15.setTextColor(0xFFFFFFFF);
-			edittext9.setTextColor(0xFFFFFFFF);
-			textview16.setTextColor(0xFFFFFFFF);
-			edittext10.setTextColor(0xFFFFFFFF);
-			textview18.setTextColor(0xFFFFFFFF);
-			edittext11.setTextColor(0xFFFFFFFF);
-			linear13.setBackgroundColor(0xFF616161);
-			cardview2.setCardBackgroundColor(0xFF212121);
-		}
-		else {
-			linear3.setBackgroundColor(0xFFFFFFFF);
-			linear13.setBackgroundColor(0xFFE0E0E0);
-			textview6.setTextColor(0xFF000000);
-			textview7.setTextColor(0xFF000000);
-			edittext1.setTextColor(0xFF000000);
-			textview8.setTextColor(0xFF000000);
-			edittext2.setTextColor(0xFF000000);
-			textview9.setTextColor(0xFF000000);
-			edittext3.setTextColor(0xFF000000);
-			textview10.setTextColor(0xFF000000);
-			edittext4.setTextColor(0xFF000000);
-			textview11.setTextColor(0xFF000000);
-			edittext5.setTextColor(0xFF000000);
-			textview12.setTextColor(0xFF000000);
-			edittext6.setTextColor(0xFF000000);
-			textview13.setTextColor(0xFF000000);
-			edittext7.setTextColor(0xFF000000);
-			textview14.setTextColor(0xFF000000);
-			edittext8.setTextColor(0xFF000000);
-			textview15.setTextColor(0xFF000000);
-			edittext9.setTextColor(0xFF000000);
-			textview16.setTextColor(0xFF000000);
-			edittext10.setTextColor(0xFF000000);
-			textview18.setTextColor(0xFF000000);
-			edittext11.setTextColor(0xFF000000);
-			cardview2.setCardBackgroundColor(0xFFFFFFFF);
-		}
-	}
-	
-	
 	@Deprecated
 	public void showMessage(String _s) {
 		Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_SHORT).show();

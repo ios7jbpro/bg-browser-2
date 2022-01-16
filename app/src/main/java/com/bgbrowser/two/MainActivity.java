@@ -27,11 +27,10 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
-import androidx.cardview.widget.CardView;
+import android.widget.ImageView;
 import android.widget.EditText;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
@@ -43,21 +42,23 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.net.Uri;
-import android.content.ClipData;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import android.content.ClipData;
+import android.view.View;
 import android.webkit.WebViewClient;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import java.text.DecimalFormat;
 import android.graphics.Typeface;
 import android.content.ClipboardManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.bumptech.glide.Glide;
+import java.text.DecimalFormat;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -68,11 +69,11 @@ import android.content.pm.PackageManager;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.EditorInfo;
-import java.lang.reflect.*;;
+import java.lang.reflect.*;
+import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
-	public final int REQ_CD_FP = 101;
-	public final int REQ_CD_RUNHTML = 102;
+	public final int REQ_CD_RUNHTML = 101;
 	private Timer _timer = new Timer();
 	
 	private double width = 0;
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 	private boolean hasFocus = false;
 	private String share = "";
 	private String s = "";
+	private double titlevisibility = 0;
+	private double edittextvisibility = 0;
 	
 	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
@@ -100,13 +103,9 @@ public class MainActivity extends AppCompatActivity {
 	private LinearLayout linear19;
 	private LinearLayout linear18;
 	private TextView languagetext;
-	private ImageView pfp_tablet;
-	private ImageView imageview26;
-	private ImageView imageview28;
 	private LinearLayout linear20;
-	private ImageView imageview25;
-	private ImageView imageview27;
 	private LinearLayout linear14;
+	private LinearLayout linearspacingtop;
 	private LinearLayout suggesturl;
 	private ProgressBar progressbar1;
 	private LinearLayout linear21;
@@ -116,22 +115,18 @@ public class MainActivity extends AppCompatActivity {
 	private SwipeRefreshLayout swiperefreshlayout3;
 	private SwipeRefreshLayout swiperefreshlayout4;
 	private LinearLayout linear7;
-	private ImageView profile_picture;
-	private CardView cardview1;
 	private ImageView imageview31;
-	private LinearLayout linear2;
-	private ImageView imageview32;
-	private EditText edittext1;
-	private TextView textview1;
-	private ImageView imageview11;
-	private ImageView imageview8;
+	private ImageView unneededimageview;
+	private LinearLayout linear27;
 	private LinearLayout linear26;
 	private LinearLayout shader;
+	private TextView texttabholder;
 	private LinearLayout linear25;
 	private ImageView imageview34;
 	private ImageView imageview20;
 	private TextView textview13;
 	private TextView textview14;
+	private LinearLayout linear28;
 	private LinearLayout linear22;
 	private LinearLayout linear23;
 	private ImageView imageview30;
@@ -144,11 +139,13 @@ public class MainActivity extends AppCompatActivity {
 	private WebView webview2;
 	private LinearLayout nonet;
 	private ImageView imageview24;
+	private LinearLayout linear33;
 	private TextView textview6;
 	private TextView textview7;
 	private WebView webview3;
 	private WebView webview4;
 	private TextView intenturltext;
+	private EditText edittext1;
 	private TextView textview3;
 	private LinearLayout linear13;
 	private ImageView tab1;
@@ -182,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
 	private AlertDialog.Builder homepage;
 	private SharedPreferences setup;
 	private TimerTask urll;
-	private Intent fp = new Intent(Intent.ACTION_GET_CONTENT);
 	private AlertDialog.Builder pro;
 	private SharedPreferences zoom;
 	private Notification music;
@@ -223,6 +219,16 @@ public class MainActivity extends AppCompatActivity {
 	private TimerTask lhtml;
 	private SharedPreferences extracthtml;
 	private Intent exhtml = new Intent();
+	private TimerTask txopening2;
+	private TimerTask txopening3;
+	private Intent warn = new Intent();
+	private TimerTask upt;
+	private Intent tabintent = new Intent();
+	private SharedPreferences tabtitles;
+	private TimerTask loaddtabs;
+	private SharedPreferences selectedtab;
+	private TimerTask iy;
+	private Intent jdjd = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -253,13 +259,9 @@ public class MainActivity extends AppCompatActivity {
 		linear19 = (LinearLayout) findViewById(R.id.linear19);
 		linear18 = (LinearLayout) findViewById(R.id.linear18);
 		languagetext = (TextView) findViewById(R.id.languagetext);
-		pfp_tablet = (ImageView) findViewById(R.id.pfp_tablet);
-		imageview26 = (ImageView) findViewById(R.id.imageview26);
-		imageview28 = (ImageView) findViewById(R.id.imageview28);
 		linear20 = (LinearLayout) findViewById(R.id.linear20);
-		imageview25 = (ImageView) findViewById(R.id.imageview25);
-		imageview27 = (ImageView) findViewById(R.id.imageview27);
 		linear14 = (LinearLayout) findViewById(R.id.linear14);
+		linearspacingtop = (LinearLayout) findViewById(R.id.linearspacingtop);
 		suggesturl = (LinearLayout) findViewById(R.id.suggesturl);
 		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
 		linear21 = (LinearLayout) findViewById(R.id.linear21);
@@ -269,22 +271,18 @@ public class MainActivity extends AppCompatActivity {
 		swiperefreshlayout3 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout3);
 		swiperefreshlayout4 = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout4);
 		linear7 = (LinearLayout) findViewById(R.id.linear7);
-		profile_picture = (ImageView) findViewById(R.id.profile_picture);
-		cardview1 = (CardView) findViewById(R.id.cardview1);
 		imageview31 = (ImageView) findViewById(R.id.imageview31);
-		linear2 = (LinearLayout) findViewById(R.id.linear2);
-		imageview32 = (ImageView) findViewById(R.id.imageview32);
-		edittext1 = (EditText) findViewById(R.id.edittext1);
-		textview1 = (TextView) findViewById(R.id.textview1);
-		imageview11 = (ImageView) findViewById(R.id.imageview11);
-		imageview8 = (ImageView) findViewById(R.id.imageview8);
+		unneededimageview = (ImageView) findViewById(R.id.unneededimageview);
+		linear27 = (LinearLayout) findViewById(R.id.linear27);
 		linear26 = (LinearLayout) findViewById(R.id.linear26);
 		shader = (LinearLayout) findViewById(R.id.shader);
+		texttabholder = (TextView) findViewById(R.id.texttabholder);
 		linear25 = (LinearLayout) findViewById(R.id.linear25);
 		imageview34 = (ImageView) findViewById(R.id.imageview34);
 		imageview20 = (ImageView) findViewById(R.id.imageview20);
 		textview13 = (TextView) findViewById(R.id.textview13);
 		textview14 = (TextView) findViewById(R.id.textview14);
+		linear28 = (LinearLayout) findViewById(R.id.linear28);
 		linear22 = (LinearLayout) findViewById(R.id.linear22);
 		linear23 = (LinearLayout) findViewById(R.id.linear23);
 		imageview30 = (ImageView) findViewById(R.id.imageview30);
@@ -301,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
 		webview2.getSettings().setSupportZoom(true);
 		nonet = (LinearLayout) findViewById(R.id.nonet);
 		imageview24 = (ImageView) findViewById(R.id.imageview24);
+		linear33 = (LinearLayout) findViewById(R.id.linear33);
 		textview6 = (TextView) findViewById(R.id.textview6);
 		textview7 = (TextView) findViewById(R.id.textview7);
 		webview3 = (WebView) findViewById(R.id.webview3);
@@ -310,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
 		webview4.getSettings().setJavaScriptEnabled(true);
 		webview4.getSettings().setSupportZoom(true);
 		intenturltext = (TextView) findViewById(R.id.intenturltext);
+		edittext1 = (EditText) findViewById(R.id.edittext1);
 		textview3 = (TextView) findViewById(R.id.textview3);
 		linear13 = (LinearLayout) findViewById(R.id.linear13);
 		tab1 = (ImageView) findViewById(R.id.tab1);
@@ -337,8 +337,6 @@ public class MainActivity extends AppCompatActivity {
 		ex = getSharedPreferences("ex", Activity.MODE_PRIVATE);
 		homepage = new AlertDialog.Builder(this);
 		setup = getSharedPreferences("setup", Activity.MODE_PRIVATE);
-		fp.setType("*/*");
-		fp.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 		pro = new AlertDialog.Builder(this);
 		zoom = getSharedPreferences("zoom", Activity.MODE_PRIVATE);
 		dms = getSharedPreferences("dms", Activity.MODE_PRIVATE);
@@ -360,104 +358,8 @@ public class MainActivity extends AppCompatActivity {
 		runhtml.setType("text/html");
 		runhtml.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 		extracthtml = getSharedPreferences("extracthtml", Activity.MODE_PRIVATE);
-		
-		imageview26.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (settings.getString("homeurl", "").equals("")) {
-					homepage.setTitle("You did not set a homepage yet!");
-					homepage.setMessage("Go to the settings to set a homepage.");
-					homepage.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface _dialog, int _which) {
-							bzh.setClass(getApplicationContext(), SettingsActivity.class);
-							startActivity(bzh);
-						}
-					});
-					homepage.create().show();
-				}
-				else {
-					if (swiperefreshlayout1.isEnabled()) {
-						webview1.loadUrl(settings.getString("homeurl", ""));
-					}
-					else {
-						if (swiperefreshlayout2.isEnabled()) {
-							webview2.loadUrl(settings.getString("homeurl", ""));
-						}
-						else {
-							if (swiperefreshlayout3.isEnabled()) {
-								webview3.loadUrl(settings.getString("homeurl", ""));
-							}
-							else {
-								if (swiperefreshlayout4.isEnabled()) {
-									webview4.loadUrl(settings.getString("homeurl", ""));
-								}
-								else {
-									
-								}
-							}
-						}
-					}
-				}
-			}
-		});
-		
-		imageview28.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (swiperefreshlayout1.isEnabled()) {
-					webview1.goBack();
-				}
-				else {
-					if (swiperefreshlayout2.isEnabled()) {
-						webview2.goBack();
-					}
-					else {
-						if (swiperefreshlayout3.isEnabled()) {
-							webview3.goBack();
-						}
-						else {
-							if (swiperefreshlayout4.isEnabled()) {
-								webview4.goBack();
-							}
-							else {
-								
-							}
-						}
-					}
-				}
-			}
-		});
-		
-		imageview25.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				bzh.setClass(getApplicationContext(), SettingsActivity.class);
-				startActivity(bzh);
-			}
-		});
-		
-		imageview27.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (linear7.isEnabled()) {
-					linear7.setEnabled(false);
-					linear7.setVisibility(View.GONE);
-				}
-				else {
-					linear7.setEnabled(true);
-					linear7.setVisibility(View.VISIBLE);
-				}
-			}
-		});
-		
-		suggesturl.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				profile_picture.requestFocus();
-				SketchwareUtil.hideKeyboard(getApplicationContext());
-			}
-		});
+		tabtitles = getSharedPreferences("tabtitles", Activity.MODE_PRIVATE);
+		selectedtab = getSharedPreferences("selectedtab", Activity.MODE_PRIVATE);
 		
 		swiperefreshlayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override 
@@ -514,126 +416,11 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		
-		imageview31.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_Popup();
-			}
-		});
-		
-		imageview32.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (swiperefreshlayout1.isEnabled()) {
-					pdf.edit().putString("url", webview1.getUrl()).commit();
-				}
-				else {
-					if (swiperefreshlayout2.isEnabled()) {
-						pdf.edit().putString("url", webview2.getUrl()).commit();
-					}
-					else {
-						if (swiperefreshlayout3.isEnabled()) {
-							pdf.edit().putString("url", webview3.getUrl()).commit();
-						}
-						else {
-							if (swiperefreshlayout4.isEnabled()) {
-								pdf.edit().putString("url", webview4.getUrl()).commit();
-							}
-							else {
-								
-							}
-						}
-					}
-				}
-				spinnerdialog.setAction(Intent.ACTION_VIEW);
-				spinnerdialog.setClass(getApplicationContext(), SeccheckActivity.class);
-				startActivity(spinnerdialog);
-			}
-		});
-		
-		edittext1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				url.edit().putString("url", edittext1.getText().toString()).commit();
-				imageview11.setVisibility(View.VISIBLE);
-			}
-		});
-		
-		edittext1.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
-				final String _charSeq = _param1.toString();
-				imageview8.setVisibility(View.VISIBLE);
-				imageview11.setVisibility(View.VISIBLE);
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
-				
-			}
-			
-			@Override
-			public void afterTextChanged(Editable _param1) {
-				
-			}
-		});
-		
-		imageview11.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("edittext1:Cleared Text"))))).commit();
-				edittext1.setText("");
-			}
-		});
-		
-		imageview8.setOnLongClickListener(new View.OnLongClickListener() {
-			 @Override
-				public boolean onLongClick(View _view) {
-				linear14.setVisibility(View.GONE);
-				linear21.setVisibility(View.VISIBLE);
-				return true;
-				}
-			 });
-		
-		imageview8.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_loadurl();
-			}
-		});
-		
 		imageview34.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", textview14.getText().toString()));
 				SketchwareUtil.showMessage(getApplicationContext(), "Copied to clipboard");
-			}
-		});
-		
-		imageview20.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (webview1.isEnabled()) {
-					edittext1.setText(webview1.getUrl());
-				}
-				else {
-					if (webview2.isEnabled()) {
-						edittext1.setText(webview2.getUrl());
-					}
-					else {
-						if (webview3.isEnabled()) {
-							edittext1.setText(webview3.getUrl());
-						}
-						else {
-							if (webview4.isEnabled()) {
-								edittext1.setText(webview4.getUrl());
-							}
-							else {
-								
-							}
-						}
-					}
-				}
 			}
 		});
 		
@@ -715,64 +502,14 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				if (swiperefreshlayout1.isEnabled()) {
-					progressbar1.setVisibility(View.VISIBLE);
-					if (settings.getString("ytplayer", "").equals("1")) {
-						if (webview1.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
-							startActivity(ytb);
-							dialogytlink.edit().putString("link", webview1.getUrl()).commit();
-							webview1.stopLoading();
-							webview1.goBack();
-						}
-					}
-					else {
-						
-					}
-				}
-				history.edit().putString(String.valueOf(Double.parseDouble(webhistory.getString("webhistory", "")) + 1), webview1.getUrl()).commit();
-				if (settings.getString("killnoconnection", "").equals("1")) {
-					
-				}
-				else {
-					webcheck.startRequestNetwork(RequestNetworkController.GET, webview1.getUrl(), "A", _webcheck_request_listener);
-				}
+				
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
 			@Override
 			public void onPageFinished(WebView _param1, String _param2) {
 				final String _url = _param2;
-				url.edit().putString("urltab1", edittext1.getText().toString()).commit();
-				if (swiperefreshlayout1.isEnabled()) {
-					edittext1.setText(webview1.getTitle());
-					textview13.setText(webview1.getTitle());
-				}
-				lastpage.edit().putString("lastpagetab1", webview1.getUrl()).commit();
-				if (swiperefreshlayout1.isEnabled()) {
-					progressbar1.setVisibility(View.GONE);
-					if (webview1.canGoBack()) {
-						imageview28.setVisibility(View.VISIBLE);
-					}
-					else {
-						imageview28.setVisibility(View.GONE);
-					}
-					swiperefreshlayout1.setRefreshing(false);
-					if (_url.indexOf("https://") == 0) {
-						imageview32.setImageResource(R.drawable.ic_check_white);
-						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-					}
-					else {
-						if (_url.indexOf("file://") == 0) {
-							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-						}
-						else {
-							imageview32.setImageResource(R.drawable.ic_error_white);
-							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
-						}
-					}
-				}
+				
 				super.onPageFinished(_param1, _param2);
 			}
 		});
@@ -788,64 +525,14 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				if (swiperefreshlayout2.isEnabled()) {
-					progressbar1.setVisibility(View.VISIBLE);
-					webview2.setVisibility(View.VISIBLE);
-					edittext1.setText(webview2.getUrl());
-					if (settings.getString("ytplayer", "").equals("1")) {
-						if (webview2.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
-							startActivity(ytb);
-							dialogytlink.edit().putString("link", webview2.getUrl()).commit();
-							webview2.stopLoading();
-							webview2.goBack();
-						}
-					}
-					else {
-						
-					}
-				}
-				history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 2:".concat(webview2.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
-				if (settings.getString("killnoconnection", "").equals("1")) {
-					
-				}
-				else {
-					webcheck.startRequestNetwork(RequestNetworkController.GET, webview2.getUrl(), "A", _webcheck_request_listener);
-				}
+				
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
 			@Override
 			public void onPageFinished(WebView _param1, String _param2) {
 				final String _url = _param2;
-				lastpage.edit().putString("lastpagetab2", webview2.getUrl()).commit();
-				url.edit().putString("urltab2", webview2.getUrl()).commit();
-				if (swiperefreshlayout2.isEnabled()) {
-					progressbar1.setVisibility(View.GONE);
-					if (webview2.canGoBack()) {
-						imageview28.setVisibility(View.VISIBLE);
-					}
-					else {
-						imageview28.setVisibility(View.GONE);
-					}
-					edittext1.setText(webview2.getTitle());
-					textview13.setText(webview2.getTitle());
-					swiperefreshlayout2.setRefreshing(false);
-					if (_url.indexOf("https://") == 0) {
-						imageview32.setImageResource(R.drawable.ic_check_white);
-						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-					}
-					else {
-						if (_url.indexOf("https://") == 0) {
-							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-						}
-						else {
-							imageview32.setImageResource(R.drawable.ic_error_white);
-							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
-						}
-					}
-				}
+				
 				super.onPageFinished(_param1, _param2);
 			}
 		});
@@ -861,63 +548,14 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
-				if (swiperefreshlayout3.isEnabled()) {
-					progressbar1.setVisibility(View.VISIBLE);
-					edittext1.setText(webview3.getUrl());
-					if (settings.getString("ytplayer", "").equals("1")) {
-						if (webview3.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
-							startActivity(ytb);
-							dialogytlink.edit().putString("link", webview3.getUrl()).commit();
-							webview3.stopLoading();
-							webview3.goBack();
-						}
-					}
-					else {
-						
-					}
-				}
-				history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 3:".concat(webview3.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
-				if (settings.getString("killnoconnection", "").equals("1")) {
-					
-				}
-				else {
-					webcheck.startRequestNetwork(RequestNetworkController.GET, webview3.getUrl(), "A", _webcheck_request_listener);
-				}
+				
 				super.onPageStarted(_param1, _param2, _param3);
 			}
 			
 			@Override
 			public void onPageFinished(WebView _param1, String _param2) {
 				final String _url = _param2;
-				lastpage.edit().putString("lastpagetab3", webview3.getUrl()).commit();
-				url.edit().putString("urltab3", webview3.getUrl()).commit();
-				if (swiperefreshlayout3.isEnabled()) {
-					progressbar1.setVisibility(View.GONE);
-					if (webview3.canGoBack()) {
-						imageview28.setVisibility(View.VISIBLE);
-					}
-					else {
-						imageview28.setVisibility(View.GONE);
-					}
-					edittext1.setText(webview3.getTitle());
-					textview13.setText(webview3.getTitle());
-					swiperefreshlayout3.setRefreshing(false);
-					if (_url.indexOf("https://") == 0) {
-						imageview32.setImageResource(R.drawable.ic_check_white);
-						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-					}
-					else {
-						if (_url.indexOf("https://") == 0) {
-							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-						}
-						else {
-							imageview32.setImageResource(R.drawable.ic_error_white);
-							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
-						}
-					}
-				}
+				
 				super.onPageFinished(_param1, _param2);
 			}
 		});
@@ -938,7 +576,7 @@ public class MainActivity extends AppCompatActivity {
 					edittext1.setText(webview4.getUrl());
 					if (settings.getString("ytplayer", "").equals("1")) {
 						if (webview4.getUrl().contains("m.youtube.com/watch")) {
-							ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
+							ytb.setClass(getApplicationContext(), YtplrbsheetActivity.class);
 							startActivity(ytb);
 							dialogytlink.edit().putString("link", webview4.getUrl()).commit();
 							webview4.stopLoading();
@@ -962,34 +600,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onPageFinished(WebView _param1, String _param2) {
 				final String _url = _param2;
-				url.edit().putString("urltab4", edittext1.getText().toString()).commit();
-				if (swiperefreshlayout4.isEnabled()) {
-					progressbar1.setVisibility(View.GONE);
-					if (webview4.canGoBack()) {
-						imageview28.setVisibility(View.VISIBLE);
-					}
-					else {
-						imageview28.setVisibility(View.GONE);
-					}
-					edittext1.setText(webview4.getTitle());
-					textview13.setText(webview4.getTitle());
-					swiperefreshlayout4.setRefreshing(false);
-					if (_url.indexOf("https://") == 0) {
-						imageview32.setImageResource(R.drawable.ic_check_white);
-						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-					}
-					else {
-						if (_url.indexOf("https://") == 0) {
-							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-						}
-						else {
-							imageview32.setImageResource(R.drawable.ic_error_white);
-							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
-						}
-					}
-				}
-				lastpage.edit().putString("lastpagetab4", webview4.getUrl()).commit();
+				
 				super.onPageFinished(_param1, _param2);
 			}
 		});
@@ -997,9 +608,7 @@ public class MainActivity extends AppCompatActivity {
 		tab1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				edittext1.setText(webview1.getUrl());
 				swiperefreshlayout6.setVisibility(View.GONE);
-				
 				swiperefreshlayout1.setEnabled(true);
 				swiperefreshlayout2.setEnabled(false);
 				swiperefreshlayout3.setEnabled(false);
@@ -1010,18 +619,6 @@ public class MainActivity extends AppCompatActivity {
 				swiperefreshlayout3.setVisibility(View.GONE);
 				swiperefreshlayout4.setVisibility(View.GONE);
 				linear7.setVisibility(View.GONE);
-				if (webview1.canGoBack()) {
-					
-				}
-				else {
-					
-				}
-				if (webview1.canGoForward()) {
-					
-				}
-				else {
-					
-				}
 				edittext1.setText(webview1.getTitle());
 			}
 		});
@@ -1029,7 +626,7 @@ public class MainActivity extends AppCompatActivity {
 		tab2.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				edittext1.setText(webview2.getUrl());
+				
 				swiperefreshlayout6.setVisibility(View.GONE);
 				swiperefreshlayout2.setEnabled(true);
 				swiperefreshlayout1.setEnabled(false);
@@ -1041,18 +638,6 @@ public class MainActivity extends AppCompatActivity {
 				swiperefreshlayout3.setVisibility(View.GONE);
 				swiperefreshlayout4.setVisibility(View.GONE);
 				linear7.setVisibility(View.GONE);
-				if (webview2.canGoBack()) {
-					
-				}
-				else {
-					
-				}
-				if (webview2.canGoForward()) {
-					
-				}
-				else {
-					
-				}
 				edittext1.setText(webview2.getTitle());
 			}
 		});
@@ -1060,7 +645,7 @@ public class MainActivity extends AppCompatActivity {
 		tab3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				edittext1.setText(webview3.getUrl());
+				
 				swiperefreshlayout6.setVisibility(View.GONE);
 				
 				swiperefreshlayout3.setEnabled(true);
@@ -1073,18 +658,6 @@ public class MainActivity extends AppCompatActivity {
 				swiperefreshlayout1.setVisibility(View.GONE);
 				swiperefreshlayout4.setVisibility(View.GONE);
 				linear7.setVisibility(View.GONE);
-				if (webview3.canGoBack()) {
-					
-				}
-				else {
-					
-				}
-				if (webview3.canGoForward()) {
-					
-				}
-				else {
-					
-				}
 				edittext1.setText(webview3.getTitle());
 			}
 		});
@@ -1094,7 +667,6 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View _view) {
 				edittext1.setText(webview2.getUrl());
 				swiperefreshlayout6.setVisibility(View.GONE);
-				
 				swiperefreshlayout4.setEnabled(true);
 				swiperefreshlayout1.setEnabled(false);
 				swiperefreshlayout3.setEnabled(false);
@@ -1105,18 +677,6 @@ public class MainActivity extends AppCompatActivity {
 				swiperefreshlayout3.setVisibility(View.GONE);
 				swiperefreshlayout2.setVisibility(View.GONE);
 				linear7.setVisibility(View.GONE);
-				if (webview4.canGoBack()) {
-					
-				}
-				else {
-					
-				}
-				if (webview4.canGoForward()) {
-					
-				}
-				else {
-					
-				}
 				edittext1.setText(webview4.getTitle());
 			}
 		});
@@ -1285,7 +845,7 @@ public class MainActivity extends AppCompatActivity {
 				webcheck.startRequestNetwork(RequestNetworkController.GET, webview5.getUrl(), "A", _webcheck_request_listener);
 				if (settings.getString("ytplayer", "").equals("1")) {
 					if (webview5.getUrl().contains("m.youtube.com")) {
-						ytb.setClass(getApplicationContext(), DialogYtplayerActivity.class);
+						
 						startActivity(ytb);
 						dialogytlink.edit().putString("link", webview5.getUrl()).commit();
 						webview5.stopLoading();
@@ -1385,9 +945,24 @@ public class MainActivity extends AppCompatActivity {
 				final HashMap<String, Object> _responseHeaders = _param3;
 				listmap = new Gson().fromJson(_response, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
 				if (Double.parseDouble(your_version) < Double.parseDouble(listmap.get((int)0).get("update-version").toString())) {
-					dlgupdate.setAction(Intent.ACTION_VIEW);
 					dlgupdate.setClass(getApplicationContext(), UpdatedialogActivity.class);
 					startActivity(dlgupdate);
+					upt = new TimerTask() {
+						@Override
+						public void run() {
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									
+								}
+							});
+						}
+					};
+					_timer.schedule(upt, (int)(4000));
+					settings.edit().putString("uptavab", "1").commit();
+				}
+				else {
+					settings.edit().putString("uptavab", "0").commit();
 				}
 			}
 			
@@ -1406,7 +981,7 @@ public class MainActivity extends AppCompatActivity {
 			android.content.pm.PackageInfo pinfo = getPackageManager().getPackageInfo( package_name, android.content.pm.PackageManager.GET_ACTIVITIES);
 			your_version = pinfo.versionName; }
 		catch (Exception e){ showMessage(e.toString()); }
-		updatcheck.startRequestNetwork(RequestNetworkController.GET, "https://root.apurixz.com/file/user_upload/bg-browser-2-main/database.json", "", _updatcheck_request_listener);
+		updatcheck.startRequestNetwork(RequestNetworkController.GET, "https://raw.githubusercontent.com/ios7jbpro/bgbrowserdatabase/main/database.json", "", _updatcheck_request_listener);
 		_checkupdt();
 		_function();
 		String s = String.valueOf(MathClass.getStatusBarHeight(getApplicationContext()));
@@ -1430,224 +1005,12 @@ public class MainActivity extends AppCompatActivity {
 		};
 		_timer.schedule(settingsreolader, (int)(1800));
 		languagetext.setText(Locale.getDefault().getDisplayLanguage());
-		cardview1.setPreventCornerOverlap(true);
 		if (settings.getString("debug", "").equals("1")) {
 			bzh.setClass(getApplicationContext(), ExperimentalActivity.class);
 			startActivity(bzh);
 			finish();
 		}
-		
-		webview1.setWebChromeClient(new CustomWebClient() {
-			// For 3.0+ Devices
-			protected void openFileChooser(ValueCallback uploadMsg, String acceptType) { mUploadMessage = uploadMsg; Intent i = new Intent(Intent.ACTION_GET_CONTENT); i.addCategory(Intent.CATEGORY_OPENABLE);
-				i.setType("*/*"); startActivityForResult(Intent.createChooser(i, "File Browser"), FILECHOOSER_RESULTCODE);
-			}
-			// For Lollipop 5.0+ Devices
-			public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-				if (uploadMessage != null) {
-					uploadMessage.onReceiveValue(null);
-					uploadMessage = null; } uploadMessage = filePathCallback; 
-				Intent intent = fileChooserParams.createIntent(); 
-				    intent.setType("*/*");
-				try {
-					startActivityForResult(intent, REQUEST_SELECT_FILE);
-				} catch (ActivityNotFoundException e) {
-					uploadMessage = null; Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show(); return false; }
-				return true; }
-		});
-		
-		webview2.setWebChromeClient(new CustomWebClient() {
-			// For 3.0+ Devices
-			protected void openFileChooser(ValueCallback uploadMsg, String acceptType) { mUploadMessage = uploadMsg; Intent i = new Intent(Intent.ACTION_GET_CONTENT); i.addCategory(Intent.CATEGORY_OPENABLE);
-				i.setType("*/*"); startActivityForResult(Intent.createChooser(i, "File Browser"), FILECHOOSER_RESULTCODE);
-			}
-			// For Lollipop 5.0+ Devices
-			public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-				if (uploadMessage != null) {
-					uploadMessage.onReceiveValue(null);
-					uploadMessage = null; } uploadMessage = filePathCallback; 
-				Intent intent = fileChooserParams.createIntent(); 
-				    intent.setType("*/*");
-				try {
-					startActivityForResult(intent, REQUEST_SELECT_FILE);
-				} catch (ActivityNotFoundException e) {
-					uploadMessage = null; Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show(); return false; }
-				return true; }
-		});
-		
-		webview3.setWebChromeClient(new CustomWebClient() {
-			// For 3.0+ Devices
-			protected void openFileChooser(ValueCallback uploadMsg, String acceptType) { mUploadMessage = uploadMsg; Intent i = new Intent(Intent.ACTION_GET_CONTENT); i.addCategory(Intent.CATEGORY_OPENABLE);
-				i.setType("*/*"); startActivityForResult(Intent.createChooser(i, "File Browser"), FILECHOOSER_RESULTCODE);
-			}
-			// For Lollipop 5.0+ Devices
-			public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-				if (uploadMessage != null) {
-					uploadMessage.onReceiveValue(null);
-					uploadMessage = null; } uploadMessage = filePathCallback; 
-				Intent intent = fileChooserParams.createIntent(); 
-				    intent.setType("*/*");
-				try {
-					startActivityForResult(intent, REQUEST_SELECT_FILE);
-				} catch (ActivityNotFoundException e) {
-					uploadMessage = null; Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show(); return false; }
-				return true; }
-		});
-		
-		webview4.setWebChromeClient(new CustomWebClient() {
-			// For 3.0+ Devices
-			protected void openFileChooser(ValueCallback uploadMsg, String acceptType) { mUploadMessage = uploadMsg; Intent i = new Intent(Intent.ACTION_GET_CONTENT); i.addCategory(Intent.CATEGORY_OPENABLE);
-				i.setType("*/*"); startActivityForResult(Intent.createChooser(i, "File Browser"), FILECHOOSER_RESULTCODE);
-			}
-			// For Lollipop 5.0+ Devices
-			public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-				if (uploadMessage != null) {
-					uploadMessage.onReceiveValue(null);
-					uploadMessage = null; } uploadMessage = filePathCallback; 
-				Intent intent = fileChooserParams.createIntent(); 
-				    intent.setType("*/*");
-				try {
-					startActivityForResult(intent, REQUEST_SELECT_FILE);
-				} catch (ActivityNotFoundException e) {
-					uploadMessage = null; Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show(); return false; }
-				return true; }
-		});
-		
-		webview5.setWebChromeClient(new CustomWebClient() {
-			// For 3.0+ Devices
-			protected void openFileChooser(ValueCallback uploadMsg, String acceptType) { mUploadMessage = uploadMsg; Intent i = new Intent(Intent.ACTION_GET_CONTENT); i.addCategory(Intent.CATEGORY_OPENABLE);
-				i.setType("*/*"); startActivityForResult(Intent.createChooser(i, "File Browser"), FILECHOOSER_RESULTCODE);
-			}
-			// For Lollipop 5.0+ Devices
-			public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-				if (uploadMessage != null) {
-					uploadMessage.onReceiveValue(null);
-					uploadMessage = null; } uploadMessage = filePathCallback; 
-				Intent intent = fileChooserParams.createIntent(); 
-				    intent.setType("*/*");
-				try {
-					startActivityForResult(intent, REQUEST_SELECT_FILE);
-				} catch (ActivityNotFoundException e) {
-					uploadMessage = null; Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show(); return false; }
-				return true; }
-		});
-		webview1.setDownloadListener(new DownloadListener() {
-			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-				String cookies = CookieManager.getInstance().getCookie(url);
-				request.addRequestHeader("cookie", cookies);
-				request.addRequestHeader("User-Agent", userAgent);
-				request.setDescription("Downloading file...");
-				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
-				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
-				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-				manager.enqueue(request);
-				showMessage("Downloading File....");
-				//Notif if success
-				BroadcastReceiver onComplete = new BroadcastReceiver() {
-					public void onReceive(Context ctxt, Intent intent) {
-						showMessage("Download Complete!");
-						unregisterReceiver(this);
-					}};
-				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-			}
-		});
-		webview2.setDownloadListener(new DownloadListener() {
-			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-				String cookies = CookieManager.getInstance().getCookie(url);
-				request.addRequestHeader("cookie", cookies);
-				request.addRequestHeader("User-Agent", userAgent);
-				request.setDescription("Downloading file...");
-				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
-				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
-				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-				manager.enqueue(request);
-				showMessage("Downloading File....");
-				//Notif if success
-				BroadcastReceiver onComplete = new BroadcastReceiver() {
-					public void onReceive(Context ctxt, Intent intent) {
-						showMessage("Download Complete!");
-						unregisterReceiver(this);
-					}};
-				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-			}
-		});
-		webview3.setDownloadListener(new DownloadListener() {
-			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-				String cookies = CookieManager.getInstance().getCookie(url);
-				request.addRequestHeader("cookie", cookies);
-				request.addRequestHeader("User-Agent", userAgent);
-				request.setDescription("Downloading file...");
-				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
-				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
-				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-				manager.enqueue(request);
-				showMessage("Downloading File....");
-				//Notif if success
-				BroadcastReceiver onComplete = new BroadcastReceiver() {
-					public void onReceive(Context ctxt, Intent intent) {
-						showMessage("Download Complete!");
-						unregisterReceiver(this);
-					}};
-				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-			}
-		});
-		webview4.setDownloadListener(new DownloadListener() {
-			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-				String cookies = CookieManager.getInstance().getCookie(url);
-				request.addRequestHeader("cookie", cookies);
-				request.addRequestHeader("User-Agent", userAgent);
-				request.setDescription("Downloading file...");
-				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
-				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
-				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-				manager.enqueue(request);
-				showMessage("Downloading File....");
-				//Notif if success
-				BroadcastReceiver onComplete = new BroadcastReceiver() {
-					public void onReceive(Context ctxt, Intent intent) {
-						showMessage("Download Complete!");
-						unregisterReceiver(this);
-					}};
-				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-			}
-		});
-		webview5.setDownloadListener(new DownloadListener() {
-			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-				DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-				String cookies = CookieManager.getInstance().getCookie(url);
-				request.addRequestHeader("cookie", cookies);
-				request.addRequestHeader("User-Agent", userAgent);
-				request.setDescription("Downloading file...");
-				request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-				request.allowScanningByMediaScanner(); request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-				java.io.File aatv = new java.io.File(Environment.getExternalStorageDirectory().getPath() + "/Download");
-				if(!aatv.exists()){if (!aatv.mkdirs()){ Log.e("TravellerLog ::","Problem creating Image folder");}} request.setDestinationInExternalPublicDir("/Download", URLUtil.guessFileName(url, contentDisposition, mimetype));
-				DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-				manager.enqueue(request);
-				showMessage("Downloading File....");
-				//Notif if success
-				BroadcastReceiver onComplete = new BroadcastReceiver() {
-					public void onReceive(Context ctxt, Intent intent) {
-						showMessage("Download Complete!");
-						unregisterReceiver(this);
-					}};
-				registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-			}
-		});
 		_font();
-		_download_path("/Download/");
 		_language();
 		if (settings.getString("desktopmode", "").equals("1")) {
 			_desktop_mode(webview1);
@@ -1701,9 +1064,6 @@ public class MainActivity extends AppCompatActivity {
 				   
 				 }
 		});
-		webview1.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-		webview1.getSettings().setJavaScriptEnabled(true);
-		 
 		webview1.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
 		webview1.getSettings().setAllowFileAccess(true);
 		webview1.getSettings().setAppCacheEnabled(true);
@@ -1713,43 +1073,68 @@ public class MainActivity extends AppCompatActivity {
 		webview1.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 		webview1.getSettings().setDomStorageEnabled(true);
 		webview1.getSettings().setSaveFormData(true);
-		WebSettings webSettings = webview1.getSettings(); 
-		webSettings.setJavaScriptEnabled(true); 
-		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-			webSettings.setAllowFileAccessFromFileURLs(true); 
-			webSettings.setAllowUniversalAccessFromFileURLs(true);
-		}
+		webview1.getSettings().setJavaScriptEnabled(true);
 		webview1.getSettings().setBuiltInZoomControls(true);
 		webview1.getSettings().setDisplayZoomControls(false);
+		webview2.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
+		webview2.getSettings().setAllowFileAccess(true);
+		webview2.getSettings().setAppCacheEnabled(true);
+		webview2.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		webview2.getSettings().setLoadWithOverviewMode(true);
+		webview2.getSettings().setUseWideViewPort(true);
+		webview2.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		webview2.getSettings().setDomStorageEnabled(true);
+		webview2.getSettings().setSaveFormData(true);
+		webview2.getSettings().setJavaScriptEnabled(true);
 		webview2.getSettings().setBuiltInZoomControls(true);
 		webview2.getSettings().setDisplayZoomControls(false);
+		webview3.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
+		webview3.getSettings().setAllowFileAccess(true);
+		webview3.getSettings().setAppCacheEnabled(true);
+		webview3.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		webview3.getSettings().setLoadWithOverviewMode(true);
+		webview3.getSettings().setUseWideViewPort(true);
+		webview3.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		webview3.getSettings().setDomStorageEnabled(true);
+		webview3.getSettings().setSaveFormData(true);
+		webview3.getSettings().setJavaScriptEnabled(true);
 		webview3.getSettings().setBuiltInZoomControls(true);
 		webview3.getSettings().setDisplayZoomControls(false);
+		webview4.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
+		webview4.getSettings().setAllowFileAccess(true);
+		webview4.getSettings().setAppCacheEnabled(true);
+		webview4.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		webview4.getSettings().setLoadWithOverviewMode(true);
+		webview4.getSettings().setUseWideViewPort(true);
+		webview4.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		webview4.getSettings().setDomStorageEnabled(true);
+		webview4.getSettings().setSaveFormData(true);
+		webview4.getSettings().setJavaScriptEnabled(true);
 		webview4.getSettings().setBuiltInZoomControls(true);
 		webview4.getSettings().setDisplayZoomControls(false);
+		webview5.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath()); 
+		webview5.getSettings().setAllowFileAccess(true);
+		webview5.getSettings().setAppCacheEnabled(true);
+		webview5.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		webview5.getSettings().setLoadWithOverviewMode(true);
+		webview5.getSettings().setUseWideViewPort(true);
+		webview5.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		webview5.getSettings().setDomStorageEnabled(true);
+		webview5.getSettings().setSaveFormData(true);
+		webview5.getSettings().setJavaScriptEnabled(true);
 		webview5.getSettings().setBuiltInZoomControls(true);
 		webview5.getSettings().setDisplayZoomControls(false);
-		profile_picture.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(pfp.getString("loc", ""), 1024, 1024));
-		pfp_tablet.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(pfp.getString("loc", ""), 1024, 1024));
 		swiperefreshlayout2.setEnabled(false);
 		progressbar1.setVisibility(View.GONE);
 		swiperefreshlayout2.setVisibility(View.GONE);
-		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview2.setVisibility:False"))))).commit();
 		swiperefreshlayout3.setVisibility(View.GONE);
 		swiperefreshlayout3.setEnabled(false);
 		swiperefreshlayout4.setVisibility(View.GONE);
 		swiperefreshlayout4.setEnabled(false);
 		linear16.setElevation(2);
-		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("webview3.setVisibility:False"))))).commit();
-		edittext1.setVisibility(View.GONE);
-		textview1.setVisibility(View.VISIBLE);
 		linear7.setEnabled(false);
 		linear7.setVisibility(View.GONE);
-		_opening();
 		width = Math.round(SketchwareUtil.getDisplayWidthPixels(getApplicationContext()));
-		logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("roundvalue has been set"))))).commit();
-		_lastpageloader();
 		_checkers();
 		if (settings.getString("seen", "").equals("")) {
 			settings.edit().putString("seen", "google").commit();
@@ -1896,18 +1281,6 @@ public class MainActivity extends AppCompatActivity {
 				w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFFFFFFFF);
 			}
 		}
-		EditText editText = (EditText)findViewById(R.id.edittext1); editText.setOnEditorActionListener(new OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				boolean handled = false;
-				if (actionId == EditorInfo.IME_ACTION_GO) {
-					_loadurl();
-					_hideSoftKeyboard(edittext1);
-					handled = true;
-				}
-				return handled;
-			}
-		});
 		_Ripple("GREY", tab1);
 		_Ripple("GREY", tab2);
 		_Ripple("GREY", tab3);
@@ -1918,74 +1291,25 @@ public class MainActivity extends AppCompatActivity {
 		_Ripple("GREY", imageview21);
 		_Ripple("GREY", imageview22);
 		_Ripple("GREY", imageview23);
-		_Ripple("GREY", imageview31);
 		_Ripple("GREY", imageview34);
-		imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
-		KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener(){
-			 @Override
-			    public void onToggleSoftKeyboard(boolean isVisible){
-				        isKeyboardVisible = isVisible;
-				if (isKeyboardVisible) {
-					if(edittext1.hasFocus()){
-						   suggesturl.setVisibility(View.VISIBLE);
-						textview13.setText(edittext1.getText().toString());
-						edittext1.setText("");
-						_getUrlOf();
-					}else{
-						suggesturl.setVisibility(View.GONE);
-						edittext1.setText(textview13.getText().toString());
-						_focusOnEnabledView();
-					}
-				}
-				else {
-					suggesturl.setVisibility(View.GONE);
-					edittext1.setText(textview13.getText().toString());
-				}
-				
-			} 
-		});
-		_bottomoverlay();
+		_urloverlay();
+		_lastpageloader();
+		if (FileUtil.isExistFile(FileUtil.getExternalStorageDir().concat("/BgBrowser2/Saved"))) {
+			
+		}
+		else {
+			FileUtil.makeDir(FileUtil.getExternalStorageDir().concat("/BgBrowser2/Saved"));
+		}
+		webview1.getSettings().setUseWideViewPort(true);
+		webview2.getSettings().setUseWideViewPort(true);
+		webview3.getSettings().setUseWideViewPort(true);
+		webview4.getSettings().setUseWideViewPort(true);
 	}
 	
 	@Override
 	protected void onActivityResult(int _requestCode, int _resultCode, Intent _data) {
 		super.onActivityResult(_requestCode, _resultCode, _data);
 		switch (_requestCode) {
-			case REQ_CD_FP:
-			if (_resultCode == Activity.RESULT_OK) {
-				ArrayList<String> _filePath = new ArrayList<>();
-				if (_data != null) {
-					if (_data.getClipData() != null) {
-						for (int _index = 0; _index < _data.getClipData().getItemCount(); _index++) {
-							ClipData.Item _item = _data.getClipData().getItemAt(_index);
-							_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _item.getUri()));
-						}
-					}
-					else {
-						_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _data.getData()));
-					}
-				}
-			}
-			break;
-			
-			case REQUEST_SELECT_FILE:
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				if (uploadMessage == null) return; uploadMessage.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(_resultCode, _data)); uploadMessage = null; }
-			break;
-			
-			case FILECHOOSER_RESULTCODE:
-			if (null == mUploadMessage){
-				return; }
-			Uri result = _data == null || _resultCode != RESULT_OK ? null : _data.getData(); mUploadMessage.onReceiveValue(result);
-			mUploadMessage = null;
-			
-			if (true){
-			}
-			else {
-				
-			}
-			break;
-			
 			case REQ_CD_RUNHTML:
 			if (_resultCode == Activity.RESULT_OK) {
 				ArrayList<String> _filePath = new ArrayList<>();
@@ -2023,21 +1347,6 @@ public class MainActivity extends AppCompatActivity {
 							}
 						}
 					}
-					imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-					imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-					lhtml = new TimerTask() {
-						@Override
-						public void run() {
-							runOnUiThread(new Runnable() {
-								@Override
-								public void run() {
-									imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-									imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-								}
-							});
-						}
-					};
-					_timer.schedule(lhtml, (int)(1000));
 				}
 				else {
 					SketchwareUtil.showMessage(getApplicationContext(), "Not a HTML file.");
@@ -2107,281 +1416,11 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 	
-	public void _opening () {
-		textview1.setVisibility(View.VISIBLE);
-		edittext1.setVisibility(View.GONE);
-		edittext1.setAlpha((float)(0.0d));
-		textopening = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						textview1.setAlpha((float)(0.9d));
-						textopening = new TimerTask() {
-							@Override
-							public void run() {
-								runOnUiThread(new Runnable() {
-									@Override
-									public void run() {
-										textview1.setAlpha((float)(0.8d));
-										textopening = new TimerTask() {
-											@Override
-											public void run() {
-												runOnUiThread(new Runnable() {
-													@Override
-													public void run() {
-														textview1.setAlpha((float)(0.7d));
-														textopening = new TimerTask() {
-															@Override
-															public void run() {
-																runOnUiThread(new Runnable() {
-																	@Override
-																	public void run() {
-																		textview1.setAlpha((float)(0.6d));
-																		textopening = new TimerTask() {
-																			@Override
-																			public void run() {
-																				runOnUiThread(new Runnable() {
-																					@Override
-																					public void run() {
-																						textview1.setAlpha((float)(0.5d));
-																						textopening = new TimerTask() {
-																							@Override
-																							public void run() {
-																								runOnUiThread(new Runnable() {
-																									@Override
-																									public void run() {
-																										textview1.setAlpha((float)(0.4d));
-																										textopening = new TimerTask() {
-																											@Override
-																											public void run() {
-																												runOnUiThread(new Runnable() {
-																													@Override
-																													public void run() {
-																														textview1.setAlpha((float)(0.3d));
-																														textopening = new TimerTask() {
-																															@Override
-																															public void run() {
-																																runOnUiThread(new Runnable() {
-																																	@Override
-																																	public void run() {
-																																		textview1.setAlpha((float)(0.2d));
-																																		textopening = new TimerTask() {
-																																			@Override
-																																			public void run() {
-																																				runOnUiThread(new Runnable() {
-																																					@Override
-																																					public void run() {
-																																						textview1.setAlpha((float)(0.1d));
-																																						textopening = new TimerTask() {
-																																							@Override
-																																							public void run() {
-																																								runOnUiThread(new Runnable() {
-																																									@Override
-																																									public void run() {
-																																										textview1.setAlpha((float)(0.0d));
-																																										textopening = new TimerTask() {
-																																											@Override
-																																											public void run() {
-																																												runOnUiThread(new Runnable() {
-																																													@Override
-																																													public void run() {
-																																														textview1.setVisibility(View.GONE);
-																																														edittext1.setVisibility(View.VISIBLE);
-																																														textopening = new TimerTask() {
-																																															@Override
-																																															public void run() {
-																																																runOnUiThread(new Runnable() {
-																																																	@Override
-																																																	public void run() {
-																																																		edittext1.setAlpha((float)(0.1d));
-																																																		textopening = new TimerTask() {
-																																																			@Override
-																																																			public void run() {
-																																																				runOnUiThread(new Runnable() {
-																																																					@Override
-																																																					public void run() {
-																																																						edittext1.setAlpha((float)(0.2d));
-																																																						textopening = new TimerTask() {
-																																																							@Override
-																																																							public void run() {
-																																																								runOnUiThread(new Runnable() {
-																																																									@Override
-																																																									public void run() {
-																																																										edittext1.setAlpha((float)(0.3d));
-																																																										textopening = new TimerTask() {
-																																																											@Override
-																																																											public void run() {
-																																																												runOnUiThread(new Runnable() {
-																																																													@Override
-																																																													public void run() {
-																																																														edittext1.setAlpha((float)(0.4d));
-																																																														textopening = new TimerTask() {
-																																																															@Override
-																																																															public void run() {
-																																																																runOnUiThread(new Runnable() {
-																																																																	@Override
-																																																																	public void run() {
-																																																																		edittext1.setAlpha((float)(0.5d));
-																																																																		textopening = new TimerTask() {
-																																																																			@Override
-																																																																			public void run() {
-																																																																				runOnUiThread(new Runnable() {
-																																																																					@Override
-																																																																					public void run() {
-																																																																						edittext1.setAlpha((float)(0.6d));
-																																																																						textopening = new TimerTask() {
-																																																																							@Override
-																																																																							public void run() {
-																																																																								runOnUiThread(new Runnable() {
-																																																																									@Override
-																																																																									public void run() {
-																																																																										edittext1.setAlpha((float)(0.7d));
-																																																																										textopening = new TimerTask() {
-																																																																											@Override
-																																																																											public void run() {
-																																																																												runOnUiThread(new Runnable() {
-																																																																													@Override
-																																																																													public void run() {
-																																																																														edittext1.setAlpha((float)(0.8d));
-																																																																														textopening = new TimerTask() {
-																																																																															@Override
-																																																																															public void run() {
-																																																																																runOnUiThread(new Runnable() {
-																																																																																	@Override
-																																																																																	public void run() {
-																																																																																		edittext1.setAlpha((float)(0.9d));
-																																																																																		textopening = new TimerTask() {
-																																																																																			@Override
-																																																																																			public void run() {
-																																																																																				runOnUiThread(new Runnable() {
-																																																																																					@Override
-																																																																																					public void run() {
-																																																																																						edittext1.setAlpha((float)(1.0d));
-																																																																																					}
-																																																																																				});
-																																																																																			}
-																																																																																		};
-																																																																																		_timer.schedule(textopening, (int)(90));
-																																																																																	}
-																																																																																});
-																																																																															}
-																																																																														};
-																																																																														_timer.schedule(textopening, (int)(90));
-																																																																													}
-																																																																												});
-																																																																											}
-																																																																										};
-																																																																										_timer.schedule(textopening, (int)(90));
-																																																																									}
-																																																																								});
-																																																																							}
-																																																																						};
-																																																																						_timer.schedule(textopening, (int)(90));
-																																																																					}
-																																																																				});
-																																																																			}
-																																																																		};
-																																																																		_timer.schedule(textopening, (int)(90));
-																																																																	}
-																																																																});
-																																																															}
-																																																														};
-																																																														_timer.schedule(textopening, (int)(90));
-																																																													}
-																																																												});
-																																																											}
-																																																										};
-																																																										_timer.schedule(textopening, (int)(90));
-																																																									}
-																																																								});
-																																																							}
-																																																						};
-																																																						_timer.schedule(textopening, (int)(90));
-																																																					}
-																																																				});
-																																																			}
-																																																		};
-																																																		_timer.schedule(textopening, (int)(90));
-																																																	}
-																																																});
-																																															}
-																																														};
-																																														_timer.schedule(textopening, (int)(90));
-																																													}
-																																												});
-																																											}
-																																										};
-																																										_timer.schedule(textopening, (int)(90));
-																																									}
-																																								});
-																																							}
-																																						};
-																																						_timer.schedule(textopening, (int)(90));
-																																					}
-																																				});
-																																			}
-																																		};
-																																		_timer.schedule(textopening, (int)(90));
-																																	}
-																																});
-																															}
-																														};
-																														_timer.schedule(textopening, (int)(90));
-																													}
-																												});
-																											}
-																										};
-																										_timer.schedule(textopening, (int)(90));
-																									}
-																								});
-																							}
-																						};
-																						_timer.schedule(textopening, (int)(90));
-																					}
-																				});
-																			}
-																		};
-																		_timer.schedule(textopening, (int)(90));
-																	}
-																});
-															}
-														};
-														_timer.schedule(textopening, (int)(90));
-													}
-												});
-											}
-										};
-										_timer.schedule(textopening, (int)(90));
-									}
-								});
-							}
-						};
-						_timer.schedule(textopening, (int)(90));
-					}
-				});
-			}
-		};
-		_timer.schedule(textopening, (int)(1000));
-	}
-	
-	
-	public void _download_path (final String _file_path) {
-		if (FileUtil.isExistFile(_file_path)) {
-			
-		}
-		else {
-			FileUtil.makeDir(_file_path);
-		}
-	}
-	
-	
 	public void _font () {
 		if (ex.getString("googlesans", "").equals("1")) {
 			
-			edittext1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansregular.ttf"), 0);
-			textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/googlesansregular.ttf"), 0);
+			
+			
 			
 		}
 	}
@@ -2581,7 +1620,6 @@ public class MainActivity extends AppCompatActivity {
 		linear7.setBackgroundColor(0xFF000000);
 		nonet.setBackgroundColor(0xFF000000);
 		textview3.setTextColor(0xFFFFFFFF);
-		edittext1.setTextColor(0xFFFFFFFF);
 		textview5.setTextColor(0xFFFFFFFF);
 		textview6.setTextColor(0xFFFFFFFF);
 		textview7.setTextColor(0xFFFFFFFF);
@@ -2591,27 +1629,21 @@ public class MainActivity extends AppCompatActivity {
 		textview11.setTextColor(0xFFFFFFFF);
 		textview12.setTextColor(0xFFFFFFFF);
 		textview13.setTextColor(0xFFFFFFFF);
-		imageview8.setImageResource(R.drawable.ic_arrow_forward_white);
-		edittext1.setBackgroundColor(0xFF000000);
 		linear14.setBackgroundColor(0xFF000000);
 		linear16.setBackgroundColor(0xFF000000);
 		linear21.setBackgroundColor(0xFF000000);
 		edittext2.setBackgroundColor(0xFF000000);
+		linearspacingtop.setBackgroundColor(0xFF000000);
 		imageview20.setImageResource(R.drawable.ic_create_white);
 		imageview21.setImageResource(R.drawable.ic_close_white);
 		imageview22.setImageResource(R.drawable.ic_filter_none_white);
 		imageview23.setImageResource(R.drawable.ic_launch_white);
 		imageview24.setImageResource(R.drawable.ic_do_not_disturb_white);
-		imageview25.setImageResource(R.drawable.outline_settings_white_48);
-		imageview26.setImageResource(R.drawable.outline_home_white_48);
-		imageview28.setImageResource(R.drawable.ic_chevron_left_white);
 		imageview34.setImageResource(R.drawable.ic_filter_none_white);
 		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
 		tabclose.setImageResource(R.drawable.ic_close_white);
 		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
-		imageview31.setImageResource(R.drawable.ic_more_vert_white);
 		suggesturl.setBackgroundColor(0xFF000000);
-		cardview1.setCardBackgroundColor(0xFF000000);
 		if (settings.getString("darkwebview", "").equals("1")) {
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
 			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
@@ -2632,7 +1664,6 @@ public class MainActivity extends AppCompatActivity {
 		linear7.setBackgroundColor(0xFFFFFFFF);
 		nonet.setBackgroundColor(0xFFFFFFFF);
 		textview3.setTextColor(0xFF000000);
-		edittext1.setTextColor(0xFF000000);
 		textview5.setTextColor(0xFF000000);
 		textview6.setTextColor(0xFF000000);
 		textview7.setTextColor(0xFF000000);
@@ -2642,27 +1673,21 @@ public class MainActivity extends AppCompatActivity {
 		textview11.setTextColor(0xFF000000);
 		textview12.setTextColor(0xFF000000);
 		textview13.setTextColor(0xFF000000);
-		imageview8.setImageResource(R.drawable.ic_arrow_forward_black);
-		edittext1.setBackgroundColor(0xFFFFFFFF);
 		linear14.setBackgroundColor(0xFFFFFFFF);
 		linear16.setBackgroundColor(0xFFFFFFFF);
 		linear21.setBackgroundColor(0xFFFFFFFF);
 		edittext2.setBackgroundColor(0xFFFFFFFF);
+		linearspacingtop.setBackgroundColor(0xFFFFFFFF);
 		imageview20.setImageResource(R.drawable.ic_create_black);
 		imageview21.setImageResource(R.drawable.ic_clear_black);
 		imageview22.setImageResource(R.drawable.ic_filter_none_black);
 		imageview23.setImageResource(R.drawable.ic_open_in_new_black);
 		imageview24.setImageResource(R.drawable.ic_do_not_disturb_black);
-		imageview25.setImageResource(R.drawable.settings);
-		imageview26.setImageResource(R.drawable.home);
-		imageview28.setImageResource(R.drawable.ic_chevron_left_black);
 		imageview34.setImageResource(R.drawable.ic_filter_none_black);
 		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
 		tabclose.setImageResource(R.drawable.ic_clear_black);
 		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
-		imageview31.setImageResource(R.drawable.ic_more_vert_black);
 		suggesturl.setBackgroundColor(0xFFFFFFFF);
-		cardview1.setCardBackgroundColor(0xFFFFFFFF);
 		if (settings.getString("darkwebview", "").equals("1")) {
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
 			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
@@ -2674,62 +1699,6 @@ public class MainActivity extends AppCompatActivity {
 			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
 			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
 			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-		}
-	}
-	
-	
-	public void _githubtopbar () {
-		if (webview1.isEnabled()) {
-			if (webview1.getUrl().contains("https://github.com")) {
-				linear14.setBackgroundColor(0xFF24292E);
-				View decor = getWindow().getDecorView();
-				decor.setSystemUiVisibility(0);
-				if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-					Window w =MainActivity.this.getWindow();
-					w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-					w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24292E);
-				}
-			}
-			else {
-				
-			}
-		}
-		else {
-			if (webview2.isEnabled()) {
-				if (webview2.getUrl().contains("https://github.com")) {
-					linear14.setBackgroundColor(0xFF24292E);
-					View decor = getWindow().getDecorView();
-					decor.setSystemUiVisibility(0);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-						Window w =MainActivity.this.getWindow();
-						w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-						w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24292E);
-					}
-				}
-				else {
-					
-				}
-			}
-			else {
-				if (webview3.isEnabled()) {
-					if (webview3.getUrl().contains("https://github.com")) {
-						linear14.setBackgroundColor(0xFF24292E);
-						View decor = getWindow().getDecorView();
-						decor.setSystemUiVisibility(0);
-						if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-							Window w =MainActivity.this.getWindow();
-							w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF24292E);
-						}
-					}
-					else {
-						
-					}
-				}
-				else {
-					
-				}
-			}
 		}
 	}
 	
@@ -2777,6 +1746,13 @@ public class MainActivity extends AppCompatActivity {
 		if (historycounter.getString("historycounter", "").equals("")) {
 			historycounter.edit().putString("historycounter", "0").commit();
 		}
+		if (settings.getString("urlbartip", "").equals("1")) {
+			
+		}
+		else {
+			jdjd.setClass(getApplicationContext(), UrlbartipActivity.class);
+			startActivity(jdjd);
+		}
 	}
 	
 	
@@ -2787,18 +1763,6 @@ public class MainActivity extends AppCompatActivity {
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						if (settings.getString("space", "").equals("on")) {
-							
-							if (settings.getString("spacecolor", "").equals("white")) {
-								
-							}
-							else {
-								
-							}
-						}
-						else {
-							
-						}
 						if (settings.getString("cookies", "").equals("1")) {
 							CookieManager.getInstance().setAcceptCookie(true);
 						}
@@ -2810,46 +1774,9 @@ public class MainActivity extends AppCompatActivity {
 			}
 		};
 		_timer.scheduleAtFixedRate(settingsreolader, (int)(0), (int)(1000));
-		settingsreolader = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						if (settings.getString("pfp", "").equals("1")) {
-							profile_picture.setVisibility(View.VISIBLE);
-							if (settings.getString("tabletmode", "").equals("1")) {
-								pfp_tablet.setVisibility(View.VISIBLE);
-								profile_picture.setVisibility(View.GONE);
-							}
-							else {
-								pfp_tablet.setVisibility(View.GONE);
-								profile_picture.setVisibility(View.VISIBLE);
-							}
-						}
-						else {
-							profile_picture.setVisibility(View.GONE);
-							pfp_tablet.setVisibility(View.GONE);
-						}
-					}
-				});
-			}
-		};
-		_timer.scheduleAtFixedRate(settingsreolader, (int)(0), (int)(500));
 		if (Double.parseDouble(Build.VERSION.SDK) < 28) {
 			if (settings.getString("flagfollowsystem", "").equals("1")) {
-				darkmoderloader = new TimerTask() {
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								_darkmode();
-							}
-						});
-					}
-				};
-				_timer.scheduleAtFixedRate(darkmoderloader, (int)(0), (int)(1000));
+				_darkmode();
 			}
 		}
 	}
@@ -3103,16 +2030,6 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _upload () {
-	}
-	private ValueCallback<Uri> mUploadMessage;
-	public ValueCallback<Uri[]> uploadMessage;
-	public static final int REQUEST_SELECT_FILE = 100;
-	private final static int FILECHOOSER_RESULTCODE = 1;
-	{
-	}
-	
-	
 	public void _Ripple (final String _color, final View _view) {
 		android.content.res.ColorStateList clr = new android.content.res.ColorStateList(new int[][]{new int[]{}},new int[] {Color.parseColor(_color)}); android.graphics.drawable.RippleDrawable ripdr = new android.graphics.drawable.RippleDrawable(clr,null,null); _view.setBackground(ripdr);
 	}
@@ -3161,6 +2078,7 @@ public class MainActivity extends AppCompatActivity {
 		TextView text7 = popupView.findViewById(R.id.text7);
 		TextView text8 = popupView.findViewById(R.id.text8);
 		TextView text9 = popupView.findViewById(R.id.text9);
+		TextView text10 = popupView.findViewById(R.id.text10);
 		
 		//Image
 		ImageView image_settings = popupView.findViewById(R.id.image_settings);
@@ -3175,6 +2093,7 @@ public class MainActivity extends AppCompatActivity {
 		ImageView image_extracthtml = popupView.findViewById(R.id.image_extracthtml);
 		ImageView image_desktopmode = popupView.findViewById(R.id.image_desktopmode);
 		ImageView image_share = popupView.findViewById(R.id.image_share);
+		ImageView image_update = popupView.findViewById(R.id.image_update);
 		
 		//Lines
 		LinearLayout line_popup = popupView.findViewById(R.id.line_popup);
@@ -3190,6 +2109,7 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout line_extracthtml = popupView.findViewById(R.id.line_extracthtml);
 		LinearLayout line_desktopmode = popupView.findViewById(R.id.line_desktopmode);
 		LinearLayout line_share = popupView.findViewById(R.id.line_share);
+		LinearLayout line_update = popupView.findViewById(R.id.line_update);
 		
 		//Dividers
 		LinearLayout holder_top = popupView.findViewById(R.id.holder_top);
@@ -3201,6 +2121,7 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout line_div6 = popupView.findViewById(R.id.line_div6);
 		LinearLayout line_div7 = popupView.findViewById(R.id.line_div7);
 		LinearLayout line_div8 = popupView.findViewById(R.id.line_div8);
+		LinearLayout line_div9 = popupView.findViewById(R.id.line_div9);
 		line_Download.setOnClickListener(new OnClickListener() { public void onClick(View view) {
 				bzh.setClass(getApplicationContext(), DownloadActivity.class);
 				startActivity(bzh);
@@ -3341,21 +2262,6 @@ public class MainActivity extends AppCompatActivity {
 				startActivityForResult(runhtml, REQ_CD_RUNHTML);
 				settings.edit().putString("killnoconnection", "1").commit();
 				SketchwareUtil.showMessage(getApplicationContext(), "Disable No Connection has been turned on so app can load the HTML file.");
-				imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-				imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-				lhtml = new TimerTask() {
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								imageview32.setImageResource(R.drawable.ic_fast_forward_white);
-								imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
-							}
-						});
-					}
-				};
-				_timer.schedule(lhtml, (int)(1000));
 				popup.dismiss();
 			} });
 		
@@ -3401,6 +2307,12 @@ public class MainActivity extends AppCompatActivity {
 				popup.dismiss();
 			} });
 		
+		line_update.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				dlgupdate.setClass(getApplicationContext(), UpdatedialogActivity.class);
+				startActivity(dlgupdate);
+				popup.dismiss();
+			} });
+		
 		if (settings.getString("darkmode", "").equals("1")) {
 			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
 				android.graphics.drawable.GradientDrawable round = new android.graphics.drawable.GradientDrawable ();
@@ -3431,6 +2343,7 @@ public class MainActivity extends AppCompatActivity {
 				line_div6.setBackgroundColor(0xFF202124);
 				line_div7.setBackgroundColor(0xFF202124);
 				line_div8.setBackgroundColor(0xFF202124);
+				line_div9.setBackgroundColor(0xFF202124);
 				
 				image_settings.setImageResource(R.drawable.outline_settings_white_48);
 				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
@@ -3469,6 +2382,7 @@ public class MainActivity extends AppCompatActivity {
 				line_div6.setBackgroundColor(0xFF202124);
 				line_div7.setBackgroundColor(0xFF202124);
 				line_div8.setBackgroundColor(0xFF202124);
+				line_div9.setBackgroundColor(0xFF202124);
 				
 				image_settings.setImageResource(R.drawable.outline_settings_white_48);
 				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_white);
@@ -3489,6 +2403,7 @@ public class MainActivity extends AppCompatActivity {
 				_rippleRoundStroke(line_extracthtml, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_desktopmode, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_share, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_update, "#000000", "#FFFFFF", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_settings, "#000000", "#FFFFFF", 20, 0, "#FFFFFF");
 			}
 			image_editsaved.setImageResource(R.drawable.ic_create_white);
@@ -3534,6 +2449,7 @@ public class MainActivity extends AppCompatActivity {
 				line_div6.setBackgroundColor(0xFFF1F3F4);
 				line_div7.setBackgroundColor(0xFFF1F3F4);
 				line_div8.setBackgroundColor(0xFFF1F3F4);
+				line_div9.setBackgroundColor(0xFFF1F3F4);
 				
 				image_settings.setImageResource(R.drawable.settings);
 				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
@@ -3572,6 +2488,7 @@ public class MainActivity extends AppCompatActivity {
 				line_div6.setBackgroundColor(0xFFF1F3F4);
 				line_div7.setBackgroundColor(0xFFF1F3F4);
 				line_div8.setBackgroundColor(0xFFF1F3F4);
+				line_div9.setBackgroundColor(0xFFF1F3F4);
 				
 				image_settings.setImageResource(R.drawable.settings);
 				image_savepdf.setImageResource(R.drawable.ic_insert_drive_file_black);
@@ -3592,6 +2509,7 @@ public class MainActivity extends AppCompatActivity {
 				_rippleRoundStroke(line_extracthtml, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_desktopmode, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_share, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
+				_rippleRoundStroke(line_update, "#FFFFFF", "#000000", 0, 0, "#FFFFFF");
 				_rippleRoundStroke(line_settings, "#FFFFFF", "#000000", 20, 0, "#FFFFFF");
 			}
 			image_editsaved.setImageResource(R.drawable.ic_create_black);
@@ -3651,6 +2569,13 @@ public class MainActivity extends AppCompatActivity {
 		popup.setAnimationStyle(android.R.style.Animation_Dialog);
 		
 		popup.showAsDropDown(imageview31, 0,0);
+		if (settings.getString("uptavab", "").equals("1")) {
+			
+		}
+		else {
+			line_update.setVisibility(View.GONE);
+			line_div9.setVisibility(View.GONE);
+		}
 	}
 	
 	
@@ -4135,7 +3060,7 @@ public class MainActivity extends AppCompatActivity {
 		try {
 			java.io.FileOutputStream fos = new java.io.FileOutputStream(pictureFile); returnedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
 			fos.close();
-			showMessage("Image Saved in /Download/ folder");
+			showMessage("Image Saved in BgBrowser2/Saved folder");
 		} catch (java.io.FileNotFoundException e) {
 			showMessage("File not found: " + e.getMessage()); } catch (java.io.IOException e) {
 			showMessage("Error accessing file: " + e.getMessage());
@@ -4322,72 +3247,589 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _bottomoverlay () {
+	public void _function () {
+	}
+	private int getColor(String name){
+		return getColor(getResources().getIdentifier(name,"color","android"));
+	}
+	
+	{
+	}
+	
+	
+	public void _a12lightmode () {
+		linear19.setBackgroundColor(getColor("system_accent2_100"));
+		linear7.setBackgroundColor(getColor("system_accent2_100"));
+		nonet.setBackgroundColor(0xFFFFFFFF);
+		textview3.setTextColor(0xFF000000);
+		textview5.setTextColor(0xFF000000);
+		textview6.setTextColor(0xFF000000);
+		textview7.setTextColor(0xFF000000);
+		edittext2.setTextColor(0xFF000000);
+		textview9.setTextColor(0xFF000000);
+		textview10.setTextColor(0xFF000000);
+		textview11.setTextColor(0xFF000000);
+		textview12.setTextColor(0xFF000000);
+		textview13.setTextColor(0xFF000000);
+		linear14.setBackgroundColor(0xFFFFFFFF);
+		linear16.setBackgroundColor(getColor("system_accent2_100"));
+		linear21.setBackgroundColor(getColor("system_accent2_100"));
+		edittext2.setBackgroundColor(getColor("system_accent2_100"));
+		linearspacingtop.setBackgroundColor(0xFFFFFFFF);
+		imageview20.setImageResource(R.drawable.ic_create_black);
+		imageview21.setImageResource(R.drawable.ic_clear_black);
+		imageview22.setImageResource(R.drawable.ic_filter_none_black);
+		imageview23.setImageResource(R.drawable.ic_open_in_new_black);
+		imageview24.setImageResource(R.drawable.ic_do_not_disturb_black);
+		imageview34.setImageResource(R.drawable.ic_filter_none_black);
+		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
+		tabclose.setImageResource(R.drawable.ic_clear_black);
+		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
+		suggesturl.setBackgroundColor(0xFFFFFFFF);
+		if (settings.getString("darkwebview", "").equals("1")) {
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+		}
+	}
+	
+	
+	public void _a12darkmode () {
+		linear19.setBackgroundColor(getColor("system_accent2_800"));
+		linear7.setBackgroundColor(getColor("system_accent2_800"));
+		nonet.setBackgroundColor(0xFF000000);
+		textview3.setTextColor(0xFFFFFFFF);
+		textview5.setTextColor(0xFFFFFFFF);
+		textview6.setTextColor(0xFFFFFFFF);
+		textview7.setTextColor(0xFFFFFFFF);
+		edittext2.setTextColor(0xFFFFFFFF);
+		textview9.setTextColor(0xFFFFFFFF);
+		textview10.setTextColor(0xFFFFFFFF);
+		textview11.setTextColor(0xFFFFFFFF);
+		textview12.setTextColor(0xFFFFFFFF);
+		textview13.setTextColor(0xFFFFFFFF);
+		linear14.setBackgroundColor(0xFF000000);
+		linear16.setBackgroundColor(getColor("system_accent2_800"));
+		linear21.setBackgroundColor(getColor("system_accent2_800"));
+		edittext2.setBackgroundColor(getColor("system_accent2_800"));
+		linearspacingtop.setBackgroundColor(0xFF000000);
+		imageview20.setImageResource(R.drawable.ic_create_white);
+		imageview21.setImageResource(R.drawable.ic_close_white);
+		imageview22.setImageResource(R.drawable.ic_filter_none_white);
+		imageview23.setImageResource(R.drawable.ic_launch_white);
+		imageview24.setImageResource(R.drawable.ic_do_not_disturb_white);
+		imageview34.setImageResource(R.drawable.ic_filter_none_white);
+		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
+		tabclose.setImageResource(R.drawable.ic_close_white);
+		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
+		suggesturl.setBackgroundColor(0xFF000000);
+		if (settings.getString("darkwebview", "").equals("1")) {
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
+			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+		}
+	}
+	
+	
+	public void _urloverlay () {
 		ViewGroup parent = (ViewGroup)rootlinear.getParent(); 
 		ViewGroup root = (ViewGroup) parent.getParent(); 
-		View inflate = getLayoutInflater().inflate(R.layout.mainoverlay, null); 
+		View inflate = getLayoutInflater().inflate(R.layout.urlbaroverlay, null); 
 		inflate.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,android.widget.LinearLayout.LayoutParams.MATCH_PARENT)); 
 		root.addView(inflate); 
+		LinearLayout linear14 = inflate.findViewById(R.id.linear14);
+		EditText urltext = inflate.findViewById(R.id.urltext);
+		ImageView imagespinner = inflate.findViewById(R.id.imagespinner);
+		ImageView imageview8 = inflate.findViewById(R.id.imageview8);
+		ImageView imageview32 = inflate.findViewById(R.id.imageview32);
+		ImageView imageviewexpand = inflate.findViewById(R.id.imageviewexpand);
+		ImageView profile_picture = inflate.findViewById(R.id.profile_picture);
+		CardView cardview1 = inflate.findViewById(R.id.cardview1);
+		CardView cardview2 = inflate.findViewById(R.id.cardview2);
+		CardView cardviewexpand = inflate.findViewById(R.id.cardviewexpand);
 		LinearLayout bottomlinear = inflate.findViewById(R.id.bottomlinear);
 		LinearLayout expandedbtns = inflate.findViewById(R.id.expandedbtns);
-		ImageView expandbtn = inflate.findViewById(R.id.expandbtn);
 		ImageView homebtn = inflate.findViewById(R.id.homebtn);
 		ImageView tabsbtn = inflate.findViewById(R.id.tabsbtn);
-		CardView holdercard = inflate.findViewById(R.id.holdercard);
-		expandedbtns.setVisibility(View.GONE);
-		expandedbtns.setEnabled(false);
-		holdercard.setPreventCornerOverlap(true);
+		final CardView holdercard = inflate.findViewById(R.id.holdercard);
+		_Ripple("GREY", imageview31);
+		holdercard.setCardBackgroundColor(0xFFFFFFFF);
+		homebtn.setImageResource(R.drawable.home);
+		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+			cardview1.setCardBackgroundColor(getColor("system_accent2_100"));
+			cardview2.setCardBackgroundColor(getColor("system_accent2_100"));
+			cardviewexpand.setCardBackgroundColor(getColor("system_accent2_100"));
+			urltext.setBackgroundColor(getColor("system_accent2_100"));
+			holdercard.setCardBackgroundColor(getColor("system_accent2_100"));
+		}
 		if (settings.getString("darkmode", "").equals("1")) {
 			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
+				cardview1.setCardBackgroundColor(getColor("system_accent2_800"));
+				cardview2.setCardBackgroundColor(getColor("system_accent2_800"));
+				cardviewexpand.setCardBackgroundColor(getColor("system_accent2_800"));
+				urltext.setBackgroundColor(getColor("system_accent2_800"));
 				holdercard.setCardBackgroundColor(getColor("system_accent2_800"));
 			}
 			else {
+				cardview1.setCardBackgroundColor(0xFF000000);
+				cardview2.setCardBackgroundColor(0xFF000000);
+				cardviewexpand.setCardBackgroundColor(0xFF000000);
 				holdercard.setCardBackgroundColor(0xFF000000);
 			}
+			urltext.setTextColor(0xFFFFFFFF);
+			urltext.setBackgroundColor(0xFF000000);
+			imageview8.setImageResource(R.drawable.ic_arrow_forward_white);
+			imagespinner.setImageResource(R.drawable.ic_more_vert_white);
+			imageviewexpand.setImageResource(R.drawable.ic_chevron_right_white);
 			homebtn.setImageResource(R.drawable.outline_home_white_48);
-			if (expandedbtns.isEnabled()) {
-				expandbtn.setImageResource(R.drawable.ic_chevron_right_white);
+		}
+		cardview1.setVisibility(View.GONE);
+		cardview1.setEnabled(false);
+		cardview2.setVisibility(View.GONE);
+		holdercard.setVisibility(View.GONE);
+		if (settings.getString("darkmode", "").equals("1")) {
+			imageviewexpand.setImageResource(R.drawable.ic_chevron_left_white);
+		}
+		else {
+			imageviewexpand.setImageResource(R.drawable.ic_chevron_left_black);
+		}
+		KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener(){
+			 @Override
+			    public void onToggleSoftKeyboard(boolean isVisible){
+				        isKeyboardVisible = isVisible;
+				if (isKeyboardVisible) {
+					if(urltext.hasFocus()){
+						   suggesturl.setVisibility(View.VISIBLE);
+						textview13.setText(urltext.getText().toString());
+						urltext.setText("");
+						_getUrlOf();
+						imageview8.setVisibility(View.VISIBLE);
+					}else{
+						suggesturl.setVisibility(View.GONE);
+						if (swiperefreshlayout1.isEnabled()) {
+							urltext.setText(webview1.getUrl());
+							urltext.setText(webview1.getTitle());
+						}
+						if (swiperefreshlayout2.isEnabled()) {
+							urltext.setText(webview2.getUrl());
+							urltext.setText(webview2.getTitle());
+						}
+						if (swiperefreshlayout3.isEnabled()) {
+							urltext.setText(webview3.getUrl());
+							urltext.setText(webview3.getTitle());
+						}
+						if (swiperefreshlayout4.isEnabled()) {
+							urltext.setText(webview4.getUrl());
+							urltext.setText(webview4.getTitle());
+						}
+						_focusOnEnabledView();
+						imageview8.setVisibility(View.GONE);
+						profile_picture.performClick();
+					}
+					linearspacingtop.setVisibility(View.VISIBLE);
+				}
+				else {
+					suggesturl.setVisibility(View.GONE);
+					urltext.setText(textview13.getText().toString());
+					imageview8.setVisibility(View.GONE);
+					profile_picture.performClick();
+					linearspacingtop.setVisibility(View.GONE);
+				}
+				
+			} 
+		});
+		iy = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						if (selectedtab.getString("choose", "").equals("1")) {
+							if (swiperefreshlayout1.isEnabled()) {
+								urltext.setText(webview1.getTitle());
+							}
+							if (swiperefreshlayout2.isEnabled()) {
+								urltext.setText(webview2.getTitle());
+							}
+							if (swiperefreshlayout3.isEnabled()) {
+								urltext.setText(webview3.getTitle());
+							}
+							if (swiperefreshlayout4.isEnabled()) {
+								urltext.setText(webview4.getTitle());
+							}
+						}
+					}
+				});
+			}
+		};
+		_timer.scheduleAtFixedRate(iy, (int)(0), (int)(400));
+		if (swiperefreshlayout1.isEnabled()) {
+			webview1.setWebViewClient(new WebViewClient() {
+							@Override
+							public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
+									final String _url = _param2;
+									//code
+					if (swiperefreshlayout1.isEnabled()) {
+						progressbar1.setVisibility(View.VISIBLE);
+						if (webview1.getUrl().contains("m.youtube.com/watch")) {
+							if (settings.getString("ytplayer", "").equals("1")) {
+								dialogytlink.edit().putString("link", webview1.getUrl()).commit();
+								ytb.setClass(getApplicationContext(), YtplrbsheetActivity.class);
+								startActivity(ytb);
+								webview1.stopLoading();
+								webview1.goBack();
+							}
+							else {
+								
+							}
+						}
+						if (webview1.getUrl().contains("https://web.telegram.org/")) {
+							ytb.setClass(getApplicationContext(), TgwebActivity.class);
+							startActivity(ytb);
+							SketchwareUtil.showMessage(getApplicationContext(), "Telegram Web detected. Switched to TgWebLib.");
+							webview1.stopLoading();
+							webview1.goBack();
+						}
+					}
+					history.edit().putString(String.valueOf(Double.parseDouble(webhistory.getString("webhistory", "")) + 1), webview1.getUrl()).commit();
+					if (settings.getString("killnoconnection", "").equals("1")) {
+						
+					}
+					else {
+						webcheck.startRequestNetwork(RequestNetworkController.GET, webview1.getUrl(), "A", _webcheck_request_listener);
+					}
+					super.onPageStarted(_param1, _param2, _param3);
+							}
+				
+							@Override
+							public void onPageFinished(WebView _param1, String _param2) {
+									final String _url = _param2;
+					//code
+					urltext.setText(webview1.getTitle());
+					if (webview1.getUrl().indexOf("https://") == 0) {
+						imageview32.setImageResource(R.drawable.ic_check_white);
+						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
+					}
+					else {
+						if (webview1.getUrl().indexOf("file://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
+					}
+					lastpage.edit().putString("lastpagetab1", webview1.getUrl()).commit();
+					url.edit().putString("urltab1", webview1.getUrl()).commit();
+					swiperefreshlayout1.setRefreshing(false);
+					progressbar1.setVisibility(View.GONE);
+					textview13.setText(webview1.getTitle());
+					super.onPageFinished(_param1, _param2);
+							}
+					});
+		}
+		if (swiperefreshlayout2.isEnabled()) {
+			webview2.setWebViewClient(new WebViewClient() {
+							@Override
+							public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
+									final String _url = _param2;
+								 //code
+					if (swiperefreshlayout2.isEnabled()) {
+						progressbar1.setVisibility(View.VISIBLE);
+						webview2.setVisibility(View.VISIBLE);
+						edittext1.setText(webview2.getUrl());
+						if (settings.getString("ytplayer", "").equals("1")) {
+							if (webview2.getUrl().contains("m.youtube.com/watch")) {
+								ytb.setClass(getApplicationContext(), YtplrbsheetActivity.class);
+								startActivity(ytb);
+								dialogytlink.edit().putString("link", webview2.getUrl()).commit();
+								webview2.stopLoading();
+								webview2.goBack();
+							}
+						}
+						else {
+							
+						}
+					}
+					history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 2:".concat(webview2.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
+					if (settings.getString("killnoconnection", "").equals("1")) {
+						
+					}
+					else {
+						webcheck.startRequestNetwork(RequestNetworkController.GET, webview2.getUrl(), "A", _webcheck_request_listener);
+					}
+									super.onPageStarted(_param1, _param2, _param3);
+							}
+							
+							@Override
+							public void onPageFinished(WebView _param1, String _param2) {
+									final String _url = _param2;
+					//code
+					urltext.setText(webview2.getTitle());
+					urltext.setText(edittext1.getText().toString());
+					if (webview1.getUrl().indexOf("https://") == 0) {
+						imageview32.setImageResource(R.drawable.ic_check_white);
+						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
+					}
+					else {
+						if (webview1.getUrl().indexOf("file://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
+					}
+					lastpage.edit().putString("lastpagetab2", webview2.getUrl()).commit();
+					url.edit().putString("urltab2", webview2.getUrl()).commit();
+					swiperefreshlayout2.setRefreshing(false);
+					progressbar1.setVisibility(View.GONE);
+					textview13.setText(webview2.getTitle());
+					super.onPageFinished(_param1, _param2);
+							}
+					});
+		}
+		if (swiperefreshlayout3.isEnabled()) {
+			webview3.setWebViewClient(new WebViewClient() {
+							@Override
+							public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
+									final String _url = _param2;
+									//code
+					if (swiperefreshlayout3.isEnabled()) {
+						progressbar1.setVisibility(View.VISIBLE);
+						edittext1.setText(webview3.getUrl());
+						if (settings.getString("ytplayer", "").equals("1")) {
+							if (webview3.getUrl().contains("m.youtube.com/watch")) {
+								ytb.setClass(getApplicationContext(), YtplrbsheetActivity.class);
+								startActivity(ytb);
+								dialogytlink.edit().putString("link", webview3.getUrl()).commit();
+								webview3.stopLoading();
+								webview3.goBack();
+							}
+						}
+						else {
+							
+						}
+					}
+					history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 3:".concat(webview3.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
+					if (settings.getString("killnoconnection", "").equals("1")) {
+						
+					}
+					else {
+						webcheck.startRequestNetwork(RequestNetworkController.GET, webview3.getUrl(), "A", _webcheck_request_listener);
+					}
+					super.onPageStarted(_param1, _param2, _param3);
+							}
+							
+							@Override
+							public void onPageFinished(WebView _param1, String _param2) {
+									final String _url = _param2;
+					//code
+					edittext1.setText(webview4.getTitle());
+					urltext.setText(edittext1.getText().toString());
+					if (webview1.getUrl().indexOf("https://") == 0) {
+						imageview32.setImageResource(R.drawable.ic_check_white);
+						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
+					}
+					else {
+						if (webview1.getUrl().indexOf("file://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
+					}
+					lastpage.edit().putString("lastpagetab3", webview3.getUrl()).commit();
+					url.edit().putString("urltab3", webview3.getUrl()).commit();
+					swiperefreshlayout3.setRefreshing(false);
+					progressbar1.setVisibility(View.GONE);
+					textview13.setText(webview3.getTitle());
+					super.onPageFinished(_param1, _param2);
+							}
+					});
+		}
+		if (swiperefreshlayout4.isEnabled()) {
+			webview4.setWebViewClient(new WebViewClient() {
+							@Override
+							public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
+									final String _url = _param2;
+									//code
+					if (swiperefreshlayout4.isEnabled()) {
+						progressbar1.setVisibility(View.VISIBLE);
+						edittext1.setText(webview4.getUrl());
+						if (settings.getString("ytplayer", "").equals("1")) {
+							if (webview4.getUrl().contains("m.youtube.com/watch")) {
+								ytb.setClass(getApplicationContext(), YtplrbsheetActivity.class);
+								startActivity(ytb);
+								dialogytlink.edit().putString("link", webview4.getUrl()).commit();
+								webview4.stopLoading();
+								webview4.goBack();
+							}
+						}
+						else {
+							
+						}
+					}
+					history.edit().putString("history", "[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Tab 4:".concat(webview4.getUrl())))).concat("\n".concat(history.getString("history", "")))).commit();
+					if (settings.getString("killnoconnection", "").equals("1")) {
+						
+					}
+					else {
+						webcheck.startRequestNetwork(RequestNetworkController.GET, webview4.getUrl(), "A", _webcheck_request_listener);
+					}
+					super.onPageStarted(_param1, _param2, _param3);
+							}
+							
+							@Override
+							public void onPageFinished(WebView _param1, String _param2) {
+									final String _url = _param2;
+					//code
+					edittext1.setText(webview3.getTitle());
+					urltext.setText(edittext1.getText().toString());
+					if (webview1.getUrl().indexOf("https://") == 0) {
+						imageview32.setImageResource(R.drawable.ic_check_white);
+						imageview32.setColorFilter(0xFF4CAF50, PorterDuff.Mode.MULTIPLY);
+					}
+					else {
+						if (webview1.getUrl().indexOf("file://") == 0) {
+							imageview32.setImageResource(R.drawable.ic_fast_forward_white);
+							imageview32.setColorFilter(0xFFFBC02D, PorterDuff.Mode.MULTIPLY);
+						}
+						else {
+							imageview32.setImageResource(R.drawable.ic_error_white);
+							imageview32.setColorFilter(0xFFF44336, PorterDuff.Mode.MULTIPLY);
+						}
+					}
+					lastpage.edit().putString("lastpagetab4", webview4.getUrl()).commit();
+					url.edit().putString("urltab4", webview4.getUrl()).commit();
+					swiperefreshlayout4.setRefreshing(false);
+					progressbar1.setVisibility(View.GONE);
+					textview13.setText(webview4.getTitle());
+					super.onPageFinished(_param1, _param2);
+							}
+					});
+		}
+		if (settings.getString("pfp", "").equals("1")) {
+			profile_picture.setVisibility(View.VISIBLE);
+			if (settings.getString("tabletmode", "").equals("1")) {
+				profile_picture.setVisibility(View.GONE);
 			}
 			else {
-				expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
+				profile_picture.setVisibility(View.VISIBLE);
 			}
 		}
 		else {
-			if (Double.parseDouble(Build.VERSION.SDK) > 30) {
-				holdercard.setCardBackgroundColor(getColor("system_accent2_100"));
-			}
-			else {
-				holdercard.setCardBackgroundColor(0xFFFFFFFF);
-			}
-			homebtn.setImageResource(R.drawable.home);
-			if (expandedbtns.isEnabled()) {
-				expandbtn.setImageResource(R.drawable.ic_chevron_right_black);
-			}
-			else {
-				expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
-			}
+			profile_picture.setVisibility(View.GONE);
 		}
-		expandbtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
-				if (expandedbtns.isEnabled()) {
-					expandedbtns.setVisibility(View.GONE);
-					expandedbtns.setEnabled(false);
-					if (settings.getString("darkmode", "").equals("1")) {
-						expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
+		profile_picture.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(pfp.getString("loc", ""), 1024, 1024));
+		suggesturl.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				profile_picture.requestFocus();
+				SketchwareUtil.hideKeyboard(getApplicationContext());
+			}
+		});
+		imageview20.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (webview1.isEnabled()) {
+					urltext.setText(webview1.getUrl());
+				}
+				else {
+					if (webview2.isEnabled()) {
+						urltext.setText(webview2.getUrl());
 					}
 					else {
-						expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
+						if (webview3.isEnabled()) {
+							urltext.setText(webview3.getUrl());
+						}
+						else {
+							if (webview4.isEnabled()) {
+								urltext.setText(webview4.getUrl());
+							}
+							else {
+								
+							}
+						}
+					}
+				}
+			}
+		});
+		imagespinner.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				_Popup();
+			} });
+		imageview8.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				_loadurl();
+			} });
+		imageviewexpand.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (cardview1.isEnabled()) {
+					cardview1.setVisibility(View.GONE);
+					cardview1.setEnabled(false);
+					cardview2.setVisibility(View.GONE);
+					holdercard.setVisibility(View.GONE);
+					if (settings.getString("darkmode", "").equals("1")) {
+						imageviewexpand.setImageResource(R.drawable.ic_chevron_left_white);
+					}
+					else {
+						imageviewexpand.setImageResource(R.drawable.ic_chevron_left_black);
 					}
 				}
 				else {
-					expandedbtns.setVisibility(View.VISIBLE);
-					expandedbtns.setEnabled(true);
+					cardview1.setVisibility(View.VISIBLE);
+					cardview1.setEnabled(true);
+					cardview2.setVisibility(View.VISIBLE);
+					holdercard.setVisibility(View.VISIBLE);
 					if (settings.getString("darkmode", "").equals("1")) {
-						expandbtn.setImageResource(R.drawable.ic_chevron_right_white);
+						imageviewexpand.setImageResource(R.drawable.ic_keyboard_arrow_right_white);
 					}
 					else {
-						expandbtn.setImageResource(R.drawable.ic_chevron_right_black);
+						imageviewexpand.setImageResource(R.drawable.ic_keyboard_arrow_right_black);
 					}
 				}
+			} });
+		imageview32.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+				if (swiperefreshlayout1.isEnabled()) {
+					pdf.edit().putString("url", webview1.getUrl()).commit();
+				}
+				else {
+					if (swiperefreshlayout2.isEnabled()) {
+						pdf.edit().putString("url", webview2.getUrl()).commit();
+					}
+					else {
+						if (swiperefreshlayout3.isEnabled()) {
+							pdf.edit().putString("url", webview3.getUrl()).commit();
+						}
+						else {
+							if (swiperefreshlayout4.isEnabled()) {
+								pdf.edit().putString("url", webview4.getUrl()).commit();
+							}
+							else {
+								
+							}
+						}
+					}
+				}
+				spinnerdialog.setAction(Intent.ACTION_VIEW);
+				spinnerdialog.setClass(getApplicationContext(), SeccheckActivity.class);
+				startActivity(spinnerdialog);
 			} });
 		homebtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
 				if (settings.getString("homeurl", "").equals("")) {
@@ -4427,137 +3869,131 @@ public class MainActivity extends AppCompatActivity {
 				}
 			} });
 		tabsbtn.setOnClickListener(new OnClickListener() { public void onClick(View view) {
-				if (linear7.isEnabled()) {
-					linear7.setEnabled(false);
-					linear7.setVisibility(View.GONE);
-					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Closed Tab Switcher"))))).commit();
+				if (settings.getString("usenewtabs", "").equals("1")) {
+					texttabholder.setText(webview1.getTitle());
+					tabtitles.edit().putString("1title", texttabholder.getText().toString()).commit();
+					tabtitles.edit().putString("1link", webview1.getUrl()).commit();
+					texttabholder.setText(webview2.getTitle());
+					tabtitles.edit().putString("2title", texttabholder.getText().toString()).commit();
+					tabtitles.edit().putString("2link", webview2.getUrl()).commit();
+					texttabholder.setText(webview3.getTitle());
+					tabtitles.edit().putString("3title", texttabholder.getText().toString()).commit();
+					tabtitles.edit().putString("3link", webview3.getUrl()).commit();
+					texttabholder.setText(webview4.getTitle());
+					tabtitles.edit().putString("4title", texttabholder.getText().toString()).commit();
+					tabtitles.edit().putString("4link", webview4.getUrl()).commit();
+					tabintent.setAction(Intent.ACTION_VIEW);
+					tabintent.setClass(getApplicationContext(), OpentabsActivity.class);
+					startActivity(tabintent);
+					selectedtab.edit().putString("choose", "0").commit();
+					_loaddtabsinvidually();
 				}
 				else {
-					linear7.setEnabled(true);
-					linear7.setVisibility(View.VISIBLE);
-					logs.edit().putString("logs", logs.getString("logs", "").concat("\n[".concat(new SimpleDateFormat("hh:mm:ss").format(ei.getTime()).concat("]".concat("Opened Tab Switcher"))))).commit();
-				}
-				expandedbtns.setVisibility(View.GONE);
-				expandedbtns.setEnabled(false);
-				if (settings.getString("darkmode", "").equals("1")) {
-					expandbtn.setImageResource(R.drawable.ic_chevron_left_white);
-				}
-				else {
-					expandbtn.setImageResource(R.drawable.ic_chevron_left_black);
+					if (linear7.isEnabled()) {
+						linear7.setVisibility(View.GONE);
+						linear7.setEnabled(false);
+					}
+					else {
+						linear7.setVisibility(View.VISIBLE);
+						linear7.setEnabled(true);
+					}
 				}
 			} });
+		urltext.addTextChangedListener(new TextWatcher() {
+						@Override
+						public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								final String _charSeq = _param1.toString();
+				edittext1.setText(urltext.getText().toString());
+			}
+			@Override
+						public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								
+						}
+						
+						@Override
+						public void afterTextChanged(Editable _param1) {
+								
+						}
+				});
+		EditText editText = (EditText)findViewById(R.id.urltext); editText.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				boolean handled = false;
+				if (actionId == EditorInfo.IME_ACTION_GO) {
+					_loadurl();
+					_hideSoftKeyboard(urltext);
+					handled = true;
+				}
+				return handled;
+			}
+		});
 	}
 	
 	
-	public void _function () {
-	}
-	private int getColor(String name){
-		return getColor(getResources().getIdentifier(name,"color","android"));
-	}
-	
-	{
-	}
-	
-	
-	public void _a12lightmode () {
-		linear19.setBackgroundColor(getColor("system_accent2_100"));
-		linear7.setBackgroundColor(getColor("system_accent2_100"));
-		nonet.setBackgroundColor(0xFFFFFFFF);
-		textview3.setTextColor(0xFF000000);
-		edittext1.setTextColor(0xFF000000);
-		textview5.setTextColor(0xFF000000);
-		textview6.setTextColor(0xFF000000);
-		textview7.setTextColor(0xFF000000);
-		edittext2.setTextColor(0xFF000000);
-		textview9.setTextColor(0xFF000000);
-		textview10.setTextColor(0xFF000000);
-		textview11.setTextColor(0xFF000000);
-		textview12.setTextColor(0xFF000000);
-		textview13.setTextColor(0xFF000000);
-		imageview8.setImageResource(R.drawable.ic_arrow_forward_black);
-		edittext1.setBackgroundColor(getColor("system_accent2_100"));
-		linear14.setBackgroundColor(0xFFFFFFFF);
-		linear16.setBackgroundColor(getColor("system_accent2_100"));
-		linear21.setBackgroundColor(getColor("system_accent2_100"));
-		edittext2.setBackgroundColor(getColor("system_accent2_100"));
-		imageview20.setImageResource(R.drawable.ic_create_black);
-		imageview21.setImageResource(R.drawable.ic_clear_black);
-		imageview22.setImageResource(R.drawable.ic_filter_none_black);
-		imageview23.setImageResource(R.drawable.ic_open_in_new_black);
-		imageview24.setImageResource(R.drawable.ic_do_not_disturb_black);
-		imageview25.setImageResource(R.drawable.settings);
-		imageview26.setImageResource(R.drawable.home);
-		imageview28.setImageResource(R.drawable.ic_chevron_left_black);
-		imageview34.setImageResource(R.drawable.ic_filter_none_black);
-		tabadd.setImageResource(R.drawable.ic_my_library_add_black);
-		tabclose.setImageResource(R.drawable.ic_clear_black);
-		imageview30.setImageResource(R.drawable.ic_chevron_left_black);
-		imageview31.setImageResource(R.drawable.ic_more_vert_black);
-		suggesturl.setBackgroundColor(0xFFFFFFFF);
-		cardview1.setCardBackgroundColor(getColor("system_accent2_100"));
-		if (settings.getString("darkwebview", "").equals("1")) {
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
-		}
-	}
-	
-	
-	public void _a12darkmode () {
-		linear19.setBackgroundColor(getColor("system_accent2_800"));
-		linear7.setBackgroundColor(getColor("system_accent2_800"));
-		nonet.setBackgroundColor(0xFF000000);
-		textview3.setTextColor(0xFFFFFFFF);
-		edittext1.setTextColor(0xFFFFFFFF);
-		textview5.setTextColor(0xFFFFFFFF);
-		textview6.setTextColor(0xFFFFFFFF);
-		textview7.setTextColor(0xFFFFFFFF);
-		edittext2.setTextColor(0xFFFFFFFF);
-		textview9.setTextColor(0xFFFFFFFF);
-		textview10.setTextColor(0xFFFFFFFF);
-		textview11.setTextColor(0xFFFFFFFF);
-		textview12.setTextColor(0xFFFFFFFF);
-		textview13.setTextColor(0xFFFFFFFF);
-		imageview8.setImageResource(R.drawable.ic_arrow_forward_white);
-		edittext1.setBackgroundColor(getColor("system_accent2_800"));
-		linear14.setBackgroundColor(0xFF000000);
-		linear16.setBackgroundColor(getColor("system_accent2_800"));
-		linear21.setBackgroundColor(getColor("system_accent2_800"));
-		edittext2.setBackgroundColor(getColor("system_accent2_800"));
-		imageview20.setImageResource(R.drawable.ic_create_white);
-		imageview21.setImageResource(R.drawable.ic_close_white);
-		imageview22.setImageResource(R.drawable.ic_filter_none_white);
-		imageview23.setImageResource(R.drawable.ic_launch_white);
-		imageview24.setImageResource(R.drawable.ic_do_not_disturb_white);
-		imageview25.setImageResource(R.drawable.outline_settings_white_48);
-		imageview26.setImageResource(R.drawable.outline_home_white_48);
-		imageview28.setImageResource(R.drawable.ic_chevron_left_white);
-		imageview34.setImageResource(R.drawable.ic_filter_none_white);
-		tabadd.setImageResource(R.drawable.ic_add_to_photos_white);
-		tabclose.setImageResource(R.drawable.ic_close_white);
-		imageview30.setImageResource(R.drawable.ic_chevron_left_white);
-		imageview31.setImageResource(R.drawable.ic_more_vert_white);
-		suggesturl.setBackgroundColor(0xFF000000);
-		cardview1.setCardBackgroundColor(getColor("system_accent2_800"));
-		if (settings.getString("darkwebview", "").equals("1")) {
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview1.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview2.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview3.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview4.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
-			if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK));
-			WebSettingsCompat.setForceDark(webview5.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
-		}
+	public void _loaddtabsinvidually () {
+		loaddtabs = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						if (selectedtab.getString("selectedtab", "").equals("1")) {
+							swiperefreshlayout1.setVisibility(View.VISIBLE);
+							swiperefreshlayout1.setEnabled(true);
+							swiperefreshlayout2.setVisibility(View.GONE);
+							swiperefreshlayout2.setEnabled(false);
+							swiperefreshlayout3.setVisibility(View.GONE);
+							swiperefreshlayout3.setEnabled(false);
+							swiperefreshlayout4.setVisibility(View.GONE);
+							swiperefreshlayout4.setEnabled(false);
+							if (selectedtab.getString("choose", "").equals("1")) {
+								loaddtabs.cancel();
+							}
+						}
+						if (selectedtab.getString("selectedtab", "").equals("2")) {
+							swiperefreshlayout1.setVisibility(View.GONE);
+							swiperefreshlayout1.setEnabled(false);
+							swiperefreshlayout2.setVisibility(View.VISIBLE);
+							swiperefreshlayout2.setEnabled(true);
+							swiperefreshlayout3.setVisibility(View.GONE);
+							swiperefreshlayout3.setEnabled(false);
+							swiperefreshlayout4.setVisibility(View.GONE);
+							swiperefreshlayout4.setEnabled(false);
+							if (selectedtab.getString("choose", "").equals("1")) {
+								loaddtabs.cancel();
+							}
+						}
+						if (selectedtab.getString("selectedtab", "").equals("3")) {
+							swiperefreshlayout1.setVisibility(View.GONE);
+							swiperefreshlayout1.setEnabled(false);
+							swiperefreshlayout2.setVisibility(View.GONE);
+							swiperefreshlayout2.setEnabled(false);
+							swiperefreshlayout3.setVisibility(View.VISIBLE);
+							swiperefreshlayout3.setEnabled(true);
+							swiperefreshlayout4.setVisibility(View.GONE);
+							swiperefreshlayout4.setEnabled(false);
+							if (selectedtab.getString("choose", "").equals("1")) {
+								loaddtabs.cancel();
+							}
+						}
+						if (selectedtab.getString("selectedtab", "").equals("4")) {
+							swiperefreshlayout1.setVisibility(View.GONE);
+							swiperefreshlayout1.setEnabled(false);
+							swiperefreshlayout2.setVisibility(View.GONE);
+							swiperefreshlayout2.setEnabled(false);
+							swiperefreshlayout3.setVisibility(View.GONE);
+							swiperefreshlayout3.setEnabled(false);
+							swiperefreshlayout4.setVisibility(View.VISIBLE);
+							swiperefreshlayout4.setEnabled(true);
+							if (selectedtab.getString("choose", "").equals("1")) {
+								loaddtabs.cancel();
+							}
+						}
+					}
+				});
+			}
+		};
+		_timer.scheduleAtFixedRate(loaddtabs, (int)(0), (int)(100));
 	}
 	
 	

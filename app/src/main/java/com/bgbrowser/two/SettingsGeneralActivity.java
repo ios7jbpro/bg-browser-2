@@ -45,7 +45,9 @@ import android.net.Uri;
 import android.content.ClipData;
 import android.view.View;
 import androidx.webkit.*;
+import com.hkm.ezwebview.*;
 import com.monstertechno.adblocker.*;
+import im.delight.android.webview.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
@@ -84,14 +86,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private LinearLayout linear98;
 	private LinearLayout linear74;
 	private LinearLayout linear104;
-	private LinearLayout linear105;
 	private LinearLayout linear106;
-	private TextView textview132;
-	private LinearLayout linear107;
-	private Switch switch3;
+	private LinearLayout linear105;
 	private TextView textview133;
 	private LinearLayout linear108;
 	private Switch switch4;
+	private TextView textview132;
+	private LinearLayout linear107;
+	private Switch switch3;
 	private CardView cardview16;
 	private CardView cardview12;
 	private LinearLayout linear102;
@@ -133,9 +135,13 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 	private TextView textview134;
 	private TextView textview135;
 	private CardView cardview14;
+	private CardView cardview19;
 	private LinearLayout linear99;
 	private TextView textview124;
 	private TextView textview125;
+	private LinearLayout linear114;
+	private TextView textview137;
+	private TextView textview138;
 	
 	private SharedPreferences settings;
 	private SharedPreferences logs;
@@ -191,14 +197,14 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		linear98 = (LinearLayout) findViewById(R.id.linear98);
 		linear74 = (LinearLayout) findViewById(R.id.linear74);
 		linear104 = (LinearLayout) findViewById(R.id.linear104);
-		linear105 = (LinearLayout) findViewById(R.id.linear105);
 		linear106 = (LinearLayout) findViewById(R.id.linear106);
-		textview132 = (TextView) findViewById(R.id.textview132);
-		linear107 = (LinearLayout) findViewById(R.id.linear107);
-		switch3 = (Switch) findViewById(R.id.switch3);
+		linear105 = (LinearLayout) findViewById(R.id.linear105);
 		textview133 = (TextView) findViewById(R.id.textview133);
 		linear108 = (LinearLayout) findViewById(R.id.linear108);
 		switch4 = (Switch) findViewById(R.id.switch4);
+		textview132 = (TextView) findViewById(R.id.textview132);
+		linear107 = (LinearLayout) findViewById(R.id.linear107);
+		switch3 = (Switch) findViewById(R.id.switch3);
 		cardview16 = (CardView) findViewById(R.id.cardview16);
 		cardview12 = (CardView) findViewById(R.id.cardview12);
 		linear102 = (LinearLayout) findViewById(R.id.linear102);
@@ -240,9 +246,13 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		textview134 = (TextView) findViewById(R.id.textview134);
 		textview135 = (TextView) findViewById(R.id.textview135);
 		cardview14 = (CardView) findViewById(R.id.cardview14);
+		cardview19 = (CardView) findViewById(R.id.cardview19);
 		linear99 = (LinearLayout) findViewById(R.id.linear99);
 		textview124 = (TextView) findViewById(R.id.textview124);
 		textview125 = (TextView) findViewById(R.id.textview125);
+		linear114 = (LinearLayout) findViewById(R.id.linear114);
+		textview137 = (TextView) findViewById(R.id.textview137);
+		textview138 = (TextView) findViewById(R.id.textview138);
 		settings = getSharedPreferences("settings", Activity.MODE_PRIVATE);
 		logs = getSharedPreferences("logs", Activity.MODE_PRIVATE);
 		warn = new AlertDialog.Builder(this);
@@ -254,28 +264,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View _view) {
 				finish();
-			}
-		});
-		
-		switch3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (switch3.isChecked()) {
-					settings.edit().putString("darkmode", "1").commit();
-					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
-						a11w.setAction(Intent.ACTION_VIEW);
-						a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
-						startActivity(a11w);
-					}
-				}
-				else {
-					settings.edit().putString("darkmode", "0").commit();
-					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
-						a11w.setAction(Intent.ACTION_VIEW);
-						a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
-						startActivity(a11w);
-					}
-				}
 			}
 		});
 		
@@ -294,6 +282,28 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 				else {
 					settings.edit().putString("flagfollowsystem", "0").commit();
 					linear105.setVisibility(View.VISIBLE);
+					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
+						a11w.setAction(Intent.ACTION_VIEW);
+						a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
+						startActivity(a11w);
+					}
+				}
+			}
+		});
+		
+		switch3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (switch3.isChecked()) {
+					settings.edit().putString("darkmode", "1").commit();
+					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
+						a11w.setAction(Intent.ACTION_VIEW);
+						a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
+						startActivity(a11w);
+					}
+				}
+				else {
+					settings.edit().putString("darkmode", "0").commit();
 					if (Double.parseDouble(Build.VERSION.SDK) > 29) {
 						a11w.setAction(Intent.ACTION_VIEW);
 						a11w.setClass(getApplicationContext(), A11dmwarnActivity.class);
@@ -531,6 +541,31 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 				}
 			}
 		});
+		
+		cardview19.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (settings.getString("ytplayerbottom", "").equals("1")) {
+					settings.edit().putString("ytplayerbottom", "0").commit();
+					if (settings.getString("darkmode", "").equals("1")) {
+						cardview19.setCardBackgroundColor(0xFF424242);
+						textview137.setTextColor(0xFFFFFFFF);
+						textview138.setTextColor(0xFFFFFFFF);
+					}
+					else {
+						cardview19.setCardBackgroundColor(0xFFFFFFFF);
+						textview137.setTextColor(0xFF000000);
+						textview138.setTextColor(0xFF000000);
+					}
+				}
+				else {
+					settings.edit().putString("ytplayerbottom", "1").commit();
+					cardview19.setCardBackgroundColor(0xFFB39DDB);
+					textview137.setTextColor(0xFF673AB7);
+					textview138.setTextColor(0xFF673AB7);
+				}
+			}
+		});
 	}
 	
 	private void initializeLogic() {
@@ -538,6 +573,7 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		_language();
 		_function();
 		_setViewSize(linearstatusbar12, SketchwareUtil.getDisplayWidthPixels(getApplicationContext()), Double.parseDouble(settings.getString("sbheight", "")));
+		cardview19.setVisibility(View.INVISIBLE);
 		if (Double.parseDouble(Build.VERSION.SDK) < 31) {
 			linearstatusbar12.setVisibility(View.GONE);
 		}
@@ -556,6 +592,7 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		cardview7.setPreventCornerOverlap(true);
 		cardview17.setCardBackgroundColor(0xFF82B1FF);
 		cardview17.setPreventCornerOverlap(true);
+		cardview19.setPreventCornerOverlap(true);
 		if (settings.getString("homeurl", "").equals("")) {
 			edittext1.setText("https://");
 			settings.edit().putString("homeurl", "").commit();
@@ -573,18 +610,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		else {
 			switch3.setChecked(false);
 		}
-		reloader = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						_darkmode();
-					}
-				});
-			}
-		};
-		_timer.scheduleAtFixedRate(reloader, (int)(0), (int)(250));
 		if (settings.getString("darkwebview", "").equals("1")) {
 			cardview10.setCardBackgroundColor(0xFFCE93D8);
 		}
@@ -645,6 +670,21 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 				textview125.setTextColor(0xFF000000);
 			}
 		}
+		if (settings.getString("ytplayerbottom", "").equals("1")) {
+			cardview19.setCardBackgroundColor(0xFFB39DDB);
+		}
+		else {
+			if (settings.getString("darkmode", "").equals("1")) {
+				cardview19.setCardBackgroundColor(0xFF424242);
+				textview137.setTextColor(0xFFFFFFFF);
+				textview138.setTextColor(0xFFFFFFFF);
+			}
+			else {
+				cardview19.setCardBackgroundColor(0xFFFFFFFF);
+				textview137.setTextColor(0xFF000000);
+				textview138.setTextColor(0xFF000000);
+			}
+		}
 		if (settings.getString("tabletmode", "").equals("1")) {
 			cardview12.setCardBackgroundColor(0xFF80CBC4);
 		}
@@ -691,6 +731,7 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 			}
 		}
 		Window w = this.getWindow();w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(Color.parseColor("#9E9E9E"));
+		_darkmode();
 		_ripples();
 	}
 	
@@ -848,13 +889,6 @@ public class SettingsGeneralActivity extends AppCompatActivity {
 		if (Double.parseDouble(Build.VERSION.SDK) > 30) {
 			linear95.setVisibility(View.GONE);
 		}
-		_rippleRoundStroke(linear102, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear96, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear87, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear86, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear92, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear110, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
-		_rippleRoundStroke(linear99, "#00000000", "#FFEEEEEE", 0, 0, "#00000000");
 	}
 	
 	

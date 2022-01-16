@@ -10,23 +10,14 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="#FFFFFF"
-		android:gravity="center_horizontal|center_vertical"
 		android:orientation="vertical">
 		<LinearLayout
-			android:id="@+id/linear3"
+			android:id="@+id/linear4"
 			android:layout_width="match_parent"
 			android:layout_height="150dp"
 			android:padding="8dp"
-			android:background="@drawable/topwlcm"
-			android:orientation="horizontal"/>
-		<LinearLayout
-			android:id="@+id/linear2"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:padding="8dp"
-			android:gravity="center_horizontal|center_vertical"
-			android:orientation="vertical"
-			android:layout_weight="1">
+			android:gravity="left|bottom"
+			android:orientation="vertical">
 			<TextView
 				android:id="@+id/textview1"
 				android:layout_width="wrap_content"
@@ -35,7 +26,14 @@
 				android:text="Set an homepage"
 				android:textSize="25sp"
 				android:textStyle="bold"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/linear2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:orientation="vertical">
 			<EditText
 				android:id="@+id/edittext1"
 				android:layout_width="200dp"
@@ -45,17 +43,50 @@
 				android:textSize="12sp"
 				android:textColor="#000000"
 				android:hint="Type URL Here"
-				android:textColorHint="#607D8B"/>
+				android:textColorHint="#607D8B" />
+			<TextView
+				android:id="@+id/textview2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="The app will use this as home page when you press the home button."
+				android:textSize="12sp"
+				android:textColor="#9E9E9E" />
 		</LinearLayout>
-		<Button
-			android:id="@+id/button1"
-			android:layout_width="wrap_content"
-			android:layout_height="35dp"
-			android:layout_marginBottom="8dp"
+		<LinearLayout
+			android:id="@+id/linear5"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
 			android:padding="8dp"
-			android:background="#2196F3"
-			android:text="NEXT"
-			android:textSize="12sp"
-			android:textColor="#FFFFFF"/>
+			android:gravity="right|bottom"
+			android:orientation="vertical">
+			<Button
+				android:id="@+id/button1"
+				android:layout_width="wrap_content"
+				android:layout_height="35dp"
+				android:padding="8dp"
+				android:background="#2196F3"
+				android:text="NEXT"
+				android:textSize="12sp"
+				android:textColor="#FFFFFF" />
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+		android:id="@+id/loading"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="8dp"
+		android:background="#FFFFFF"
+		android:gravity="center_horizontal|center_vertical"
+		android:orientation="vertical">
+		<com.airbnb.lottie.LottieAnimationView
+			android:id="@+id/lottie1"
+			android:layout_width="200dp"
+			android:layout_height="200dp"
+			android:scaleType="fitCenter"
+			android:layout_centerInParent="true"
+			app:lottie_fileName="gsplashloading.json"
+			app:lottie_loop="true"
+			app:lottie_autoPlay="true" />
 	</LinearLayout>
 </LinearLayout>

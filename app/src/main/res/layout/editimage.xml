@@ -11,7 +11,7 @@
 		android:layout_height="wrap_content"
 		android:padding="8dp"
 		android:background="#FFFFFF"
-		android:orientation="horizontal"/>
+		android:orientation="horizontal" />
 	<LinearLayout
 		android:id="@+id/linear2"
 		android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 			android:id="@+id/linear4"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal"/>
+			android:orientation="horizontal" />
 	</LinearLayout>
 	<LinearLayout
 		android:id="@+id/linear3"
@@ -52,7 +52,7 @@
 				android:layout_height="25dp"
 				android:layout_margin="3dp"
 				android:src="@drawable/ic_autorenew_black"
-				android:scaleType="fitCenter"/>
+				android:scaleType="fitCenter" />
 			<TextView
 				android:id="@+id/textview3"
 				android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
 				android:padding="8dp"
 				android:text="Rotate"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 		</LinearLayout>
 		<LinearLayout
 			android:id="@+id/button_crop"
@@ -77,7 +77,7 @@
 				android:layout_height="25dp"
 				android:layout_margin="3dp"
 				android:src="@drawable/ic_crop_black"
-				android:scaleType="fitCenter"/>
+				android:scaleType="fitCenter" />
 			<TextView
 				android:id="@+id/textview2"
 				android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
 				android:padding="8dp"
 				android:text="Crop"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 		</LinearLayout>
 		<LinearLayout
 			android:id="@+id/button_done"
@@ -101,7 +101,7 @@
 				android:layout_height="25dp"
 				android:layout_margin="3dp"
 				android:src="@drawable/ic_check_black"
-				android:scaleType="fitCenter"/>
+				android:scaleType="fitCenter" />
 			<TextView
 				android:id="@+id/textview1"
 				android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
 				android:padding="8dp"
 				android:text="Done"
 				android:textSize="12sp"
-				android:textColor="#000000"/>
+				android:textColor="#000000" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
